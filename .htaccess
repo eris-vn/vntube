@@ -1,0 +1,22 @@
+# Bật module rewrite
+RewriteEngine On
+RewriteBase /
+
+# Chặn truy cập trực tiếp vào các tập tin PHP ngoại trừ index.php
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !^/index\.php$
+RewriteRule \.php$ - [F]
+
+# TRANG 404 ( KHÔNG TÌM THẤY )
+ErrorDocument 404 /404.html
+
+### CLIENT
+RewriteRule ^$ index.php?controller=client/HomeController&action=homepage [QSA,L]
+
+RewriteRule ^danh-muc/(.*)$ index.php?role=client&page=category&slug=$1 [QSA,L]
+RewriteRule ^dang-nhap$ index.php?controller=client/AuthController&action=view_login [QSA,L]
+RewriteRule ^dang-ky$ index.php?controller=client/AuthController&action=view_register [QSA,L]
+
+RewriteRule ^dang-ky$ index.php?role=client&page=auth/register [QSA,L]
+RewriteRule ^dang-xuat$ index.php?role=client&page=auth/logout [QSA,L]
+
