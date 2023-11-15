@@ -1,13 +1,15 @@
 <?php
 
 require_once 'constants/card.php';
-require_once 'model/order.php';
+require_once 'model/user.php';
+require_once 'constants/user.php';
 
 class HomeController
 {
     function homepage()
     {
-        $test = (new Order())->whereIn('status', [1, 2])->getArray();
-        return view('client.home', compact('test'), 'default');
+        $list = (new User)->where('name', '=', 'a')->getArray();
+        return json_encode($list);
+        return view('client.home', 'default');
     }
 }

@@ -11,7 +11,10 @@ RewriteRule \.php$ - [F]
 ErrorDocument 404 /404.html
 
 ### CLIENT
-RewriteRule ^$ index.php?controller=client/HomeController&action=homepage [QSA,L]
+RewriteRule ^$ index.php?controller=client/HomeController&action=homepage&middleware=auth [QSA,L]
+RewriteRule ^test$ index.php?controller=client/TestController&action=page [QSA,L]
+
+RewriteRule ^search$ index.php?controller=client/SearchController&action=searchpage [QSA,L]
 
 RewriteRule ^danh-muc/(.*)$ index.php?role=client&page=category&slug=$1 [QSA,L]
 RewriteRule ^dang-nhap$ index.php?controller=client/AuthController&action=view_login [QSA,L]

@@ -1,5 +1,5 @@
 <?php
-$user = user();
+$user = true;
 
 if (!$user) {
     redirect('/dang-nhap');

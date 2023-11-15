@@ -41,14 +41,16 @@ class Model
     public function whereIn($column, array $values)
     {
         $formattedValues = implode(', ', array_map(function ($value) {
-            return "'" . $value . "'";
+            return "'" . mysqli_real_escape_string($this->db, $value) . "'";
         }, $values));
+
         $this->conditions[] = [
             'column' => $column,
             'operator' => 'IN',
-            'value' => "($formattedValues)",
+            'value' => "({$formattedValues})",
             'logicalOperator' => 'AND',
         ];
+
         return $this;
     }
 
@@ -80,7 +82,9 @@ class Model
         if (!empty($this->conditions)) {
             $query .= " WHERE";
             foreach ($this->conditions as $index => $condition) {
-                $query .= " {$condition['column']} {$condition['operator']} {$condition['value']}";
+                $value = $condition['operator'] === 'IN' ? $condition['value'] : "'" . $condition['value'] . "'";
+                $query .= " {$condition['column']} {$condition['operator']} {$value}";
+
                 if ($index !== count($this->conditions) - 1) {
                     $query .= " {$condition['logicalOperator']}";
                 }

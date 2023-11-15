@@ -6,7 +6,7 @@ $config = [
     'LOCALHOST' => 'localhost',
     'USERNAME' => 'root',
     'PASSWORD' => '',
-    'DATABASE' => 'lazada',
+    'DATABASE' => 'webkhoahoc',
     'PORT' => 3307
 ];
 
@@ -19,12 +19,19 @@ function api($data)
 function view($path, $data = [], $layout = "")
 {
     $path = str_replace('.', '/', $path);
-    extract($data);
+    if (is_array($data)) {
+        extract($data);
+    } else {
+        if (is_string($data) && file_exists("view/layouts/$data.php")) {
+            $layout = $data;
+        }
+    };
 
     // xử lý view
     if (!file_exists("view/$path.php")) {
         return 'Không tìm thấy view';
     }
+
 
     // xử lý layout
     $layout_path = "view/layouts/$layout.php";
