@@ -1,1 +1,0 @@
-trang xem người đăng ký

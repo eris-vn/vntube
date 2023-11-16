@@ -2,12 +2,8 @@
 
 class AuthController
 {
-    function view_login()
+    function loginpage()
     {
-        return view('client.auth.login');
-    }
-    function view_register()
-    {
-        return view('client.auth.register');
+        return view('client.auth.login', 'default');
     }
 }

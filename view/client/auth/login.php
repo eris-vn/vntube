@@ -1,103 +1,111 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <title>Login | Veltrix - Admin & Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
-    <meta content="Themesbrand" name="author">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="/public/assets/images/favicon.ico">
-
-    <!-- Bootstrap Css -->
-    <link href="/public/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
-    <!-- Icons Css -->
-    <link href="/public/assets/css/icons.min.css" rel="stylesheet" type="text/css">
-    <!-- App Css-->
-    <link href="/public/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
-
-</head>
-
-<body data-bs-theme="dark">
-
-    <div class="home-btn d-none d-sm-block">
-        <a href="/" class="text-dark"><i class="fas fa-home h2"></i></a>
-    </div>
-    <div class="account-pages my-5 pt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-4">
-                    <div class="card overflow-hidden">
-                        <div class="bg-primary">
-                            <div class="text-primary text-center p-4">
-                                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50">Sign in to continue to Veltrix.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-body p-4">
-                            <div class="p-3">
-                                <form class="mt-0">
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter username">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="userpassword">Password</label>
-                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
-                                    </div>
-
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-6">
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="customControlInline">
-                                                <label class="form-check-label" for="customControlInline">Remember me</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 text-end">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-2 mb-0 row">
-                                        <div class="col-12 mt-4">
-                                            <a href="pages-recoverpw.html"><i class="mdi mdi-lock"></i> Forgot your password?</a>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-5 text-center">
-                        <p>Don't have an account ? <a href="pages-register.html" class="fw-medium text-primary"> Signup now </a> </p>
-                        <p class="mb-0">© <script>
-                                document.write(new Date().getFullYear())
-                            </script> Veltrix. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                    </div>
-
-
+<div style="padding-top: 100px;"></div>
+<div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner text-center">
+                    <h2 class="title">Login &amp; Register</h2>
+                    <ul class="page-list">
+                        <li class="rbt-breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li>
+                            <div class="icon-right"><i class="feather-chevron-right"></i></div>
+                        </li>
+                        <li class="rbt-breadcrumb-item active">Login &amp; Register</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- JAVASCRIPT -->
-    <script src="/public/assets/libs/jquery/jquery.min.js"></script>
-    <script src="/public/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/public/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="/public/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/public/assets/libs/node-waves/waves.min.js"></script>
+<div class="rbt-elements-area bg-color-white rbt-section-gap">
+    <div class="container">
+        <div class="row gy-5 row--30">
 
-    <script src="/public/assets/js/app.js"></script>
+            <div class="col-lg-6">
+                <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+                    <h3 class="title">Login</h3>
+                    <form class="max-width-auto">
+                        <div class="form-group">
+                            <input name="con_name" type="text">
+                            <label>Username or email *</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <input name="con_email" type="email">
+                            <label>Password *</label>
+                            <span class="focus-border"></span>
+                        </div>
 
-</body>
+                        <div class="row mb--30">
+                            <div class="col-lg-6">
+                                <div class="rbt-checkbox">
+                                    <input type="checkbox" id="rememberme" name="rememberme">
+                                    <label for="rememberme">Remember me</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="rbt-lost-password text-end">
+                                    <a class="rbt-btn-link" href="#">Lost your password?</a>
+                                </div>
+                            </div>
+                        </div>
 
-</html>
+                        <div class="form-submit-group">
+                            <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
+                                <span class="icon-reverse-wrapper">
+                                    <span class="btn-text">Log In</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+                    <h3 class="title">Register</h3>
+                    <form class="max-width-auto" data-bitwarden-watching="1">
+                        <div class="form-group">
+                            <input name="register-email" type="text">
+                            <label>Email address *</label>
+                            <span class="focus-border"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input name="register_user" type="text">
+                            <label>Username *</label>
+                            <span class="focus-border"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input name="register_password" type="password">
+                            <label>Password *</label>
+                            <span class="focus-border"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input name="register_conpassword" type="password">
+                            <label>Confirm Password *</label>
+                            <span class="focus-border"></span>
+                        </div>
+
+                        <div class="form-submit-group">
+                            <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
+                                <span class="icon-reverse-wrapper">
+                                    <span class="btn-text">Register</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                </span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
