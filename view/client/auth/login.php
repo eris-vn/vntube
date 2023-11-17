@@ -128,9 +128,12 @@
             })
             .done(function(data) {
                 if (data.status == 200) {
-
+                    Swal.fire({
+                        title: "THÀNH CÔNG",
+                        text: data.msg,
+                        icon: "success"
+                    });
                 } else {
-                    console.log(data);
                     Swal.fire({
                         title: "THẤT BẠI",
                         text: data.msg,

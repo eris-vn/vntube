@@ -5,7 +5,7 @@
                 <div class="content">
                     <div class="inner">
                         <div class="rbt-new-badge rbt-new-badge-one">
-                            <span class="rbt-new-badge-icon">🏆</span> The Leader in Online Learning
+                            <span class="rbt-new-badge-icon">🏆</span> Tự hào dẫn đầu nền tảng học trực tiếp
                         </div>
                         <h1 class="title">The Largest <span class="color-primary">Online Learning</span> Platform
                             for Drive Your Career.</h1>

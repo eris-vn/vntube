@@ -13,7 +13,7 @@ class AuthController
             'password' => ['required']
         ]);
 
-        $user = (new User)->where('email', '=', $_POST['email'])->where('password', '=', $_POST['password'])->first();
+        $user = (new User)->where('email', '=', $_POST['email'])->where('password', '=', md5($_POST['password']))->first();
 
         $_SESSION['user_id'] = $user['id'];
         return api(['status' => 200, 'msg' => 'Đăng nhập thành công.']);
@@ -37,7 +37,7 @@ class AuthController
             return api(['status' => -102, 'msg' => 'Xác nhận mật khẩu không đúng.']);
         }
 
-        (new User)->insert(['name' => $_POST['name'], 'email' => $_POST['email'], 'password' => $_POST['password']]);
+        (new User)->insert(['name' => $_POST['name'], 'email' => $_POST['email'], 'password' => md5($_POST['password'])]);
         return api(['status' => 200, 'msg' => 'Đăng ký tài khoản thành công.']);
     }
     function on_logout()
