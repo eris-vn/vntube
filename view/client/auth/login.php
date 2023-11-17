@@ -132,6 +132,8 @@
                         title: "THÀNH CÔNG",
                         text: data.msg,
                         icon: "success"
+                    }).then((result) => {
+                        window.location.href = '/';
                     });
                 } else {
                     Swal.fire({

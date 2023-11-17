@@ -15,7 +15,11 @@ class AuthController
 
         $user = (new User)->where('email', '=', $_POST['email'])->where('password', '=', md5($_POST['password']))->first();
 
-        $_SESSION['user_id'] = $user['id'];
+        if ($user) {
+            $_SESSION['user_id'] = $user['id'];
+        } else {
+            return api(['status' => -100, 'msg' => 'Tài khoản hoặc mật khẩu không chính xác.']);
+        }
         return api(['status' => 200, 'msg' => 'Đăng nhập thành công.']);
     }
     function on_regist()
@@ -38,6 +42,10 @@ class AuthController
         }
 
         (new User)->insert(['name' => $_POST['name'], 'email' => $_POST['email'], 'password' => md5($_POST['password'])]);
+
+        $user = (new User)->where('email', '=', $_POST['email'])->where('password', '=', md5($_POST['password']))->first();
+        $_SESSION['user_id'] = $user['id'];
+
         return api(['status' => 200, 'msg' => 'Đăng ký tài khoản thành công.']);
     }
     function on_logout()

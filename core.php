@@ -20,7 +20,7 @@ function validate_api($request, $data)
             $msg = '';
 
             # nếu không tìm thấy key
-            if (empty($request[$key])) {
+            if (!array_key_exists($key, $request) || $request[$key] === null || $request[$key] === "") {
                 foreach ($action as $c) {
                     $cd = explode(':', $c);
 
@@ -32,7 +32,7 @@ function validate_api($request, $data)
                         isset($cd[1]) ? $msg = 'Không bỏ trống ' . $cd[1] : $msg = 'Không bỏ trống ' . $key;
                     }
                 }
-                echo json_encode(['status' => intval($status), 'msg' => $msg]);
+                echo json_encode(['status' => intval($status), 'msg' => $msg, 'test']);
                 exit;
             } else {
 
@@ -48,6 +48,40 @@ function validate_api($request, $data)
                         $msg = 'Email không hợp lệ';
                         echo json_encode(['status' => intval($status), 'msg' => $msg]);
                         exit;
+                    }
+
+                    # kiểm tra giới hạn tối thiểu (min)
+                    if ($cd[0] == "min") {
+                        if (is_numeric(intval($request[$key]))) {
+                            if ($request[$key] < $cd[1]) {
+                                $msg = 'Giá trị quá nhỏ. Giá trị tối thiểu là ' . $cd[1];
+                                echo json_encode(['status' => intval($status), 'msg' => $msg, 'test']);
+                                exit;
+                            }
+                        } else {
+                            if (strlen($request[$key]) < $cd[1]) {
+                                $msg = 'Độ dài quá ngắn. Độ dài tối thiểu là ' . $cd[1];
+                                echo json_encode(['status' => intval($status), 'msg' => $msg, 'test']);
+                                exit;
+                            }
+                        }
+                    }
+
+                    # kiểm tra giới hạn tối đa (max)
+                    if ($cd[0] == "max") {
+                        if (is_numeric($request[$key])) {
+                            if ($request[$key] > $cd[1]) {
+                                $msg = 'Giá trị quá lớn. Giá trị tối đa là ' . $cd[1];
+                                echo json_encode(['status' => intval($status), 'msg' => $msg]);
+                                exit;
+                            }
+                        } else {
+                            if (strlen($request[$key]) > $cd[1]) {
+                                $msg = 'Độ dài quá dài. Độ dài tối đa là ' . $cd[1];
+                                echo json_encode(['status' => intval($status), 'msg' => $msg]);
+                                exit;
+                            }
+                        }
                     }
                 }
             }

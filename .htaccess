@@ -19,8 +19,10 @@ RewriteRule ^auth/login$ index.php?controller=client/AuthController&action=on_lo
 RewriteRule ^auth/logout$ index.php?controller=client/AuthController&action=on_logout [QSA,L]
 
 RewriteRule ^danh-muc/(.*)$ index.php?role=client&page=category&slug=$1 [QSA,L]
-RewriteRule ^dang-ky$ index.php?controller=client/AuthController&action=view_register [QSA,L]
 
-RewriteRule ^dang-ky$ index.php?role=client&page=auth/register [QSA,L]
-RewriteRule ^dang-xuat$ index.php?role=client&page=auth/logout [QSA,L]
+# USER
+RewriteRule ^user/dashboard$ index.php?controller=client/user/DashboardController&action=show_page&middleware=auth [QSA,L]
+RewriteRule ^user/my-course$ index.php?controller=client/user/CourseController&action=show_page&middleware=auth [QSA,L]
+RewriteRule ^user/course/create$ index.php?controller=client/user/CourseController&action=show_create&middleware=auth [QSA,L]
+RewriteRule ^/api/user/course/create$ index.php?controller=client/user/CourseController&action=create&middleware=auth [QSA,L]
 
