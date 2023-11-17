@@ -1,4 +1,4 @@
-<div style="padding-top: 100px;"></div>
+<div style="padding-top: 50px;"></div>
 <div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1">
     <div class="container">
         <div class="row">
@@ -24,16 +24,16 @@
 
             <div class="col-lg-6">
                 <div class="rbt-contact-form contact-form-style-1 max-width-auto">
-                    <h3 class="title">Login</h3>
-                    <form class="max-width-auto">
+                    <h3 class="title">Đăng nhập</h3>
+                    <form id="login" class="max-width-auto">
                         <div class="form-group">
-                            <input name="con_name" type="text">
-                            <label>Username or email *</label>
+                            <input id="login_email" type="email">
+                            <label>Email *</label>
                             <span class="focus-border"></span>
                         </div>
                         <div class="form-group">
-                            <input name="con_email" type="email">
-                            <label>Password *</label>
+                            <input id="login_password" type="password">
+                            <label>Mật khẩu *</label>
                             <span class="focus-border"></span>
                         </div>
 
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="rbt-lost-password text-end">
-                                    <a class="rbt-btn-link" href="#">Lost your password?</a>
+                                    <a class="rbt-btn-link" href="#">Quên mật khẩu?</a>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="form-submit-group">
                             <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
                                 <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Log In</span>
+                                    <span class="btn-text">Đăng nhâp</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
@@ -66,36 +66,37 @@
 
             <div class="col-lg-6">
                 <div class="rbt-contact-form contact-form-style-1 max-width-auto">
-                    <h3 class="title">Register</h3>
-                    <form class="max-width-auto" data-bitwarden-watching="1">
+                    <h3 class="title">Đăng Ký</h3>
+                    <form id="register" class="max-width-auto" data-bitwarden-watching="1">
+
                         <div class="form-group">
-                            <input name="register-email" type="text">
-                            <label>Email address *</label>
+                            <input id="register_user" type="text">
+                            <label>Họ tên *</label>
                             <span class="focus-border"></span>
                         </div>
 
                         <div class="form-group">
-                            <input name="register_user" type="text">
-                            <label>Username *</label>
+                            <input id="register_email" type="text">
+                            <label>Email *</label>
                             <span class="focus-border"></span>
                         </div>
 
                         <div class="form-group">
-                            <input name="register_password" type="password">
-                            <label>Password *</label>
+                            <input id="register_password" type="password">
+                            <label>Mật khẩu *</label>
                             <span class="focus-border"></span>
                         </div>
 
                         <div class="form-group">
-                            <input name="register_conpassword" type="password">
-                            <label>Confirm Password *</label>
+                            <input id="register_conpassword" type="password">
+                            <label>Nhập lại mật khẩu *</label>
                             <span class="focus-border"></span>
                         </div>
 
                         <div class="form-submit-group">
                             <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
                                 <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Register</span>
+                                    <span class="btn-text">Đăng ký ngay</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
@@ -109,3 +110,63 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $("#register").on("submit", function(event) {
+        event.preventDefault();
+
+        $.ajax({
+                method: "POST",
+                url: "/auth/register",
+                data: {
+                    name: $('#register_user').val(),
+                    email: $('#register_email').val(),
+                    password: $('#register_password').val(),
+                    re_password: $('#register_conpassword').val()
+                }
+            })
+            .done(function(data) {
+                if (data.status == 200) {
+
+                } else {
+                    console.log(data);
+                    Swal.fire({
+                        title: "THẤT BẠI",
+                        text: data.msg,
+                        icon: "error"
+                    });
+                }
+            });
+    });
+
+    $("#login").on("submit", function(event) {
+        event.preventDefault();
+
+        $.ajax({
+                method: "POST",
+                url: "/auth/login",
+                data: {
+                    email: $('#login_email').val(),
+                    password: $('#login_password').val(),
+                }
+            })
+            .done(function(data) {
+                if (data.status == 200) {
+                    Swal.fire({
+                        title: "THÀNH CÔNG",
+                        text: data.msg,
+                        icon: "success"
+                    }).then((result) => {
+                        window.location.href = '/';
+                    });
+                } else {
+                    Swal.fire({
+                        title: "THẤT BẠI",
+                        text: data.msg,
+                        icon: "error"
+                    });
+                }
+            });
+    });
+</script>

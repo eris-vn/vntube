@@ -1,6 +1,6 @@
 <?php
-$user = true;
+$user = user();
 
 if (!$user) {
-    redirect('/dang-nhap');
+    redirect('/login');
 }

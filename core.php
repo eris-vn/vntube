@@ -10,8 +10,58 @@ $config = [
     'PORT' => 3307
 ];
 
+function validate_api($request, $data)
+{
+    header('Content-Type: application/json; charset=utf-8');
+    try {
+        foreach ($data as $key => $action) {
+
+            $status = -100;
+            $msg = '';
+
+            # nếu không tìm thấy key
+            if (empty($request[$key])) {
+                foreach ($action as $c) {
+                    $cd = explode(':', $c);
+
+                    # xử lý status code
+                    $cd[0] == "code" ? $status = $cd[1] : $status = -100;
+
+                    # kiểm tra bắt buộc
+                    if ($cd[0] == "required") {
+                        isset($cd[1]) ? $msg = 'Không bỏ trống ' . $cd[1] : $msg = 'Không bỏ trống ' . $key;
+                    }
+                }
+                echo json_encode(['status' => intval($status), 'msg' => $msg]);
+                exit;
+            } else {
+
+                # nếu tìm thấy key
+                foreach ($action as $c) {
+                    $cd = explode(':', $c);
+
+                    # xử lý status code
+                    $cd[0] == "code" ? $status = $cd[1] : $status = -100;
+
+                    # kiểm tra độ hợp lệ email
+                    if ($cd[0] == "email" && !filter_var($request[$key], FILTER_VALIDATE_EMAIL)) {
+                        $msg = 'Email không hợp lệ';
+                        echo json_encode(['status' => intval($status), 'msg' => $msg]);
+                        exit;
+                    }
+                }
+            }
+        }
+    } catch (Throwable $th) {
+        echo json_encode(['status' => -200, 'msg' => 'Tham số lỗi']);
+        exit;
+    }
+}
+
+
 function api($data)
 {
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode($data);
     return;
 }

@@ -1,4 +1,4 @@
-<div class="rbt-banner-area rbt-banner-1 variation-2 height-750" style="padding-top: 100px;">
+<div class="rbt-banner-area rbt-banner-1 variation-2 height-750" style="padding-top: 0px;">
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-8">
