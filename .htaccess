@@ -25,4 +25,4 @@ RewriteRule ^user/dashboard$ index.php?controller=client/user/DashboardControlle
 RewriteRule ^user/my-course$ index.php?controller=client/user/CourseController&action=show_page&middleware=auth [QSA,L]
 RewriteRule ^user/course/create$ index.php?controller=client/user/CourseController&action=show_create&middleware=auth [QSA,L]
 RewriteRule ^/api/user/course/create$ index.php?controller=client/user/CourseController&action=create&middleware=auth [QSA,L]
-
+RewriteRule ^user/course/build-lesson/(.*)$ index.php?controller=client/user/CourseController&action=show_build_lesson&middleware=auth&course_id=$1 [QSA,L]
