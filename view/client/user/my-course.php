@@ -24,18 +24,19 @@
         <div class="tab-content">
             <div class="tab-pane fade active show" id="publish-4" role="tabpanel" aria-labelledby="publish-tab-4">
                 <div class="row g-5">
-                    <?php foreach ($courses as $course) : ?>
+                    <?php if ($courses) : ?>
+                        <?php foreach ($courses as $course) : ?>
 
-                        <!-- Start Single Course  -->
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="rbt-card variation-01 rbt-hover">
-                                <div class="rbt-card-img">
-                                    <a href="course-details.html">
-                                        <img src="<?= $course['thumbnails'] ?>" alt="Card image">
-                                    </a>
-                                </div>
-                                <div class="rbt-card-body">
-                                    <!-- <div class="rbt-card-top">
+                            <!-- Start Single Course  -->
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="rbt-card variation-01 rbt-hover">
+                                    <div class="rbt-card-img">
+                                        <a href="course-details.html">
+                                            <img src="<?= $course['thumbnails'] ?>" alt="Card image">
+                                        </a>
+                                    </div>
+                                    <div class="rbt-card-body">
+                                        <!-- <div class="rbt-card-top">
                                         <div class="rbt-review">
                                             <div class="rating">
                                                 <i class="fas fa-star"></i>
@@ -50,32 +51,36 @@
                                             <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
                                         </div>
                                     </div> -->
-                                    <h4 class="rbt-card-title"><a href="course-details.html"><?= $course['name'] ?></a>
-                                    </h4>
-                                    <ul class="rbt-meta">
-                                        <li><i class="feather-book"></i>20 Lessons</li>
-                                        <li><i class="feather-users"></i>40 Students</li>
-                                    </ul>
+                                        <h4 class="rbt-card-title"><a href="course-details.html"><?= $course['name'] ?></a>
+                                        </h4>
+                                        <ul class="rbt-meta">
+                                            <li><i class="feather-book"></i>20 Lessons</li>
+                                            <li><i class="feather-users"></i>40 Students</li>
+                                        </ul>
 
-                                    <div class="rbt-card-bottom">
-                                        <div class="rbt-price">
-                                            <?php if ($course['price'] == 0) : ?>
-                                                <span class="current-price">Miễn phí</span>
-                                            <?php else : ?>
-                                                <span class="current-price"><?= number_format($course['price']) ?>đ</span>
-                                            <?php endif; ?>
-                                            <?php if ($course['discounted_price']) : ?>
-                                                <span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>
-                                            <?php endif; ?>
+                                        <div class="rbt-card-bottom">
+                                            <div class="rbt-price">
+                                                <?php if ($course['price'] == 0) : ?>
+                                                    <span class="current-price">Miễn phí</span>
+                                                <?php else : ?>
+                                                    <span class="current-price"><?= number_format($course['price']) ?>đ</span>
+                                                <?php endif; ?>
+                                                <?php if ($course['discounted_price']) : ?>
+                                                    <span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>
+                                                <?php endif; ?>
+                                            </div>
+                                            <a class="rbt-btn-link left-icon" href="#"><i class="feather-edit"></i> Edit</a>
                                         </div>
-                                        <a class="rbt-btn-link left-icon" href="#"><i class="feather-edit"></i> Edit</a>
                                     </div>
                                 </div>
                             </div>
+                            <!-- End Single Course  -->
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="col-lg-12">
+                            Không tìm thấy khoá học nào
                         </div>
-                        <!-- End Single Course  -->
-                    <?php endforeach; ?>
-
+                    <?php endif; ?>
                 </div>
             </div>
 

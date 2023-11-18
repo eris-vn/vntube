@@ -1,13 +1,14 @@
 <?php
 
 require_once 'model/course.php';
+require_once 'model/chapter.php';
 
 class CourseController
 {
     function show_page()
     {
         $user = user();
-        $courses = (new Course)->where('user_id', '=', $user['id'])->get();
+        $courses = (new Course)->where('user_id', '=', $user['id'])->getArray();
         return view('client.user.my-course', compact('courses'), 'user');
     }
     function show_create()
@@ -47,5 +48,18 @@ class CourseController
         (new Course)->insert(['user_id' => $user['id'], 'name' => $_POST['name'], 'slug' => $_POST['slug'], 'description' => $_POST['description'], 'price' => $_POST['price'], 'discounted_price' => $discounted_price, 'thumbnails' => $image, 'video_preview' => $_POST['video_preview'], 'minutes' => $_POST['minutes']]);
         $course = (new Course)->where('user_id', '=', $user['id'])->first();
         return api(['status' => 200, 'data' => ['id' => $course['id']], 'msg' => 'Tạo khoá học thành công']);
+    }
+    function show_build_lesson()
+    {
+        $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
+        $course = (new Course)->where('id', '=', $course_id)->first();
+
+        if (!$course) {
+            return redirect('/404');
+        }
+
+        $chapters = (new Chapter)->where('course_id', '=', $course_id)->getArray();
+
+        return view('client.user.course.build-lesson', compact('course', 'chapters'), 'default');
     }
 }
