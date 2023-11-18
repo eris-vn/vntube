@@ -5,9 +5,9 @@ require_once 'model/user.php';
 $config = [
     'LOCALHOST' => 'localhost',
     'USERNAME' => 'root',
-    'PASSWORD' => 'hauphuch',
+    'PASSWORD' => '',
     'DATABASE' => 'webkhoahoc',
-    'PORT' => 3306
+    'PORT' => 3307
 ];
 
 function validate_api($request, $data)
@@ -32,7 +32,7 @@ function validate_api($request, $data)
                         isset($cd[1]) ? $msg = 'Không bỏ trống ' . $cd[1] : $msg = 'Không bỏ trống ' . $key;
                     }
                 }
-                echo json_encode(['status' => intval($status), 'msg' => $msg, 'test']);
+                echo json_encode(['status' => intval($status), 'msg' => $msg]);
                 exit;
             } else {
 
@@ -55,13 +55,13 @@ function validate_api($request, $data)
                         if (is_numeric(intval($request[$key]))) {
                             if ($request[$key] < $cd[1]) {
                                 $msg = 'Giá trị quá nhỏ. Giá trị tối thiểu là ' . $cd[1];
-                                echo json_encode(['status' => intval($status), 'msg' => $msg, 'test']);
+                                echo json_encode(['status' => intval($status), 'msg' => $msg]);
                                 exit;
                             }
                         } else {
                             if (strlen($request[$key]) < $cd[1]) {
                                 $msg = 'Độ dài quá ngắn. Độ dài tối thiểu là ' . $cd[1];
-                                echo json_encode(['status' => intval($status), 'msg' => $msg, 'test']);
+                                echo json_encode(['status' => intval($status), 'msg' => $msg]);
                                 exit;
                             }
                         }

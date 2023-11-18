@@ -51,15 +51,16 @@ class CourseController
     }
     function show_build_lesson()
     {
+        $user = user();
         $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
-        $course = (new Course)->where('id', '=', $course_id)->first();
+        $course = (new Course)->where('id', '=', $course_id)->where('user_id', '=', $user['id'])->first();
 
         if (!$course) {
-            return redirect('/404');
+            return redirect('/user/my-course');
         }
 
         $chapters = (new Chapter)->where('course_id', '=', $course_id)->getArray();
 
-        return view('client.user.course.build-lesson', compact('course', 'chapters'), 'default');
+        return view('client.user.course.build-lesson', compact('course_id', 'course', 'chapters'), 'default');
     }
 }

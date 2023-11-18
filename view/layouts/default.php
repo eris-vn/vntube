@@ -34,6 +34,8 @@ $user = user();
     <link rel="stylesheet" href="/public/assets/css/plugins/magnigy-popup.min.css">
     <link rel="stylesheet" href="/public/assets/css/plugins/plyr.css">
     <link rel="stylesheet" href="/public/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 
     <!-- jQuery JS -->
     <script src="/public/assets/js/vendor/jquery.js"></script>
@@ -76,6 +78,8 @@ $user = user();
     <script src="/public/assets/js/vendor/paralax.min.js"></script>
     <script src="/public/assets/js/vendor/countdown.js"></script>
     <script src="/public/assets/js/vendor/plyr.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <!-- Main JS -->
     <script src="/public/assets/js/main.js"></script>
 
