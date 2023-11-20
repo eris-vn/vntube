@@ -375,58 +375,48 @@
                                             <li>
                                                 <a href="/user/dashboard">
                                                     <i class="feather-home"></i>
-                                                    <span>My Dashboard</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="feather-bookmark"></i>
-                                                    <span>Bookmark</span>
+                                                    <span>Thống kê</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="instructor-enrolled-courses.html">
                                                     <i class="feather-shopping-bag"></i>
-                                                    <span>Enrolled Courses</span>
+                                                    <span>Khoá học của tôi</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="instructor-wishlist.html">
                                                     <i class="feather-heart"></i>
-                                                    <span>Wishlist</span>
+                                                    <span>Yêu thích</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="instructor-reviews.html">
                                                     <i class="feather-star"></i>
-                                                    <span>Reviews</span>
+                                                    <span>Đánh gía</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="instructor-my-quiz-attempts.html">
                                                     <i class="feather-list"></i>
-                                                    <span>My Quiz Attempts</span>
+                                                    <span>Kết quả Quiz</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="instructor-order-history.html">
                                                     <i class="feather-clock"></i>
-                                                    <span>Order History</span>
+                                                    <span>Hoá đơn</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="instructor-quiz-attempts.html">
-                                                    <i class="feather-message-square"></i>
-                                                    <span>Question &amp; Answer</span>
-                                                </a>
-                                            </li>
+
                                         </ul>
                                         <hr class="mt--10 mb--10">
                                         <ul class="user-list-wrapper">
+                                            <li><a href="/user/my-course" class=""><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
                                             <li>
-                                                <a href="#">
-                                                    <i class="feather-book-open"></i>
-                                                    <span>Getting Started</span>
+                                                <a href="instructor-quiz-attempts.html">
+                                                    <i class="feather-message-square"></i>
+                                                    <span>Quản lý Quiz</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -435,13 +425,13 @@
                                             <li>
                                                 <a href="instructor-settings.html">
                                                     <i class="feather-settings"></i>
-                                                    <span>Settings</span>
+                                                    <span>Cài đặt</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="/auth/logout">
                                                     <i class="feather-log-out"></i>
-                                                    <span>Logout</span>
+                                                    <span>Đăng xuất</span>
                                                 </a>
                                             </li>
                                         </ul>

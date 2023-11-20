@@ -92,6 +92,16 @@ function validate_api($request, $data)
     }
 }
 
+function timeConvert($minutes)
+{
+    $hours = floor($minutes / 60);
+
+    // Calculate the remaining minutes
+    $remainingMinutes = $minutes % 60;
+
+    return "$hours giờ $remainingMinutes phút";
+}
+
 
 function api($data)
 {

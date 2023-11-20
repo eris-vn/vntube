@@ -18,13 +18,18 @@
                                         <div class="rbt-course-field-wrapper rbt-default-form">
                                             <div class="course-field mb--15">
                                                 <label for="field-1">Tên khoá học</label>
-                                                <input id="name" type="text" placeholder="New Course" value="Khoa học PHP">
+                                                <input id="name" type="text" placeholder="New Course">
                                                 <small class="d-block mt_dec--5"><i class="feather-info"></i>Tiêu đề ít nhất 30 ký tự.</small>
                                             </div>
                                             <div class="course-field mb--15">
                                                 <label for="field-2">Đường dẫn khoá học</label>
-                                                <input id="slug" type="text" placeholder="new-course" value="khoa-hoc-php">
+                                                <input id="slug" type="text" placeholder="new-course">
                                                 <small class="d-block mt_dec--5"><i class="feather-info"></i> Ví dụ: <a href="https://yourdomain.com/new-course">https://yourdomain.com/new-course</a></small>
+                                            </div>
+
+                                            <div class="course-field mb--15">
+                                                <label for="field-1">Mô tả ngắn</label>
+                                                <textarea id="short-description" placeholder="Đặt mô tả ngắn ngọn" rows="5"></textarea>
                                             </div>
 
                                             <div class="course-field mb--15">
@@ -52,7 +57,7 @@
                                                         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
                                                     });
                                                 </script>
-                                                <textarea id="aboutCourse" rows="10"><b>Khoa học php nâng cao</b> <br> <div>test</div></textarea>
+                                                <textarea id="aboutCourse" rows="10"></textarea>
                                             </div>
 
                                             <div class="course-field mb--15 edu-bg-gray">
@@ -160,7 +165,7 @@
 
                                         <div class="course-field mb--15">
                                             <label for="videoUrl">Điền link youtube video</label>
-                                            <input id="video_preview" type="text" value="https://www.youtube.com/watch?v=TJSur7yNKTc" placeholder="Điền link youtube video ở đây.">
+                                            <input id="video_preview" type="text" placeholder="Điền link youtube video ở đây.">
                                             <small class="d-block mt_dec--5">Example: <a target="_blank" href="https://www.youtube.com/watch?v=yourvideoid">https://www.youtube.com/watch?v=yourvideoid</a></small>
                                         </div>
 
@@ -542,6 +547,7 @@
         formData.append('video_preview', $('#video_preview').val());
         // formData.append('requirements', $('#requirements').val());
         // formData.append('line_desc', $('#line_desc').val());
+        formData.append('short-description', $('#short-description').val());
         formData.append('minutes', $('#minutes').val());
 
         // Lấy file từ input type file (nếu có)
@@ -564,6 +570,8 @@
                         title: "THÀNH CÔNG",
                         text: data.msg,
                         icon: "success"
+                    }).then(() => {
+                        window.location.href = `/user/course/build-lesson/${data.data.id}`
                     });
                 } else {
                     Swal.fire({

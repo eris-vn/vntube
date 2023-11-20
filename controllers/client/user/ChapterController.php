@@ -22,7 +22,7 @@ class ChapterController
             return ['status' => -101, 'msg' => 'Không tìm thấy khoá học'];
         }
 
-        (new Chapter)->insert(['title' => $_POST['name'], 'course_id' => $course['id']]);
+        (new Chapter)->insert(['name' => $_POST['name'], 'course_id' => $course['id']]);
         return api(['status' => 200, 'msg' => 'Thêm danh mục khoá học thành công']);
     }
 }

@@ -18,13 +18,18 @@
                                         <div class="rbt-course-field-wrapper rbt-default-form">
                                             <div class="course-field mb--15">
                                                 <label for="field-1">Tên khoá học</label>
-                                                <input id="name" type="text" placeholder="New Course" value="Khoa học PHP">
+                                                <input id="name" type="text" placeholder="New Course" value="<?= $course['name'] ?>">
                                                 <small class="d-block mt_dec--5"><i class="feather-info"></i>Tiêu đề ít nhất 30 ký tự.</small>
                                             </div>
                                             <div class="course-field mb--15">
                                                 <label for="field-2">Đường dẫn khoá học</label>
-                                                <input id="slug" type="text" placeholder="new-course" value="khoa-hoc-php">
+                                                <input id="slug" type="text" placeholder="new-course" value="<?= $course['slug'] ?>">
                                                 <small class="d-block mt_dec--5"><i class="feather-info"></i> Ví dụ: <a href="https://yourdomain.com/new-course">https://yourdomain.com/new-course</a></small>
+                                            </div>
+
+                                            <div class="course-field mb--15">
+                                                <label for="field-1">Mô tả ngắn</label>
+                                                <textarea id="short-description" placeholder="Đặt mô tả ngắn ngọn" rows="5"><?= $course['short_description'] ?></textarea>
                                             </div>
 
                                             <div class="course-field mb--15">
@@ -52,7 +57,7 @@
                                                         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
                                                     });
                                                 </script>
-                                                <textarea id="aboutCourse" rows="10"><b>Khoa học php nâng cao</b> <br> <div>test</div></textarea>
+                                                <textarea id="aboutCourse" rows="10"><?= $course['description'] ?></textarea>
                                             </div>
 
                                             <div class="course-field mb--15 edu-bg-gray">
@@ -82,12 +87,12 @@
 
                                                                     <div class="course-field mb--15">
                                                                         <label for="price">Giá thường (vnđ)</label>
-                                                                        <input id="price" type="number" placeholder="Điền giá khoá học">
+                                                                        <input id="price" type="number" placeholder="Điền giá khoá học" value="<?= $course['price'] ?>">
                                                                     </div>
 
                                                                     <div class="course-field mb--15">
                                                                         <label for="discounted_price">Giá giảm giá (vnđ)</label>
-                                                                        <input id="discounted_price" type="number" placeholder="Điền giá khoá học đang giảm">
+                                                                        <input id="discounted_price" type="number" placeholder="Điền giá khoá học đang giảm" value="<?= $course['discounted_price'] ?>">
                                                                     </div>
 
                                                                 </div>
@@ -128,7 +133,7 @@
                                                         <div class="brows-file-wrapper" data-black-overlay="9">
                                                             <!-- actual upload which is hidden -->
                                                             <input accept=".jpg, .jpeg, .png, .gif, .webp" name="createinputfile" id="createinputfile" type="file" class="inputfile">
-                                                            <img id="createfileImage" src="/public/assets/images/others/thumbnail-placeholder.svg" alt="file image">
+                                                            <img id="createfileImage" src="<?= $course['thumbnails'] ?>" alt="file image">
                                                             <!-- our custom upload button -->
                                                             <label class="d-flex" for="createinputfile" title="No File Choosen">
                                                                 <i class="feather-upload"></i>
@@ -160,204 +165,13 @@
 
                                         <div class="course-field mb--15">
                                             <label for="videoUrl">Điền link youtube video</label>
-                                            <input id="video_preview" type="text" value="https://www.youtube.com/watch?v=TJSur7yNKTc" placeholder="Điền link youtube video ở đây.">
+                                            <input id="video_preview" type="text" value="<?= $course['video_preview'] ?>" placeholder="Điền link youtube video ở đây.">
                                             <small class="d-block mt_dec--5">Example: <a target="_blank" href="https://www.youtube.com/watch?v=yourvideoid">https://www.youtube.com/watch?v=yourvideoid</a></small>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- <div class="accordion-item card">
-                                <h2 class="accordion-header card-header" id="accThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accCollapseThree" aria-expanded="false" aria-controls="accCollapseThree">
-                                        Xây dựng khoá học
-                                    </button>
-                                </h2>
-                                <div id="accCollapseThree" class="accordion-collapse collapse" aria-labelledby="accThree" data-bs-parent="#tutionaccordionExamplea1">
-                                    <div class="accordion-body card-body">
-                                        <button class="rbt-btn btn-md btn-gradient hover-icon-reverse" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <span class="icon-reverse-wrapper">
-                                                <span class="btn-text">Add New Topic</span>
-                                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                                            </span>
-                                        </button>
-
-                                        <div class="rbt-accordion-style rbt-accordion-02 for-right-content accordion">
-
-
-                                            <div class="accordion" id="accordionExampleb2">
-
-                                                <div class="accordion-item card">
-                                                    <h2 class="accordion-header card-header" id="headingTwo1">
-                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#collapseTwo1" aria-controls="collapseTwo1">
-                                                            Welcome Histudy <span class="rbt-badge-5 ml--10">1/2</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseTwo1" class="accordion-collapse collapse" aria-labelledby="headingTwo1">
-                                                        <div class="accordion-body card-body">
-                                                            <ul class="rbt-course-main-content liststyle">
-
-                                                                <li>
-                                                                    <a href="lesson.html">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-play-circle"></i> <span class="text">Course
-                                                                                Intro</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="min-lable">30 min</span>
-                                                                            <span class="rbt-check"><i class="feather-check"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="lesson-intro.html">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-file-text"></i> <span class="text">Introduction</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="rbt-check"><i class="feather-check"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="accordion-item card">
-                                                    <h2 class="accordion-header card-header" id="headingTwo4">
-                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#collapseTwo4" aria-controls="collapseTwo4">
-                                                            Welcome Lessons <span class="rbt-badge-5 ml--10">1/3</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseTwo4" class="accordion-collapse collapse" aria-labelledby="headingTwo4">
-                                                        <div class="accordion-body card-body">
-                                                            <ul class="rbt-course-main-content liststyle">
-
-                                                                <li>
-                                                                    <a href="lesson.html">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-play-circle"></i> <span class="text">Hello World!
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="min-lable">0.37</span>
-                                                                            <span class="rbt-check"><i class="feather-check"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-play-circle"></i> <span class="text">Values and Variables</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="min-lable">20 min</span>
-                                                                            <span class="rbt-check unread"><i class="feather-circle"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-play-circle"></i> <span class="text">Basic Operators
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="min-lable">15 min</span>
-                                                                            <span class="rbt-check unread"><i class="feather-circle"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-
-
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="accordion-item card">
-                                                    <h2 class="accordion-header card-header" id="headingTwo2">
-                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#collapseTwo2" aria-controls="collapseTwo2">
-                                                            Histudy Quiz <span class="rbt-badge-5 ml--10">1/2</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseTwo2" class="accordion-collapse collapse show" aria-labelledby="headingTwo2">
-                                                        <div class="accordion-body card-body">
-                                                            <ul class="rbt-course-main-content liststyle">
-                                                                <li>
-                                                                    <a href="lesson-quiz.html" class="active">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-help-circle"></i> <span class="text">Histudy Quiz Start</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="rbt-check unread"><i class="feather-circle"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="lesson-quiz-result.html">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-help-circle"></i> <span class="text">Histudy Quiz Result</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="rbt-check unread"><i class="feather-circle"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="accordion-item card">
-                                                    <h2 class="accordion-header card-header" id="headingTwo3">
-                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#collapseTwo3" aria-controls="collapseTwo3">
-                                                            Histudy Assignments <span class="rbt-badge-5 ml--10">1/2</span>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseTwo3" class="accordion-collapse collapse" aria-labelledby="headingTwo3">
-                                                        <div class="accordion-body card-body">
-                                                            <ul class="rbt-course-main-content liststyle">
-                                                                <li>
-                                                                    <a href="lesson-assignments.html">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-file-text"></i> <span class="text">Histudy Assignments</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="rbt-check unread"><i class="feather-circle"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="lesson-assignments-submit.html">
-                                                                        <div class="course-content-left">
-                                                                            <i class="feather-file-text"></i> <span class="text">Histudy Assignments Submit</span>
-                                                                        </div>
-                                                                        <div class="course-content-right">
-                                                                            <span class="rbt-check unread"><i class="feather-circle"></i></span>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div> -->
 
 
                             <div class="accordion-item card rbt-course-field-wrapper">
@@ -395,7 +209,7 @@
                                                 <label>Tổng thời gian học</label>
                                                 <div class="row row--15">
                                                     <div class="col-lg-12">
-                                                        <input id="minutes" type="number" placeholder="00" max="60">
+                                                        <input id="minutes" type="number" placeholder="00" max="60" value="<?= $course['minutes'] ?>">
                                                         <small class="d-block mt_dec--5"><i class="feather-info"></i> Phút.</small>
                                                     </div>
                                                 </div>
@@ -410,10 +224,19 @@
                     </div>
 
                     <div class="mt--10 row g-5">
-                        <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <a class="rbt-btn hover-icon-reverse bg-primary-opacity w-100 text-center" href="/user/course/build-lesson/<?= $course['id'] ?>">
+                                <span class="icon-reverse-wrapper">
+                                    <span class="btn-text">QUẢN LÝ BÀI HỌC</span>
+                                    <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                    <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-8">
                             <div class="rbt-btn btn-gradient hover-icon-reverse w-100 text-center">
-                                <span class="icon-reverse-wrapper" onclick="on_create()">
-                                    <span class="btn-text">TẠO KHOÁ HỌC</span>
+                                <span class="icon-reverse-wrapper" onclick="on_edit()">
+                                    <span class="btn-text">LƯU KHOÁ HỌC</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
@@ -528,7 +351,7 @@
         }, 100);
     });
 
-    function on_create() {
+    function on_edit() {
 
         var aboutCourseContent = tinymce.get("aboutCourse").getContent();
 

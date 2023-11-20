@@ -54,8 +54,8 @@
                                         <h4 class="rbt-card-title"><a href="course-details.html"><?= $course['name'] ?></a>
                                         </h4>
                                         <ul class="rbt-meta">
-                                            <li><i class="feather-book"></i>20 Lessons</li>
-                                            <li><i class="feather-users"></i>40 Students</li>
+                                            <li><i class="feather-book"></i><?= (new Lesson)->where('course_id', '=', $course['id'])->count() ?> bài học</li>
+                                            <li><i class="feather-users"></i><?= (new Enrollment)->where('course_id', '=', $course['id'])->count() ?> học viên</li>
                                         </ul>
 
                                         <div class="rbt-card-bottom">
@@ -69,7 +69,7 @@
                                                     <span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>
                                                 <?php endif; ?>
                                             </div>
-                                            <a class="rbt-btn-link left-icon" href="#"><i class="feather-edit"></i> Edit</a>
+                                            <a class="rbt-btn-link left-icon" href="/user/course/edit/<?= $course['id'] ?>"><i class="feather-edit"></i> Edit</a>
                                         </div>
                                     </div>
                                 </div>

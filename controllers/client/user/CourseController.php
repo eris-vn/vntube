@@ -2,6 +2,9 @@
 
 require_once 'model/course.php';
 require_once 'model/chapter.php';
+require_once 'model/lesson.php';
+require_once 'model/enrollment.php';
+
 
 class CourseController
 {
@@ -15,12 +18,26 @@ class CourseController
     {
         return view('client.user.course.create',  'default');
     }
+    function show_edit()
+    {
+        $user = user();
+        $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
+        $course = (new Course)->where('id', '=', $course_id)->where('user_id', '=', $user['id'])->first();
+
+        if (!$course) {
+            return redirect('/user/my-course');
+        }
+
+        return view('client.user.course.edit', compact('course'),  'default');
+    }
     function create()
     {
         $user = user();
         validate_api($_POST, [
             'name' => ['required'],
             'slug' => ['required'],
+            'short-description' => ['required'],
+            'description' => ['required'],
             'price' => ['required'],
             'video_preview' => ['required:video giới thiệu'],
             'minutes' => ['required:phút'],
@@ -43,9 +60,9 @@ class CourseController
             return api(['status' => -101, 'msg' => 'Đường dẫn đã tồn tại, vui lòng nhập đường dẫn khác.']);
         }
 
-        $discounted_price = isset($_POST['discounted_price']) && $_POST['discounted_price'] != "" ? $_POST['discounted_price'] : null;
+        $discounted_price = isset($_POST['discounted_price']) && $_POST['discounted_price'] != "" ? $_POST['discounted_price'] : 0;
 
-        (new Course)->insert(['user_id' => $user['id'], 'name' => $_POST['name'], 'slug' => $_POST['slug'], 'description' => $_POST['description'], 'price' => $_POST['price'], 'discounted_price' => $discounted_price, 'thumbnails' => $image, 'video_preview' => $_POST['video_preview'], 'minutes' => $_POST['minutes']]);
+        (new Course)->insert(['user_id' => $user['id'], 'name' => $_POST['name'], 'slug' => $_POST['slug'], 'description' => $_POST['description'], 'short_description' => $_POST['short-description'], 'price' => $_POST['price'], 'discounted_price' => $discounted_price, 'thumbnails' => '/' . $image, 'video_preview' => $_POST['video_preview'], 'minutes' => $_POST['minutes']]);
         $course = (new Course)->where('user_id', '=', $user['id'])->first();
         return api(['status' => 200, 'data' => ['id' => $course['id']], 'msg' => 'Tạo khoá học thành công']);
     }
