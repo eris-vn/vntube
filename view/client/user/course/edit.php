@@ -18,6 +18,7 @@
                                         <div class="rbt-course-field-wrapper rbt-default-form">
                                             <div class="course-field mb--15">
                                                 <label for="field-1">Tên khoá học</label>
+                                                <input id="course_id" type="text" class="d-none" value="<?= $course['id'] ?>">
                                                 <input id="name" type="text" placeholder="New Course" value="<?= $course['name'] ?>">
                                                 <small class="d-block mt_dec--5"><i class="feather-info"></i>Tiêu đề ít nhất 30 ký tự.</small>
                                             </div>
@@ -357,8 +358,10 @@
 
         // Xây dựng đối tượng FormData
         var formData = new FormData();
+        formData.append('id', $('#course_id').val());
         formData.append('name', $('#name').val());
         formData.append('slug', $('#slug').val());
+        formData.append('short-description', $('#short-description').val());
         formData.append('description', aboutCourseContent);
         formData.append('price', $('#paid-tab').attr("aria-selected") == "true" ? $('#price').val() : 0);
         formData.append('discounted_price', $('#discounted_price').val());
@@ -376,7 +379,7 @@
 
         $.ajax({
                 method: "POST",
-                url: "/api/user/course/create",
+                url: "/api/user/course/edit",
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -387,6 +390,8 @@
                         title: "THÀNH CÔNG",
                         text: data.msg,
                         icon: "success"
+                    }).then((result) => {
+                        window.location.href = '/user/my-course';
                     });
                 } else {
                     Swal.fire({
