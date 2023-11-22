@@ -119,304 +119,325 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-4">
-                    <div class="rbt-create-course-sidebar course-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
-                        <div class="inner">
-                            <div class="section-title mb--30">
-                                <h4 class="title">Mẹo đăng khoá học</h4>
-                            </div>
-                            <div class="rbt-course-upload-tips">
-                                <ul class="rbt-list-style-1">
-                                    <li><i class="feather-check"></i> Ảnh bìa kháo học nên ở kích thước 700x430.</li>
-                                    <li><i class="feather-check"></i> Thêm video giới thiệu để thu hút khách hàng.</li>
-                                </ul>
+                    <div class="col-lg-4">
+                        <div class="rbt-create-course-sidebar course-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
+                            <div class="inner">
+                                <div class="section-title mb--30">
+                                    <h4 class="title">Mẹo đăng khoá học</h4>
+                                </div>
+                                <div class="rbt-course-upload-tips">
+                                    <ul class="rbt-list-style-1">
+                                        <li><i class="feather-check"></i> Ảnh bìa kháo học nên ở kích thước 700x430.</li>
+                                        <li><i class="feather-check"></i> Thêm video giới thiệu để thu hút khách hàng.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Start chapter modal Area  -->
-    <div class="rbt-default-modal modal fade" id="create_chapter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="feather-x"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="inner rbt-default-form">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h5 class="modal-title mb--20" id="exampleModalLabel">Thêm mục</h5>
-                                <div class="course-field mb--20">
-                                    <label for="modal-field-1">Tên mục</label>
-                                    <input id="create_chapter_name" type="text">
-                                </div>
-                            </div>
-                        </div>
+        <!-- Start chapter modal Area  -->
+        <div class="rbt-default-modal modal fade" id="create_chapter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="feather-x"></i>
+                        </button>
                     </div>
-                </div>
-                <div class="top-circle-shape"></div>
-                <div class="modal-footer pt--30">
-                    <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_create_chapter()">
-                        <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Thêm mục</span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                        </span>
-                    </button>
-                    <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rbt-default-modal modal fade" id="edit_chapter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="feather-x"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="inner rbt-default-form">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h5 class="modal-title mb--20" id="exampleModalLabel">Thêm mục</h5>
-                                <div class="course-field mb--20">
-                                    <label for="modal-field-1">Tên mục</label>
-                                    <input id="create_chapter_name" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-circle-shape"></div>
-                <div class="modal-footer pt--30">
-                    <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_create_chapter()">
-                        <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Thêm mục</span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                        </span>
-                    </button>
-                    <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End chapter Modal Area  -->
-
-    <!-- Start Modal Area  -->
-    <div class="rbt-default-modal modal fade" id="create_lesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="feather-x"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="inner rbt-default-form">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h5 class="modal-title mb--20" id="exampleModalLabel">Thêm bài học</h5>
-
-                                <div class="course-field mb--20">
-                                    <label for="modal-field-1">Tên bài học</label>
-                                    <input id="lesson_name" type="text" placeholder="Điền bài học">
-                                </div>
-
-                                <div class="course-field mb--20">
-                                    <label for="modal-field-1">Thời gian</label>
-                                    <input id="lesson_time" type="number" placeholder="Thời gian video ( phút )">
-                                    <small class="d-block mt_dec--5">Ví dụ: 1 tiếng 20 phút sẽ nhập 80</small>
-                                </div>
-
-                                <div class="course-field mb--30">
-                                    <label for="lesson_description">Mô tả bài học</label>
-                                    <!-- Place the first <script> tag in your HTML's <head> -->
-                                    <script src="https://cdn.tiny.cloud/1/zie5rxa4n7x4228dguy35hjc0niw6txfpql0bo7mtinw5bp1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-                                    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
-                                    <textarea id="lesson_description" rows="10"></textarea>
-                                </div>
-
-                                <div class="course-field mb--30">
-                                    <label for="videoUrl">Chọn mục</label>
-                                    <div class="rbt-modern-select bg-transparent height-45 mb--10">
-                                        <select class="w-100" id="lesson_chapter">
-                                            <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
-                                            <?php if ($chapters) : ?>
-                                                <?php foreach ($chapters as $chapter) : ?>
-                                                    <option value="<?= $chapter['id'] ?>"><?= $chapter['name'] ?></option>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <option value="" disabled>Chưa có mục nào</option>
-                                            <?php endif; ?>
-                                        </select>
+                    <div class="modal-body">
+                        <div class="inner rbt-default-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="modal-title mb--20" id="exampleModalLabel">Thêm mục</h5>
+                                    <div class="course-field mb--20">
+                                        <label for="modal-field-1">Tên mục</label>
+                                        <input id="create_chapter_name" type="text">
                                     </div>
                                 </div>
-
-                                <div class="course-field mb--20">
-                                    <label for="videoUrl">Điền link youtube video</label>
-                                    <input id="lesson_video" type="text" placeholder="Điền link youtube video ở đây.">
-                                    <small class="d-block mt_dec--5">Ví dụ: <a target="_blank" href="https://www.youtube.com/watch?v=yourvideoid">https://www.youtube.com/watch?v=yourvideoid</a></small>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="top-circle-shape"></div>
-                <div class="modal-footer pt--30">
-                    <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_create_lesson()">
-                        <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Thêm bài học</span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                        </span>
-                    </button>
-                    <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Huỷ</button>
+                    <div class="top-circle-shape"></div>
+                    <div class="modal-footer pt--30">
+                        <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_create_chapter()">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Thêm mục</span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                            </span>
+                        </button>
+                        <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="rbt-default-modal modal fade" id="edit_lesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="feather-x"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="inner rbt-default-form">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h5 class="modal-title mb--20" id="exampleModalLabel">Chỉnh bài học</h5>
-
-                                <input id="edit_lesson_id" type="text" class="d-none">
-
-                                <div class="course-field mb--20">
-                                    <label for="modal-field-1">Tên bài học</label>
-                                    <input id="edit_lesson_name" type="text" placeholder="Điền bài học">
-                                </div>
-
-                                <div class="course-field mb--20">
-                                    <label for="modal-field-1">Thời gian</label>
-                                    <input id="edit_lesson_time" type="number" placeholder="Thời gian video ( phút )">
-                                    <small class="d-block mt_dec--5">Ví dụ: 1 tiếng 20 phút sẽ nhập 80</small>
-                                </div>
-
-                                <div class="course-field mb--30">
-                                    <label for="edit_lesson_description">Mô tả bài học</label>
-                                    <!-- Place the first <script> tag in your HTML's <head> -->
-                                    <script src="https://cdn.tiny.cloud/1/zie5rxa4n7x4228dguy35hjc0niw6txfpql0bo7mtinw5bp1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-                                    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
-                                    <script>
-                                        // tinymce.init({
-                                        //     selector: '#edit_lesson_description',
-                                        //     plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-                                        //     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                        //     tinycomments_mode: 'embedded',
-                                        //     tinycomments_author: 'Author name',
-                                        //     mergetags_list: [{
-                                        //             value: 'First.Name',
-                                        //             title: 'First Name'
-                                        //         },
-                                        //         {
-                                        //             value: 'Email',
-                                        //             title: 'Email'
-                                        //         },
-                                        //     ],
-                                        //     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                        // });
-                                    </script>
-                                    <textarea id="edit_lesson_description" rows="10"></textarea>
-                                </div>
-
-                                <div class="course-field mb--30">
-                                    <label for="videoUrl">Chọn mục</label>
-                                    <div class="rbt-modern-select bg-transparent height-45 mb--10">
-                                        <select class="w-100" id="edit_lesson_chapter">
-                                            <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
-                                            <?php if ($chapters) : ?>
-                                                <?php foreach ($chapters as $chapter) : ?>
-                                                    <option value="<?= $chapter['id'] ?>"><?= $chapter['name'] ?></option>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <option value="" disabled>Chưa có mục nào</option>
-                                            <?php endif; ?>
-                                        </select>
+        <div class="rbt-default-modal modal fade" id="edit_chapter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="feather-x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="inner rbt-default-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="modal-title mb--20" id="exampleModalLabel">Thêm mục</h5>
+                                    <div class="course-field mb--20">
+                                        <label for="modal-field-1">Tên mục</label>
+                                        <input id="create_chapter_name" type="text">
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-circle-shape"></div>
+                    <div class="modal-footer pt--30">
+                        <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_create_chapter()">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Thêm mục</span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                            </span>
+                        </button>
+                        <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End chapter Modal Area  -->
 
-                                <div class="course-field mb--20">
-                                    <label for="videoUrl">Điền link youtube video</label>
-                                    <input id="edit_lesson_video" type="text" placeholder="Điền link youtube video ở đây.">
-                                    <small class="d-block mt_dec--5">Ví dụ: <a target="_blank" href="https://www.youtube.com/watch?v=yourvideoid">https://www.youtube.com/watch?v=yourvideoid</a></small>
+        <!-- Start Modal Area  -->
+        <div class="rbt-default-modal modal fade" id="create_lesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="feather-x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="inner rbt-default-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="modal-title mb--20" id="exampleModalLabel">Thêm bài học</h5>
+
+                                    <div class="course-field mb--20">
+                                        <label for="modal-field-1">Tên bài học</label>
+                                        <input id="lesson_name" type="text" placeholder="Điền bài học">
+                                    </div>
+
+                                    <div class="course-field mb--20">
+                                        <label for="modal-field-1">Thời gian</label>
+                                        <input id="lesson_time" type="number" placeholder="Thời gian video ( phút )">
+                                        <small class="d-block mt_dec--5">Ví dụ: 1 tiếng 20 phút sẽ nhập 80</small>
+                                    </div>
+
+                                    <div class="course-field mb--30">
+                                        <label for="lesson_description">Mô tả bài học</label>
+                                        <!-- Place the first <script> tag in your HTML's <head> -->
+                                        <script src="https://cdn.tiny.cloud/1/zie5rxa4n7x4228dguy35hjc0niw6txfpql0bo7mtinw5bp1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+                                        <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+                                        <textarea id="lesson_description" rows="10"></textarea>
+                                    </div>
+
+                                    <div class="course-field mb--30">
+                                        <label for="videoUrl">Chọn mục</label>
+                                        <div class="rbt-modern-select bg-transparent height-45 mb--10">
+                                            <select class="w-100" id="lesson_chapter">
+                                                <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
+                                                <?php if ($chapters) : ?>
+                                                    <?php foreach ($chapters as $chapter) : ?>
+                                                        <option value="<?= $chapter['id'] ?>"><?= $chapter['name'] ?></option>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <option value="" disabled>Chưa có mục nào</option>
+                                                <?php endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="course-field mb--30">
+                                        <label for="videoUrl">Cho phép xem trước</label>
+                                        <div class="rbt-modern-select bg-transparent height-45 mb--10">
+                                            <select class="w-100" id="lesson_lock">
+                                                <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
+                                                <option value="1">Cho phép</option>
+                                                <option value="0">Không cho phép</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="course-field mb--20">
+                                        <label for="videoUrl">Điền link youtube video</label>
+                                        <input id="lesson_video" type="text" placeholder="Điền link youtube video ở đây.">
+                                        <small class="d-block mt_dec--5">Ví dụ: <a target="_blank" href="https://www.youtube.com/watch?v=yourvideoid">https://www.youtube.com/watch?v=yourvideoid</a></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="top-circle-shape"></div>
-                <div class="modal-footer pt--30">
-                    <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_edit_lesson()">
-                        <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Lưu</span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
-                        </span>
-                    </button>
-                    <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Huỷ</button>
+                    <div class="top-circle-shape"></div>
+                    <div class="modal-footer pt--30">
+                        <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_create_lesson()">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Thêm bài học</span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                            </span>
+                        </button>
+                        <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Huỷ</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Modal Area  -->
+        <div class="rbt-default-modal modal fade" id="edit_lesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="feather-x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="inner rbt-default-form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="modal-title mb--20" id="exampleModalLabel">Chỉnh bài học</h5>
 
-    <div class="rbt-separator-mid">
-        <div class="container">
-            <hr class="rbt-separator m-0">
-        </div>
-    </div>
-    <div class="footer-style-2 ptb--60 bg-color-white">
-        <div class="container-fluid">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-12">
-                    <div class="inner text-center">
+                                    <input id="edit_lesson_id" type="text" class="d-none">
 
-                        <div class="logo">
-                            <a href="index.html">
-                                <img src="/public/assets/images/logo/logo.png" alt="Logo images">
-                            </a>
+                                    <div class="course-field mb--20">
+                                        <label for="modal-field-1">Tên bài học</label>
+                                        <input id="edit_lesson_name" type="text" placeholder="Điền bài học">
+                                    </div>
+
+                                    <div class="course-field mb--20">
+                                        <label for="modal-field-1">Thời gian</label>
+                                        <input id="edit_lesson_time" type="number" placeholder="Thời gian video ( phút )">
+                                        <small class="d-block mt_dec--5">Ví dụ: 1 tiếng 20 phút sẽ nhập 80</small>
+                                    </div>
+
+                                    <div class="course-field mb--30">
+                                        <label for="edit_lesson_description">Mô tả bài học</label>
+                                        <!-- Place the first <script> tag in your HTML's <head> -->
+                                        <script src="https://cdn.tiny.cloud/1/zie5rxa4n7x4228dguy35hjc0niw6txfpql0bo7mtinw5bp1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+                                        <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+                                        <script>
+                                            // tinymce.init({
+                                            //     selector: '#edit_lesson_description',
+                                            //     plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+                                            //     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                            //     tinycomments_mode: 'embedded',
+                                            //     tinycomments_author: 'Author name',
+                                            //     mergetags_list: [{
+                                            //             value: 'First.Name',
+                                            //             title: 'First Name'
+                                            //         },
+                                            //         {
+                                            //             value: 'Email',
+                                            //             title: 'Email'
+                                            //         },
+                                            //     ],
+                                            //     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+                                            // });
+                                        </script>
+                                        <textarea id="edit_lesson_description" rows="10"></textarea>
+                                    </div>
+
+                                    <div class="course-field mb--30">
+                                        <label for="videoUrl">Chọn mục</label>
+                                        <div class="rbt-modern-select bg-transparent height-45 mb--10">
+                                            <select class="w-100" id="edit_lesson_chapter">
+                                                <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
+                                                <?php if ($chapters) : ?>
+                                                    <?php foreach ($chapters as $chapter) : ?>
+                                                        <option value="<?= $chapter['id'] ?>"><?= $chapter['name'] ?></option>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <option value="" disabled>Chưa có mục nào</option>
+                                                <?php endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="course-field mb--30">
+                                        <label for="videoUrl">Cho phép xem trước</label>
+                                        <div class="rbt-modern-select bg-transparent height-45 mb--10">
+                                            <select class="w-100" id="edit_lesson_lock">
+                                                <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
+                                                <option value="1">Cho phép</option>
+                                                <option value="0">Không cho phép</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="course-field mb--20">
+                                        <label for="videoUrl">Điền link youtube video</label>
+                                        <input id="edit_lesson_video" type="text" placeholder="Điền link youtube video ở đây.">
+                                        <small class="d-block mt_dec--5">Ví dụ: <a target="_blank" href="https://www.youtube.com/watch?v=yourvideoid">https://www.youtube.com/watch?v=yourvideoid</a></small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- Social icone Area -->
-                        <ul class="social-icon social-default">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                        <!-- End -->
-                        <div class="text mt--20">
-                            <p>© 2023 <a target="_blank" href="https://themeforest.net/user/rbt-themes/portfolio">Rainbow-Themes</a>. All
-                                Rights Reserved.</p>
+                    </div>
+                    <div class="top-circle-shape"></div>
+                    <div class="modal-footer pt--30">
+                        <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" onclick="on_edit_lesson()">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Lưu</span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                            </span>
+                        </button>
+                        <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Huỷ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Area  -->
+
+        <div class="rbt-separator-mid">
+            <div class="container">
+                <hr class="rbt-separator m-0">
+            </div>
+        </div>
+        <div class="footer-style-2 ptb--60 bg-color-white">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-12">
+                        <div class="inner text-center">
+
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="/public/assets/images/logo/logo.png" alt="Logo images">
+                                </a>
+                            </div>
+                            <!-- Social icone Area -->
+                            <ul class="social-icon social-default">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                            <!-- End -->
+                            <div class="text mt--20">
+                                <p>© 2023 <a target="_blank" href="https://themeforest.net/user/rbt-themes/portfolio">Rainbow-Themes</a>. All
+                                    Rights Reserved.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </main>
 
 <div class="rbt-progress-parent">
@@ -521,6 +542,7 @@
                     course_id: $('#course_id').val(),
                     name: $('#lesson_name').val(),
                     time: $('#lesson_time').val(),
+                    lock: $('#lesson_lock :selected').val(),
                     description: tinymce.get("lesson_description").getContent(),
                     chapter: $('#lesson_chapter :selected').val(),
                     video: $('#lesson_video').val()
@@ -561,6 +583,7 @@
                     $('#edit_lesson_id').val(data.data.id);
                     $("#edit_lesson_name").val(data.data.name);
                     $("#edit_lesson_time").val(data.data.time);
+                    $("#edit_lesson_lock").selectpicker('val', data.data.preview);
                     tinymce.get("edit_lesson_description").setContent(data.data.description);
                     $("#edit_lesson_chapter").selectpicker('val', data.data.chapter_id);
                     $("#edit_lesson_video").val(data.data.video_url);
@@ -585,6 +608,7 @@
                     id: $('#edit_lesson_id').val(),
                     course_id: $('#edit_course_id').val(),
                     name: $('#edit_lesson_name').val(),
+                    lock: $('#edit_lesson_lock').val(),
                     time: $('#edit_lesson_time').val(),
                     description: tinymce.get("edit_lesson_description").getContent(),
                     chapter: $('#edit_lesson_chapter :selected').val(),

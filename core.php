@@ -99,9 +99,24 @@ function timeConvert($minutes)
     // Calculate the remaining minutes
     $remainingMinutes = $minutes % 60;
 
-    return "$hours giờ $remainingMinutes phút";
+    return $hours ? "$hours giờ $remainingMinutes phút" : "$remainingMinutes phút";
 }
 
+function extractVideoId($url)
+{
+    // Biểu thức chính quy để tìm kiếm ID video trong URL
+    $pattern = '/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
+
+    // Tìm kiếm trong URL
+    preg_match($pattern, $url, $matches);
+
+    // Nếu tìm thấy, trả về ID video, ngược lại trả về null
+    if (isset($matches[1])) {
+        return "https://img.youtube.com/vi/" . $matches[1] . "/maxresdefault.jpg";
+    } else {
+        return null;
+    }
+}
 
 function api($data)
 {

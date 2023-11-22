@@ -23,7 +23,7 @@ RewriteRule ^danh-muc/(.*)$ index.php?role=client&page=category&slug=$1 [QSA,L]
 # USER
 RewriteRule ^user/dashboard$ index.php?controller=client/user/DashboardController&action=show_page&middleware=auth [QSA,L]
 
-# COURSE
+# USER COURSE
 RewriteRule ^user/my-course$ index.php?controller=client/user/CourseController&action=show_page&middleware=auth [QSA,L]
 RewriteRule ^user/course/create$ index.php?controller=client/user/CourseController&action=show_create&middleware=auth [QSA,L]
 RewriteRule ^user/course/edit/(.*)$ index.php?controller=client/user/CourseController&action=show_edit&middleware=auth&course_id=$1 [QSA,L]
@@ -32,12 +32,20 @@ RewriteRule ^api/user/course/create$ index.php?controller=client/user/CourseCont
 RewriteRule ^api/user/course/edit$ index.php?controller=client/user/CourseController&action=edit&middleware=auth [QSA,L]
 
 
-# LESSON
+# USER LESSON
 RewriteRule ^api/user/lesson/info$ index.php?controller=client/user/LessonController&action=info&middleware=auth [QSA,L]
 RewriteRule ^api/user/lesson/create$ index.php?controller=client/user/LessonController&action=create&middleware=auth [QSA,L]
 RewriteRule ^api/user/lesson/edit$ index.php?controller=client/user/LessonController&action=edit&middleware=auth [QSA,L]
 RewriteRule ^api/user/lesson/delete$ index.php?controller=client/user/LessonController&action=delete&middleware=auth [QSA,L]
 
 
-# CHAPTER
+# USER CHAPTER
 RewriteRule ^api/user/chapter/create$ index.php?controller=client/user/ChapterController&action=create&middleware=auth [QSA,L]
+
+
+# COURSE
+RewriteRule ^course/details/(.*)$ index.php?controller=client/CourseController&action=view_details&course_id=$1 [QSA,L]
+
+# CART
+RewriteRule ^api/cart/add index.php?controller=client/CartController&action=add [QSA,L]
+RewriteRule ^api/cart/delete index.php?controller=client/CartController&action=delete [QSA,L]

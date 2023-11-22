@@ -65,8 +65,8 @@ $user = user();
                                     <img src="/public/assets/images/team/avatar.jpg" alt="Instructor">
                                 </div>
                                 <div class="tutor-content">
-                                    <h5 class="title">John Due</h5>
-                                    <div class="rbt-review">
+                                    <h5 class="title"><?= user()['name'] ?></h5>
+                                    <!-- <div class="rbt-review">
                                         <div class="rating">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -75,7 +75,7 @@ $user = user();
                                             <i class="fas fa-star"></i>
                                         </div>
                                         <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="rbt-tutor-information-right">

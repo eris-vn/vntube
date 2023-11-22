@@ -9,11 +9,18 @@ class Model
     protected $limit;
     protected $insertData = [];
     protected $offset;
+    protected $select = ['*'];
 
 
     public function __construct()
     {
         $this->db = (new DB())->connect();
+    }
+
+    public function select(array $columns)
+    {
+        $this->select = $columns;
+        return $this;
     }
 
     public function where($column, $operator, $value)
@@ -77,7 +84,8 @@ class Model
 
     public function get()
     {
-        $query = "SELECT * FROM `{$this->table}`";
+        $selectColumns = implode(', ', $this->select);
+        $query = "SELECT {$selectColumns} FROM `{$this->table}`";
 
         if (!empty($this->conditions)) {
             $query .= " WHERE";

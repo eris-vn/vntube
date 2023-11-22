@@ -40,6 +40,9 @@ $user = user();
 
     <!-- jQuery JS -->
     <script src="/public/assets/js/vendor/jquery.js"></script>
+
+    <!-- JS -->
+    <script src="/public/assets/js/course.js"></script>
 </head>
 
 <body class="rbt-header-sticky">
@@ -84,7 +87,11 @@ $user = user();
     <!-- Main JS -->
     <script src="/public/assets/js/main.js"></script>
 
-
+    <script>
+        $(document).ready(function() {
+            load_cart_from_cookie();
+        });
+    </script>
 </body>
 
 </html>

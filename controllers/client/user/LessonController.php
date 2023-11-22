@@ -13,6 +13,7 @@ class LessonController
             'description' => ['required:mô tả'],
             'chapter' => ['required:mục'],
             'course_id' => ['required:tham số'],
+            'lock' => ['required:cho phép xem trước hay không'],
             'video' => ['required:video'],
             'time' => ['required:thời gian']
         ]);
@@ -28,7 +29,7 @@ class LessonController
             return ['status' => -102, 'msg' => 'Không tìm thấy mục đã chọn'];
         }
 
-        (new Lesson)->insert(['course_id' => $_POST['course_id'], 'chapter_id' => $_POST['chapter'], 'name' => $_POST['name'], 'description' => $_POST['description'], 'video_url' => $_POST['video'], 'time' => $_POST['time']]);
+        (new Lesson)->insert(['course_id' => $_POST['course_id'], 'chapter_id' => $_POST['chapter'], 'name' => $_POST['name'], 'description' => $_POST['description'], 'video_url' => $_POST['video'], 'preview' => intval($_POST['lock']), 'time' => $_POST['time']]);
         return api(['status' => 200, 'msg' => 'Đăng bài học thành công']);
     }
     function info()
@@ -52,7 +53,8 @@ class LessonController
             'description' => ['required:mô tả'],
             'chapter' => ['required:mục'],
             'video' => ['required:video'],
-            'time' => ['required:thời gian']
+            'time' => ['required:thời gian'],
+            'lock' => ['required:cho phép xem trước hay không'],
         ]);
 
         $lesson = (new Lesson)->where('id', '=', $_POST['id'])->first();
@@ -60,7 +62,7 @@ class LessonController
             return ['status' => -102, 'msg' => 'Không tìm thấy bài học'];
         }
 
-        (new Lesson)->where('id', '=', $lesson['id'])->update(['chapter_id' => $_POST['chapter'], 'name' => $_POST['name'], 'description' => $_POST['description'], 'video_url' => $_POST['video'], 'time' => $_POST['time']]);
+        (new Lesson)->where('id', '=', $lesson['id'])->update(['chapter_id' => $_POST['chapter'], 'name' => $_POST['name'], 'description' => $_POST['description'], 'video_url' => $_POST['video'], 'preview' => intval($_POST['lock']), 'time' => $_POST['time']]);
         return api(['status' => 200, 'msg' => 'Chỉnh bài học thành công']);
     }
     function delete()
