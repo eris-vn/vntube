@@ -17,6 +17,7 @@ RewriteRule ^login$ index.php?controller=client/AuthController&action=loginpage 
 RewriteRule ^auth/register$ index.php?controller=client/AuthController&action=on_regist [QSA,L]
 RewriteRule ^auth/login$ index.php?controller=client/AuthController&action=on_login [QSA,L]
 RewriteRule ^auth/logout$ index.php?controller=client/AuthController&action=on_logout [QSA,L]
+RewriteRule ^search$ index.php?controller=client/SearchController&action=searchpage [QSA,L]
 
 RewriteRule ^danh-muc/(.*)$ index.php?role=client&page=category&slug=$1 [QSA,L]
 
@@ -24,6 +25,7 @@ RewriteRule ^danh-muc/(.*)$ index.php?role=client&page=category&slug=$1 [QSA,L]
 RewriteRule ^user/dashboard$ index.php?controller=client/user/DashboardController&action=show_page&middleware=auth [QSA,L]
 
 # USER COURSE
+
 RewriteRule ^user/my-course$ index.php?controller=client/user/CourseController&action=show_page&middleware=auth [QSA,L]
 RewriteRule ^user/course/create$ index.php?controller=client/user/CourseController&action=show_create&middleware=auth [QSA,L]
 RewriteRule ^user/course/edit/(.*)$ index.php?controller=client/user/CourseController&action=show_edit&middleware=auth&course_id=$1 [QSA,L]
