@@ -32,7 +32,6 @@ class SearchController
         //     $query->orderBy('price',$_POST['sb_category']);
         })->limit(6)->getArray();
 
-
         return api(['status'=>200, 'data'=>$this->convert($course)]);
     }
     function convert($data) {
