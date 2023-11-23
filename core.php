@@ -5,9 +5,9 @@ require_once 'model/user.php';
 $config = [
     'LOCALHOST' => 'localhost',
     'USERNAME' => 'root',
-    'PASSWORD' => '',
+    'PASSWORD' => 'hauphuch',
     'DATABASE' => 'webkhoahoc',
-    'PORT' => 3307
+    'PORT' => 3306
 ];
 
 function validate_api($request, $data)
