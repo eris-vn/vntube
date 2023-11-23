@@ -1321,10 +1321,6 @@
                             <div class="rbt-card-img">
                                 <a href="course-details.html">
                                     <img src="${e.thumbnails}" alt="Card image">
-                                    <div class="rbt-badge-3 bg-white">
-                                        <span>-40%</span>
-                                        <span>Off</span>
-                                    </div>
                                 </a>
                             </div>
                             <div class="rbt-card-body">
@@ -1348,8 +1344,8 @@
                                 </h4>
 
                                 <ul class="rbt-meta">
-                                    <li><i class="feather-book"></i>12 Lessons</li>
-                                    <li><i class="feather-users"></i>50 Students</li>
+                                    <li><i class="feather-book"></i>${e.lesson} Lessons</li>
+                                    <li><i class="feather-users"></i>${e.enrollment} Students</li>
                                 </ul>
 
                                 <p class="rbt-card-text">${e.short_description}</p>
@@ -1360,13 +1356,13 @@
                                         </a>
                                     </div>
                                     <div class="rbt-author-info">
-                                        By <a href="profile.html">Angela</a> In <a href="#">Development</a>
+                                    bởi <a href="#">${e.user}</a>
                                     </div>
                                 </div>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        <span class="current-price">${e.price}đ</span>
-                                        <span class="off-price">${e.discounted_price}đ</span>
+                                        ${price(e.price)}
+                                        ${discounted_price(e.discounted_price)}
                                     </div>
                                     <a class="rbt-btn-link" href="course-details.html">Learn
                                         More<i class="feather-arrow-right"></i></a>
@@ -1389,4 +1385,14 @@
             });
         });
         
+        function price(price) {
+            if (price == 0) {
+                return '<span class="current-price">Miễn phí</span>';
+            }
+        }
+        function discounted_price(discounted_price) {
+            if (discounted_price == 0) {
+                return '';
+            }
+        }
     </script>

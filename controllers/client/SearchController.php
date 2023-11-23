@@ -31,6 +31,26 @@ class SearchController
 
         //     $query->orderBy('price',$_POST['sb_category']);
         })->limit(6)->getArray();
-        return api(['status'=>200, 'data'=>$course]);
+
+
+        return api(['status'=>200, 'data'=>$this->convert($course)]);
+    }
+    function convert($data) {
+        $results = [];
+        
+        foreach($data as $item){
+            $results[] = [
+                'id'=>$item['id'],
+                'thumbnails'=>$item['thumbnails'],
+                'name'=>$item['name'],
+                'short_description'=>$item['short_description'],
+                'price'=>$item['price'],
+                'discounted_price'=>$item['discounted_price'],
+                'user' => (new User)->where('id', '=', $item['user_id'])->first()['name'],
+                'lesson' => (new Lesson)->where('course_id', '=', $item['id'])->count(),
+                'enrollment' => (new Enrollment)->where('course_id', '=', $item['id'])->count()
+            ];
+        }
+        return $results;
     }
 }
