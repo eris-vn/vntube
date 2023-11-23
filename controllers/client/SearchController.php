@@ -1,10 +1,36 @@
 <?php
-
+require_once 'constants/card.php';
+require_once 'model/user.php';
+require_once 'constants/user.php';
+require_once 'model/course.php';
+require_once 'model/lesson.php';
+require_once 'model/enrollment.php';
 
 class SearchController
 {
     function searchpage()
     {
-        return view('client.search', 'default');
+        $search_course = (new Course)->limit(6)->getArray();
+        return view('client.search',compact('search_course'), 'default');
+    }
+    function search() {
+        validate_api($_POST, [
+            'keyword' => ['required:từ khóa']
+        ]);
+        
+        $course = (new Course)->where('name', 'like', '%'.$_POST['keyword'].'%')->when($_POST['sort_by'],function ($query) {
+
+            $query->orderBy('price',$_POST['sort_by']);
+        // })->when($_POST['sb_author'],function ($query) {
+
+        //     $query->orderBy('price',$_POST['sb_author']);
+        // })->when($_POST['sb_offer'],function ($query) {
+
+        //     $query->orderBy('price',$_POST['sb_offer']);
+        // })->when($_POST['sb_category'],function ($query) {
+
+        //     $query->orderBy('price',$_POST['sb_category']);
+        })->limit(6)->getArray();
+        return api(['status'=>200, 'data'=>$course]);
     }
 }

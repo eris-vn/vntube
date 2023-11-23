@@ -51,3 +51,5 @@ RewriteRule ^course/details/(.*)$ index.php?controller=client/CourseController&a
 # CART
 RewriteRule ^api/cart/add index.php?controller=client/CartController&action=add [QSA,L]
 RewriteRule ^api/cart/delete index.php?controller=client/CartController&action=delete [QSA,L]
+
+RewriteRule ^api/search$ index.php?controller=client/SearchController&action=search [QSA,L]

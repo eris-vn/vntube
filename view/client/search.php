@@ -827,12 +827,22 @@
                         <div class="col-lg-7 col-md-12">
                             <div class="rbt-sorting-list d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end">
                                 <div class="rbt-short-item">
-                                    <form action="#" class="rbt-search-style me-0">
-                                        <input type="text" placeholder="Search Your Course..">
-                                        <button type="submit" class="rbt-search-btn rbt-round-btn">
+                                    <form method="post" action="#" class="rbt-search-style me-0" id="form_search">
+                                        <input type="text"  id="keyword" placeholder="Search Your Course..">
+                                        <button type="submit" name="btn" class="rbt-search-btn rbt-round-btn">
                                             <i class="feather-search"></i>
                                         </button>
                                     </form>
+                                    <?php
+                                        if (isset($_POST['btn'])) {
+                                            $keyword = $_POST['keyword'];
+                                        }
+                                        else {
+                                            echo $keyword = false; 
+                                        }
+                                    ?>
+                                    
+                                    
                                 </div>
 
                                 <div class="rbt-short-item">
@@ -849,14 +859,10 @@
                         <div class="filter-inner">
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
-                                    <span class="select-label d-block">Short By</span>
-                                    <select>
-                                        <option>Default</option>
-                                        <option>Latest</option>
-                                        <option>Popularity</option>
-                                        <option>Trending</option>
-                                        <option>Price: low to high</option>
-                                        <option>Price: high to low</option>
+                                    <span class="select-label d-block">Sort By</span>
+                                    <select id="sort_by">
+                                        <option value="asc">Price: low to high</option>
+                                        <option value="desc">Price: high to low</option>
                                     </select>
                                 </div>
                             </div>
@@ -864,15 +870,11 @@
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
                                     <span class="select-label d-block">Short By Author</span>
-                                    <select data-live-search="true" title="Select Author" multiple="" data-size="7" data-actions-box="true" data-selected-text-format="count > 2">
+                                    <select id="sb_author" data-live-search="true" title="Select Author" multiple="" data-size="7" data-actions-box="true" data-selected-text-format="count > 2">
                                         <option data-subtext="Experts">Janin Afsana</option>
                                         <option data-subtext="Experts">Joe Biden</option>
                                         <option data-subtext="Experts">Fatima Asrafy</option>
                                         <option data-subtext="Experts">Aysha Baby</option>
-                                        <option data-subtext="Experts">Mohamad Ali</option>
-                                        <option data-subtext="Experts">Jone Li</option>
-                                        <option data-subtext="Experts">Alberd Roce</option>
-                                        <option data-subtext="Experts">Zeliski Noor</option>
                                     </select>
                                 </div>
                             </div>
@@ -880,10 +882,9 @@
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
                                     <span class="select-label d-block">Short By Offer</span>
-                                    <select>
+                                    <select id="sb_offer">
                                         <option>Free</option>
                                         <option>Paid</option>
-                                        <option>Premium</option>
                                     </select>
                                 </div>
                             </div>
@@ -891,7 +892,7 @@
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
                                     <span class="select-label d-block">Short By Category</span>
-                                    <select data-live-search="true">
+                                    <select id="sb_category" data-live-search="true">
                                         <option>Web Design</option>
                                         <option>Graphic</option>
                                         <option>App Development</option>
@@ -936,9 +937,10 @@
     <div class="rbt-section-overlayping-top rbt-section-gapBottom">
         <div class="inner">
             <div class="container">
-                <div class="rbt-course-grid-column">
+                <div class="rbt-course-grid-column" id="search_body">
 
                     <!-- Start Single Card  -->
+                    <?php foreach ($search_course as $course) : ?>
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
@@ -998,10 +1000,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Card  -->
-
-                    <!-- Start Single Card  -->
-                    <div class="course-grid-3">
+                    <?php endforeach; ?>
+                    <!-- <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="course-details.html">
@@ -1053,9 +1053,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Card  -->
 
-                    <!-- Start Single Card  -->
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
@@ -1113,9 +1111,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Card  -->
 
-                    <!-- Start Single Card  -->
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
@@ -1174,9 +1170,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Card  -->
 
-                    <!-- Start Single Card  -->
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
@@ -1233,9 +1227,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Card  -->
 
-                    <!-- Start Single Card  -->
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
@@ -1288,7 +1280,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- End Single Card  -->
                 </div>
                 <div class="row">
@@ -1314,3 +1306,97 @@
             <hr class="rbt-separator m-0">
         </div>
     </div>
+
+    <script>
+            $("#form_search").on("submit", function(event) {
+        event.preventDefault();
+                $.ajax({
+                method: "POST",
+                url: "/api/search",
+                data: {
+                    keyword: $('#keyword').val(),
+                    sort_by: $('#sort_by').val(),
+                    sb_author: $('#sb_author').val(),
+                    sb_offer: $('#sb_offer').val(),
+                    sb_category: $('#sb_category').val(),
+                }, 
+            })
+            .done(function(data) {
+                if (data.status == 200) {
+                    html = "";
+                    data.data.forEach((e) =>{
+                        html+= `
+                        <div class="course-grid-3">
+                        <div class="rbt-card variation-01 rbt-hover">
+                            <div class="rbt-card-img">
+                                <a href="course-details.html">
+                                    <img src="${e.thumbnails}" alt="Card image">
+                                    <div class="rbt-badge-3 bg-white">
+                                        <span>-40%</span>
+                                        <span>Off</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="rbt-card-body">
+                                <div class="rbt-card-top">
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <div class="rbt-bookmark-btn">
+                                        <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                    </div>
+                                </div>
+
+                                <h4 class="rbt-card-title"><a href="course-details.html">${e.name}</a>
+                                </h4>
+
+                                <ul class="rbt-meta">
+                                    <li><i class="feather-book"></i>12 Lessons</li>
+                                    <li><i class="feather-users"></i>50 Students</li>
+                                </ul>
+
+                                <p class="rbt-card-text">${e.short_description}</p>
+                                <div class="rbt-author-meta mb--10">
+                                    <div class="rbt-avater">
+                                        <a href="#">
+                                            <img src="public/assets/images/client/avatar-02.png" alt="Sophia Jaymes">
+                                        </a>
+                                    </div>
+                                    <div class="rbt-author-info">
+                                        By <a href="profile.html">Angela</a> In <a href="#">Development</a>
+                                    </div>
+                                </div>
+                                <div class="rbt-card-bottom">
+                                    <div class="rbt-price">
+                                        <span class="current-price">${e.price}đ</span>
+                                        <span class="off-price">${e.discounted_price}đ</span>
+                                    </div>
+                                    <a class="rbt-btn-link" href="course-details.html">Learn
+                                        More<i class="feather-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                        `;
+                    });
+
+                    $('#search_body').html(html);
+                } else {
+                    Swal.fire({
+                        title: "THẤT BẠI",
+                        text: data.msg,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+        
+    </script>
