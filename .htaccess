@@ -25,6 +25,9 @@ RewriteRule ^user/dashboard$ index.php?controller=client/user/DashboardControlle
 
 # USER COURSE
 RewriteRule ^user/my-course$ index.php?controller=client/user/CourseController&action=show_page&middleware=auth [QSA,L]
+RewriteRule ^user/enrolled-courses$ index.php?controller=client/user/EnrolledController&action=show&middleware=auth [QSA,L]
+RewriteRule ^user/payment-history$ index.php?controller=client/user/InvoiceController&action=show_page&middleware=auth [QSA,L]
+
 RewriteRule ^user/course/create$ index.php?controller=client/user/CourseController&action=show_create&middleware=auth [QSA,L]
 RewriteRule ^user/course/edit/(.*)$ index.php?controller=client/user/CourseController&action=show_edit&middleware=auth&course_id=$1 [QSA,L]
 RewriteRule ^user/course/build-lesson/(.*)$ index.php?controller=client/user/CourseController&action=show_build_lesson&middleware=auth&course_id=$1 [QSA,L]
@@ -44,8 +47,18 @@ RewriteRule ^api/user/chapter/create$ index.php?controller=client/user/ChapterCo
 
 
 # COURSE
-RewriteRule ^course/details/(.*)$ index.php?controller=client/CourseController&action=view_details&course_id=$1 [QSA,L]
+RewriteRule ^course/(.*)/details$ index.php?controller=client/CourseController&action=view_details&course_slug=$1 [QSA,L]
 
 # CART
-RewriteRule ^api/cart/add index.php?controller=client/CartController&action=add [QSA,L]
-RewriteRule ^api/cart/delete index.php?controller=client/CartController&action=delete [QSA,L]
+RewriteRule ^cart index.php?controller=client/CartController&action=view&middleware=auth [QSA,L]
+RewriteRule ^api/cart/add index.php?controller=client/CartController&action=add&middleware=auth [QSA,L]
+RewriteRule ^api/cart/delete index.php?controller=client/CartController&action=delete&middleware=auth [QSA,L]
+
+# CHECKOUT
+RewriteRule ^checkout index.php?controller=client/CheckoutController&action=view&middleware=auth [QSA,L]
+RewriteRule ^api/checkout index.php?controller=client/CheckoutController&action=payment&middleware=auth [QSA,L]
+
+# LESSON
+RewriteRule ^course/(.*)/lesson/(.*) index.php?controller=client/LessonController&action=view&middleware=auth&course_id=$1&lesson_id=$2 [QSA,L]
+
+

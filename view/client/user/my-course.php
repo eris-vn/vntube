@@ -31,7 +31,7 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="rbt-card variation-01 rbt-hover">
                                     <div class="rbt-card-img">
-                                        <a href="course-details.html">
+                                        <a href="/course/details/<?= $course['id'] ?>">
                                             <img src="<?= $course['thumbnails'] ?>" alt="Card image">
                                         </a>
                                     </div>
@@ -51,7 +51,7 @@
                                             <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
                                         </div>
                                     </div> -->
-                                        <h4 class="rbt-card-title"><a href="course-details.html"><?= $course['name'] ?></a>
+                                        <h4 class="rbt-card-title"><a href="/course/details/<?= $course['id'] ?>"><?= $course['name'] ?></a>
                                         </h4>
                                         <ul class="rbt-meta">
                                             <li><i class="feather-book"></i><?= (new Lesson)->where('course_id', '=', $course['id'])->count() ?> bài học</li>

@@ -47,9 +47,7 @@ $user = user();
 
 <body class="rbt-header-sticky">
 
-    <?php require "header.php" ?>
     <?php require "view/$path.php"; ?>
-    <?php require "footer.php" ?>
 
     <!-- JS
 ============================================ -->

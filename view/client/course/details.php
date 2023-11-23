@@ -151,7 +151,7 @@
                                                                     <?php if ($lessons) : ?>
                                                                         <?php foreach ($lessons as $lesson) : ?>
                                                                             <li>
-                                                                                <a href="<?= $lesson['preview'] ? "/course/lesson/" . $lesson['id'] : "#" ?>">
+                                                                                <a href="<?= $lesson['preview'] ? "/course/" . $course['slug'] . "/lesson/" . $lesson['id'] : "#" ?>">
                                                                                     <div class="course-content-left">
                                                                                         <i class="feather-play-circle"></i> <span class="text"><?= $lesson['name'] ?> </span>
                                                                                     </div>
@@ -810,7 +810,7 @@
                                     </div>
 
                                     <div class="add-to-card-button mt--15">
-                                        <div class="rbt-btn btn-gradient icon-hover w-100 d-block text-center" onclick="add_cart(<?= $course['id'] ?>,'<?= $course['thumbnails'] ?>', 1, <?= $course['price'] ?>)">
+                                        <div class="rbt-btn btn-gradient icon-hover w-100 d-block text-center" onclick="add_cart(<?= $course['id'] ?>)">
                                             <span class="btn-text">Thêm vào giỏ hàng</span>
                                             <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                         </div>

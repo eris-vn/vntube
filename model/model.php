@@ -10,6 +10,8 @@ class Model
     protected $insertData = [];
     protected $offset;
     protected $select = ['*'];
+    protected $currentPage = 1;
+    protected $perPage = 10;
 
 
     public function __construct()
@@ -21,6 +23,64 @@ class Model
     {
         $this->select = $columns;
         return $this;
+    }
+
+    public function paginate($perPage = null, $currentPage = null)
+    {
+        if (!is_null($perPage)) {
+            $this->perPage = $perPage;
+        }
+
+        if (!is_null($currentPage)) {
+            $this->currentPage = $currentPage;
+        }
+
+        $totalItems = $this->count();
+        $totalPages = ceil($totalItems / $this->perPage);
+
+        $this->offset(($this->currentPage - 1) * $this->perPage)
+            ->limit($this->perPage);
+
+        $data = $this->getArray();
+
+        return [
+            'data' => $data,
+            'totalItems' => $totalItems,
+            'perPage' => $this->perPage,
+            'currentPage' => $this->currentPage,
+            'totalPages' => $totalPages,
+        ];
+    }
+
+    public function renderHtml($paginationData, $linkFormat = '?page=%d')
+    {
+        $html = '<nav>';
+        $html .= '<ul class="rbt-pagination">';
+
+        // Previous button
+        $prevPage = isset($paginationData['currentPage']) ? $paginationData['currentPage'] - 1 : null;
+        $prevUrl = ($prevPage > 0) ? sprintf($linkFormat, $prevPage) : '#';
+        $html .= '<li><a href="' . $prevUrl . '" aria-label="Previous"><i class="feather-chevron-left"></i></a></li>';
+
+        // Page links
+        if (isset($paginationData['totalPages'])) {
+
+            for ($i = 1; $i <= $paginationData['totalPages']; $i++) {
+                $activeClass = (isset($paginationData['currentPage']) && $i == $paginationData['currentPage']) ? 'active' : '';
+                $url = sprintf($linkFormat, $i);
+                $html .= "<li class='{$activeClass}'><a href='{$url}'>{$i}</a></li>";
+            }
+        }
+
+        // Next button
+        $nextPage = isset($paginationData['currentPage']) ? $paginationData['currentPage'] + 1 : null;
+        $nextUrl = (isset($nextPage) && $nextPage <= $paginationData['totalPages']) ? sprintf($linkFormat, $nextPage) : '#';
+        $html .= '<li><a href="' . $nextUrl . '" aria-label="Next"><i class="feather-chevron-right"></i></a></li>';
+
+        $html .= '</ul>';
+        $html .= '</nav>';
+
+        return $html;
     }
 
     public function where($column, $operator, $value)
@@ -173,7 +233,9 @@ class Model
         if (!empty($this->conditions)) {
             $query .= " WHERE";
             foreach ($this->conditions as $index => $condition) {
-                $query .= " {$condition['column']} {$condition['operator']} '{$condition['value']}'";
+                $value = $condition['operator'] === 'IN' ? $condition['value'] : "'" . $condition['value'] . "'";
+                $query .= " {$condition['column']} {$condition['operator']} {$value}";
+
                 if ($index !== count($this->conditions) - 1) {
                     $query .= " {$condition['logicalOperator']}";
                 }
@@ -194,7 +256,9 @@ class Model
         if (!empty($this->conditions)) {
             $query .= " WHERE";
             foreach ($this->conditions as $index => $condition) {
-                $query .= " {$condition['column']} {$condition['operator']} '{$condition['value']}'";
+                $value = $condition['operator'] === 'IN' ? $condition['value'] : "'" . $condition['value'] . "'";
+                $query .= " {$condition['column']} {$condition['operator']} {$value}";
+
                 if ($index !== count($this->conditions) - 1) {
                     $query .= " {$condition['logicalOperator']}";
                 }
@@ -211,7 +275,9 @@ class Model
         if (!empty($this->conditions)) {
             $query .= " WHERE";
             foreach ($this->conditions as $index => $condition) {
-                $query .= " {$condition['column']} {$condition['operator']} '{$condition['value']}'";
+                $value = $condition['operator'] === 'IN' ? $condition['value'] : "'" . $condition['value'] . "'";
+                $query .= " {$condition['column']} {$condition['operator']} {$value}";
+
                 if ($index !== count($this->conditions) - 1) {
                     $query .= " {$condition['logicalOperator']}";
                 }
@@ -231,7 +297,9 @@ class Model
         if (!empty($this->conditions)) {
             $query .= " WHERE";
             foreach ($this->conditions as $index => $condition) {
-                $query .= " {$condition['column']} {$condition['operator']} '{$condition['value']}'";
+                $value = $condition['operator'] === 'IN' ? $condition['value'] : "'" . $condition['value'] . "'";
+                $query .= " {$condition['column']} {$condition['operator']} {$value}";
+
                 if ($index !== count($this->conditions) - 1) {
                     $query .= " {$condition['logicalOperator']}";
                 }

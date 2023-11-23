@@ -9,7 +9,7 @@ class CourseController
 {
     function view_details()
     {
-        $course = (new Course)->where('id', '=', $_GET['course_id'])->first();
+        $course = (new Course)->where('slug', '=', $_GET['course_slug'])->first();
 
         if (!$course) {
             return redirect('/404');

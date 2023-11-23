@@ -354,7 +354,7 @@
                                 <?php
                                 $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
                                 ?>
-                                <span class="rbt-cart-count <?= $cart_count ? "" : "d-none" ?>"><?= $cart_count ? $cart_count : 0 ?></span>
+                                <span id="cart-count" class="rbt-cart-count <?= $cart_count ? "" : "d-none" ?>"><?= $cart_count ? $cart_count : 0 ?></span>
                             </a>
                         </li>
 
@@ -382,7 +382,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="instructor-enrolled-courses.html">
+                                                <a href="/user/enrolled-courses">
                                                     <i class="feather-shopping-bag"></i>
                                                     <span>Khoá học của tôi</span>
                                                 </a>
@@ -1110,70 +1110,40 @@
             </div>
         </div>
         <nav class="side-nav w-100">
-            <ul class="rbt-minicart-wrapper">
-                <li class="minicart-item">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img src="/public/assets/images/product/1.jpg" alt="Product Images">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <h6 class="title"><a href="single-product.html">Miracle Morning</a></h6>
+            <ul class="rbt-minicart-wrapper" id="cart-content">
 
-                        <span class="quantity">1 * <span class="price">$22</span></span>
-                    </div>
-                    <div class="close-btn">
-                        <button class="rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </li>
+                <?php
+                $subtotal = 0;
+                $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+                ?>
 
-                <li class="minicart-item">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img src="/public/assets/images/product/7.jpg" alt="Product Images">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <h6 class="title"><a href="single-product.html">Happy Strong</a></h6>
+                <?php if ($cart) : ?>
+                    <?php foreach ($cart as $item) : ?>
+                        <?php
+                        require_once 'model/course.php';
+                        $course_header = (new Course)->where('id', '=', $item)->first();
+                        $subtotal += $course_header['price'];
+                        ?>
+                        <li class="minicart-item">
+                            <div class="thumbnail">
+                                <a href="#">
+                                    <img src="<?= $course_header['thumbnails'] ?>" alt="Product Images">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h6 class="title"><a href="single-product.html"><?= $course_header['name'] ?></a></h6>
 
-                        <span class="quantity">1 * <span class="price">$30</span></span>
-                    </div>
-                    <div class="close-btn">
-                        <button class="rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </li>
+                                <span class="price"><?= number_format($course_header['price']) ?> vnđ</span>
+                            </div>
+                            <div class="close-btn" onclick="delete_cart(<?= $course_header['id'] ?>)">
+                                <button class="rbt-round-btn"><i class="feather-x"></i></button>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div>Chưa có sản phẩm nào.</div>
+                <?php endif; ?>
 
-                <li class="minicart-item">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img src="/public/assets/images/product/3.jpg" alt="Product Images">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <h6 class="title"><a href="single-product.html">Rich Dad Poor Dad</a></h6>
-
-                        <span class="quantity">1 * <span class="price">$50</span></span>
-                    </div>
-                    <div class="close-btn">
-                        <button class="rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </li>
-
-                <li class="minicart-item">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img src="/public/assets/images/product/4.jpg" alt="Product Images">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <h6 class="title"><a href="single-product.html">Momentum Theorem</a></h6>
-
-                        <span class="quantity">1 * <span class="price">$50</span></span>
-                    </div>
-                    <div class="close-btn">
-                        <button class="rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </li>
             </ul>
         </nav>
 
@@ -1181,18 +1151,18 @@
             <hr class="mb--0">
             <div class="rbt-cart-subttotal">
                 <p class="subtotal"><strong>Tạm tính:</strong></p>
-                <p class="price">$121</p>
+                <p class="price" id="cart-subtotal"><?= number_format($subtotal) ?> vnđ</p>
             </div>
             <hr class="mb--0">
             <div class="rbt-minicart-bottom mt--20">
                 <div class="view-cart-btn">
-                    <a class="rbt-btn btn-border icon-hover w-100 text-center" href="#">
+                    <a class="rbt-btn btn-border icon-hover w-100 text-center" href="/cart">
                         <span class="btn-text">Xem giỏ hàng</span>
                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                     </a>
                 </div>
                 <div class="checkout-btn mt--20">
-                    <a class="rbt-btn btn-gradient icon-hover w-100 text-center" href="#">
+                    <a class="rbt-btn btn-gradient icon-hover w-100 text-center" href="/checkout">
                         <span class="btn-text">Thanh toán</span>
                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                     </a>

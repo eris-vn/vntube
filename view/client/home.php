@@ -35,7 +35,7 @@
                                 <div class="swiper-slide swiper-slide-visible swiper-slide-active" style="width: 390px; z-index: 3; transform: translate3d(0px, 0px, 0px) rotateZ(0deg) scale(1);" role="group" aria-label="1 / 3">
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
-                                            <a href="/course/details/<?= $course['id'] ?>">
+                                            <a href="/course/<?= $course['slug'] ?>/details">
                                                 <img src="<?= $course['thumbnails'] ?>" alt="Card image">
                                                 <!-- <div class="rbt-badge-3 bg-white">
                                                     <span>-40%</span>
@@ -48,7 +48,7 @@
                                                 <li><i class="feather-book"></i><?= (new Lesson)->where('course_id', '=', $course['id'])->count() ?> bài học </li>
                                                 <li><i class="feather-users"></i><?= (new Enrollment)->where('course_id', '=', $course['id'])->count() ?> học viên</li>
                                             </ul>
-                                            <h4 class="rbt-card-title"><a href="/course/details/<?= $course['id'] ?>"><?= $course['name'] ?></a>
+                                            <h4 class="rbt-card-title"><a href="/course/<?= $course['slug'] ?>/details"><?= $course['name'] ?></a>
                                             </h4>
                                             <p class="rbt-card-text"><?= $course['short_description'] ?></p>
                                             <!-- <div class="rbt-review">
@@ -72,7 +72,7 @@
                                                         <span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>
                                                     <?php endif; ?>
                                                 </div>
-                                                <a class="rbt-btn-link" href="/course/details/<?= $course['id'] ?>">Xem chi tiết<i class="feather-arrow-right"></i></a>
+                                                <a class="rbt-btn-link" href="/course/<?= $course['slug'] ?>/details">Xem chi tiết<i class="feather-arrow-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -1001,7 +1001,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                     <div class="rbt-card variation-01 rbt-hover">
                         <div class="rbt-card-img">
-                            <a href="/course/details/<?= $course['id'] ?>">
+                            <a href="/course/<?= $course['slug'] ?>/details">
                                 <img src="<?= $course['thumbnails'] ?>" alt="Card image">
                                 <!-- <div class="rbt-badge-3 bg-white">
                                 <span>-40%</span>
@@ -1026,7 +1026,7 @@
                             </div>
                         </div> -->
 
-                            <h4 class="rbt-card-title"><a href="/course/details/<?= $course['id'] ?>"><?= $course['name'] ?></a>
+                            <h4 class="rbt-card-title"><a href="/course/<?= $course['slug'] ?>/details"><?= $course['name'] ?></a>
                             </h4>
 
                             <ul class="rbt-meta">
@@ -1056,7 +1056,7 @@
                                         <span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>
                                     <?php endif; ?>
                                 </div>
-                                <a class="rbt-btn-link" href="/course/details/<?= $course['id'] ?>">Xem thêm<i class="feather-arrow-right"></i></a>
+                                <a class="rbt-btn-link" href="/course/<?= $course['slug'] ?>/details">Xem thêm<i class="feather-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

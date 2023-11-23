@@ -107,13 +107,13 @@ $user = user();
                                             </div>
                                             <nav class="mainmenu-nav">
                                                 <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                                                    <li><a href="/user/dashboard" class="<?= $_SERVER['REQUEST_URI'] == "/user/dashboard" ? 'active' : '' ?>"><i class="feather-home"></i><span>Thống Kê</span></a></li>
+                                                    <li><a href="/user/dashboard" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/dashboard" ? 'active' : '' ?>"><i class="feather-home"></i><span>Thống Kê</span></a></li>
                                                     <li><a href="instructor-profile.html"><i class="feather-user"></i><span>My Profile</span></a></li>
-                                                    <li><a href="instructor-enrolled-courses.html"><i class="feather-book-open"></i><span>Enrolled Courses</span></a></li>
+                                                    <li><a href="/user/enrolled-courses" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/enrolled-courses" ? 'active' : '' ?>"><i class="feather-book-open"></i><span>Đã tham gia</span></a></li>
                                                     <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Wishlist</span></a></li>
                                                     <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li>
                                                     <li><a href="instructor-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>My Quiz Attempts</span></a></li>
-                                                    <li><a href="instructor-order-history.html"><i class="feather-shopping-bag"></i><span>Order History</span></a></li>
+                                                    <li><a href="/user/payment-history" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/payment-history" ? 'active' : '' ?>"><i class="feather-shopping-bag"></i><span>Lịch sử thanh toán</span></a></li>
                                                 </ul>
                                             </nav>
 
@@ -123,7 +123,7 @@ $user = user();
 
                                             <nav class="mainmenu-nav">
                                                 <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                                                    <li><a href="/user/my-course" class="<?= $_SERVER['REQUEST_URI'] == "/user/my-course" ? 'active' : '' ?>"><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
+                                                    <li><a href="/user/my-course" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/my-course" ? 'active' : '' ?>"><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
                                                     <li><a href="instructor-announcements.html"><i class="feather-volume-2"></i><span>Announcements</span></a></li>
                                                     <li><a href="instructor-quiz-attempts.html"><i class="feather-message-square"></i><span>Quiz Attempts</span></a></li>
                                                     <li><a href="instructor-assignments.html"><i class="feather-list"></i><span>Assignments</span></a></li>

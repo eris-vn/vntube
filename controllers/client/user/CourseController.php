@@ -51,7 +51,7 @@ class CourseController
         $discounted_price = isset($_POST['discounted_price']) && $_POST['discounted_price'] != "" ? $_POST['discounted_price'] : 0;
 
         (new Course)->insert(['user_id' => $user['id'], 'name' => $_POST['name'], 'slug' => $_POST['slug'], 'description' => $_POST['description'], 'short_description' => $_POST['short-description'], 'price' => $_POST['price'], 'discounted_price' => $discounted_price, 'thumbnails' => '/' . $image, 'video_preview' => $_POST['video_preview'], 'minutes' => $_POST['minutes']]);
-        $course = (new Course)->where('user_id', '=', $user['id'])->first();
+        $course = (new Course)->where('user_id', '=', $user['id'])->orderBy('id', 'desc')->first();
         return api(['status' => 200, 'data' => ['id' => $course['id']], 'msg' => 'Tạo khoá học thành công']);
     }
     function show_edit()
