@@ -24,14 +24,13 @@ class SearchController
         // })->when($_POST['sb_author'],function ($query) {
 
         //     $query->orderBy('price',$_POST['sb_author']);
-        // })->when($_POST['sb_offer'],function ($query) {
+        // })->when('price', $_POST['sb_offer'],function ($query) {
 
-        //     $query->orderBy('price',$_POST['sb_offer']);
-        // })->when($_POST['sb_category'],function ($query) {
+        //     $query->orderBy('price', '=', '0', $_POST['sb_offer']);
+        // })->when($_POST['sb_category'],function ($query_) {
 
-        //     $query->orderBy('price',$_POST['sb_category']);
+        //     $query->orderBy('slug',$_POST['sb_category']);
         })->limit(6)->getArray();
-
 
         return api(['status'=>200, 'data'=>$this->convert($course)]);
     }

@@ -784,7 +784,7 @@
                         <div class="col-lg-12">
                             <!-- Start Breadcrumb Area  -->
                             <ul class="page-list">
-                                <li class="rbt-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="rbt-breadcrumb-item"><a href="/">Home</a></li>
                                 <li>
                                     <div class="icon-right"><i class="feather-chevron-right"></i></div>
                                 </li>
@@ -991,7 +991,7 @@
                 </div>
                 <!-- End Single Course  -->
                     <?php endforeach; ?>
-                </div>
+                <!-- </div> -->
                 <div class="row">
                     <div class="col-lg-12 mt--60">
                         <nav>
@@ -1059,7 +1059,7 @@
                                     </div>
                                 </div>
 
-                                <h4 class="rbt-card-title"><a href="course-details.html">${e.name}</a>
+                                <h4 class="rbt-card-title"><a href="course/details/${e.id}">${e.name}</a>
                                 </h4>
 
                                 <ul class="rbt-meta">
@@ -1083,8 +1083,7 @@
                                         ${price(e.price)}
                                         ${discounted_price(e.discounted_price)}
                                     </div>
-                                    <a class="rbt-btn-link" href="course-details.html">Learn
-                                        More<i class="feather-arrow-right"></i></a>
+                                    <a class="rbt-btn-link" href="course/details/${e.id}">Xem thêm<i class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -1108,10 +1107,16 @@
             if (price == 0) {
                 return '<span class="current-price">Miễn phí</span>';
             }
+            else{
+                return `<span class="current-price">${parseInt(price).toLocaleString()}đ</span>`;
+            }
         }
         function discounted_price(discounted_price) {
             if (discounted_price == 0) {
                 return '';
+            }
+            else{
+                return `<span class="off-price">${parseInt(discounted_price).toLocaleString()}đ</span>`;
             }
         }
     </script>
