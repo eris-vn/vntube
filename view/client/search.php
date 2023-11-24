@@ -938,7 +938,7 @@
         <div class="inner">
             <div class="container">
                 <div class="rbt-course-grid-column" id="search_body">
-
+                <div class="row g-5">
                     <!-- Start Single Card  -->
                     <?php foreach ($search_course as $course) : ?>
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
@@ -1272,7 +1272,7 @@
                         </div>
                     </div> -->
                     <!-- End Single Card  -->
-                </div>
+                <!-- </div> -->
                 <div class="row">
                     <div class="col-lg-12 mt--60">
                         <nav>
@@ -1388,10 +1388,16 @@
             if (price == 0) {
                 return '<span class="current-price">Miễn phí</span>';
             }
+            else{
+                return `<span class="current-price">${price.toS}đ</span>`;
+            }
         }
         function discounted_price(discounted_price) {
             if (discounted_price == 0) {
                 return '';
+            }
+            else{
+                return '<span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>';
             }
         }
     </script>
