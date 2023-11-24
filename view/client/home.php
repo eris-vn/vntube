@@ -13,7 +13,7 @@
                             And you can be build a <strong>education template easily</strong>.
                         </p>
                         <div class="slider-btn">
-                            <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
+                            <a class="rbt-btn btn-gradient hover-icon-reverse" href="/search">
                                 <span class="icon-reverse-wrapper">
                                     <span class="btn-text">View Course</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>

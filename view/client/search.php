@@ -784,7 +784,7 @@
                         <div class="col-lg-12">
                             <!-- Start Breadcrumb Area  -->
                             <ul class="page-list">
-                                <li class="rbt-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="rbt-breadcrumb-item"><a href="/">Home</a></li>
                                 <li>
                                     <div class="icon-right"><i class="feather-chevron-right"></i></div>
                                 </li>
@@ -1340,7 +1340,7 @@
                                     </div>
                                 </div>
 
-                                <h4 class="rbt-card-title"><a href="course-details.html">${e.name}</a>
+                                <h4 class="rbt-card-title"><a href="course/details/${e.id}">${e.name}</a>
                                 </h4>
 
                                 <ul class="rbt-meta">
@@ -1364,8 +1364,7 @@
                                         ${price(e.price)}
                                         ${discounted_price(e.discounted_price)}
                                     </div>
-                                    <a class="rbt-btn-link" href="course-details.html">Learn
-                                        More<i class="feather-arrow-right"></i></a>
+                                    <a class="rbt-btn-link" href="course/details/${e.id}">Xem thêm<i class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
