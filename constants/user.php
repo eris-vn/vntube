@@ -1,7 +1,8 @@
 <?php
 
-class UserCodes
+class UserCode
 {
     const CLIENT = 0;
-    const ADMIN = 1;
+    const INSTRUCTOR = 1;
+    const ADMIN = 2;
 }

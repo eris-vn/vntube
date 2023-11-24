@@ -1,6 +1,6 @@
 cart = [];
 
-function add_cart(id) {
+function add_cart(id, redirect_payment = 0) {
   $.ajax({
     method: "POST",
     url: "/api/cart/add",
@@ -18,6 +18,9 @@ function add_cart(id) {
           background: "linear-gradient(to right, #00b09b, #96c93d)",
         },
       }).showToast();
+      if (redirect_payment == 1) {
+        window.location.href = "/checkout";
+      }
     } else {
       Toastify({
         text: data.msg,

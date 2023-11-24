@@ -84,10 +84,10 @@
                         <!-- Payment Method -->
                         <div class="col-12 mb--60">
                             <div class="checkout-payment-method">
-                                <h4 class="checkout-title">Payment Method</h4>
+                                <h4 class="checkout-title">Phương Thức Thanh Toán</h4>
 
                                 <div class="single-method">
-                                    <input type="radio" id="payment_check" name="payment-method" value="check">
+                                    <input type="radio" id="payment_check" name="payment-method" value="vnpay">
                                     <label for="payment_check">VNPAY</label>
                                 </div>
 
@@ -188,8 +188,10 @@
                             clearInterval(timerInterval);
                         }
                     }).then((result) => {
-                        window.location.href = '/enrolled-courses';
+                        window.location.href = '/user/enrolled-courses';
                     });
+                } else if (data.status == 201) {
+                    window.location.href = data.url;
                 } else {
                     Toastify({
                         text: data.msg,

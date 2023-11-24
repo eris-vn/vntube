@@ -31,6 +31,10 @@ class Model
             $this->perPage = $perPage;
         }
 
+        if (isset($_GET['page'])) {
+            $this->currentPage = intval($_GET['page']);
+        }
+
         if (!is_null($currentPage)) {
             $this->currentPage = $currentPage;
         }
@@ -121,6 +125,22 @@ class Model
         return $this;
     }
 
+    public function whereNotIn($column, array $values)
+    {
+        $formattedValues = implode(', ', array_map(function ($value) {
+            return "'" . mysqli_real_escape_string($this->db, $value) . "'";
+        }, $values));
+
+        $this->conditions[] = [
+            'column' => $column,
+            'operator' => 'NOT IN',
+            'value' => "({$formattedValues})",
+            'logicalOperator' => 'AND',
+        ];
+
+        return $this;
+    }
+
     public function orderBy($column, $direction = 'asc')
     {
         $this->orderBy = [
@@ -150,7 +170,7 @@ class Model
         if (!empty($this->conditions)) {
             $query .= " WHERE";
             foreach ($this->conditions as $index => $condition) {
-                $value = $condition['operator'] === 'IN' ? $condition['value'] : "'" . $condition['value'] . "'";
+                $value = $condition['operator'] === 'IN' || $condition['operator'] === 'NOT IN' ? $condition['value'] : "'" . $condition['value'] . "'";
                 $query .= " {$condition['column']} {$condition['operator']} {$value}";
 
                 if ($index !== count($this->conditions) - 1) {

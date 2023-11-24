@@ -11,7 +11,7 @@ class CourseController
     function show_page()
     {
         $user = user();
-        $courses = (new Course)->where('user_id', '=', $user['id'])->getArray();
+        $courses = (new Course)->where('user_id', '=', $user['id'])->paginate(2);
         return view('client.user.my-course', compact('courses'), 'user');
     }
     function show_create()

@@ -21,7 +21,7 @@
                             </li>
 
                             <li class="with-megamenu has-menu-child-item">
-                                <a href="/search">Courses </a>
+                                <a href="/search">Khoá học </a>
                                 <!-- End Mega Menu  -->
                             </li>
 
@@ -355,9 +355,9 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="instructor-order-history.html">
+                                                <a href="/user/payment-history">
                                                     <i class="feather-clock"></i>
-                                                    <span>Hoá đơn</span>
+                                                    <span>Lịch sử thanh toán</span>
                                                 </a>
                                             </li>
 

@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 session_start();
 
 require_once 'model/model.php';
@@ -12,14 +13,6 @@ $controller = isset($_GET['controller']) ? $_GET['controller'] : null;
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $middleware = isset($_GET['middleware']) ? $_GET['middleware'] : null;
 
-// xử lý controller
-$controllerFile = "controllers/$controller.php";
-if ($controller && file_exists($controllerFile)) {
-    require_once $controllerFile;
-} else {
-    exit('Không tìm thấy controller');
-}
-
 // xử lý middleware
 if ($middleware) {
     $middlewareFile = "middleware/$middleware.php";
@@ -28,6 +21,14 @@ if ($middleware) {
     } else {
         exit('Không tìm thấy middleware');
     }
+}
+
+// xử lý controller
+$controllerFile = "controllers/$controller.php";
+if ($controller && file_exists($controllerFile)) {
+    require_once $controllerFile;
+} else {
+    exit('Không tìm thấy controller');
 }
 
 

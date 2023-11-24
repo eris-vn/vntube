@@ -5,7 +5,7 @@ require_once 'model/enrollment.php';
 
 class CartController
 {
-    function view()
+    function show()
     {
 
         return view('client.cart', 'default');

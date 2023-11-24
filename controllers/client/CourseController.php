@@ -15,6 +15,8 @@ class CourseController
             return redirect('/404');
         }
 
-        return view('client.course.details', compact('course'), 'default');
+        $related_course_by_instructor = (new Course)->where('user_id', '=', $course['user_id'])->whereNotIn('id', [$course['id']])->limit(2)->get();
+
+        return view('client.course.details', compact('course', 'related_course_by_instructor'), 'default');
     }
 }

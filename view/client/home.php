@@ -7,15 +7,21 @@
                         <div class="rbt-new-badge rbt-new-badge-one">
                             <span class="rbt-new-badge-icon">🏆</span> Tự hào dẫn đầu nền tảng học trực tiếp
                         </div>
-                        <h1 class="title">The Largest <span class="color-primary">Online Learning</span> Platform
-                            for Drive Your Career.</h1>
-                        <p class="description">This template includes all the necessary pages of the onlineLorem.
-                            And you can be build a <strong>education template easily</strong>.
+                        <h1 class="title">Nền tảng <br><span class="color-primary">Học lập trình</span> Online <br> <span class="header-caption">
+                                <span class="cd-headline clip is-full-width">
+                                    <span class="cd-words-wrapper">
+                                        <b class="is-visible theme-gradient">Lớn nhất hiện nay.</b>
+                                        <b class="is-hidden theme-gradient">Cập nhật thường xuyên.</b>
+                                        <b class="is-hidden theme-gradient">Hỗ trợ tận tình.</b>
+                                    </span>
+                                </span>
+                            </span></h1>
+                        <p class="description">Khám phá thế giới lập trình với nền tảng học trực tuyến của chúng tôi. Học từ chuyên gia, áp dụng kiến thức vào dự án thực tế. <br><strong>Đăng ký ngay</strong> để bắt đầu hành trình học lập trình của bạn!
                         </p>
                         <div class="slider-btn">
-                            <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
+                            <a class="rbt-btn btn-gradient hover-icon-reverse" href="/search">
                                 <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">View Course</span>
+                                    <span class="btn-text">XEM KHOÁ HỌC</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
@@ -97,8 +103,8 @@
         <div class="row mb--60">
             <div class="col-lg-12">
                 <div class="section-title text-center">
-                    <span class="subtitle bg-primary-opacity">Why Choose Us</span>
-                    <h2 class="title">Creating A Community Of <br> Life Long Learners.</h2>
+                    <span class="subtitle bg-primary-opacity">Tại sao nên chọn chúng tôi?</span>
+                    <h2 class="title">Tạo nên một cộng đồng <br> học hỏi lâu dài.</h2>
                 </div>
             </div>
         </div>
@@ -112,9 +118,9 @@
                             <img src="/public/assets/images/icons/counter-01.png" alt="Icons Images">
                         </div>
                         <div class="content">
-                            <h3 class="counter"><span class="odometer" data-count="500">00</span>
+                            <h3 class="counter"><span class="odometer" data-count="<?= $count_instructor ?>">00</span>
                             </h3>
-                            <span class="subtitle">Learners &amp; counting</span>
+                            <span class="subtitle">Giảng viên</span>
                         </div>
                     </div>
                 </div>
@@ -130,9 +136,9 @@
                             <img src="/public/assets/images/icons/counter-02.png" alt="Icons Images">
                         </div>
                         <div class="content">
-                            <h3 class="counter"><span class="odometer" data-count="800">00</span>
+                            <h3 class="counter"><span class="odometer" data-count="<?= $count_course ?>">00</span>
                             </h3>
-                            <span class="subtitle">Courses &amp; Video</span>
+                            <span class="subtitle">Khoá học</span>
                         </div>
                     </div>
                 </div>
@@ -148,9 +154,9 @@
                             <img src="/public/assets/images/icons/counter-03.png" alt="Icons Images">
                         </div>
                         <div class="content">
-                            <h3 class="counter"><span class="odometer" data-count="1000">00</span>
+                            <h3 class="counter"><span class="odometer" data-count="<?= $count_lesson ?>">00</span>
                             </h3>
-                            <span class="subtitle">Certified Students</span>
+                            <span class="subtitle">Bài giảng</span>
                         </div>
                     </div>
                 </div>
@@ -166,9 +172,9 @@
                             <img src="/public/assets/images/icons/counter-04.png" alt="Icons Images">
                         </div>
                         <div class="content">
-                            <h3 class="counter"><span class="odometer" data-count="100">00</span>
+                            <h3 class="counter"><span class="odometer" data-count="<?= $count_enrolled ?>">00</span>
                             </h3>
-                            <span class="subtitle">Registered Enrolls</span>
+                            <span class="subtitle">Học viên</span>
                         </div>
                     </div>
                 </div>
@@ -183,8 +189,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title text-center mb--10">
-                        <span class="subtitle bg-primary-opacity">EDUCATION FOR EVERYONE</span>
-                        <h2 class="title">People like histudy education. <br> No joking - here’s the proof!</h2>
+                        <span class="subtitle bg-primary-opacity">ĐÁNH GIÁ NGƯỜI NỔI TIẾNG</span>
+                        <h2 class="title">Những doanh nghiệp lớn <br> nói gì về chúng tôi?</h2>
                     </div>
                 </div>
             </div>
@@ -201,8 +207,7 @@
                             <img src="/public/assets/images/icons/facebook.png" alt="Clint Images">
                         </div>
                         <div class="description">
-                            <p class="subtitle-3">After the launch, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                            <p class="subtitle-3">Khóa học rất thực tế và cập nhật với công nghệ mới. Nhân viên của chúng tôi đã trải qua đào tạo hiệu quả và nhanh chóng áp dụng kiến thức vào dự án.</p>
                             <div class="clint-info-wrapper">
                                 <div class="thumb">
                                     <img src="/public/assets/images/testimonial/client-01.png" alt="Clint Images">
@@ -225,8 +230,7 @@
                             <img src="/public/assets/images/icons/google.png" alt="Clint Images">
                         </div>
                         <div class="description">
-                            <p class="subtitle-3">Histudy education, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                            <p class="subtitle-3">Nền tảng học lập trình này không chỉ cung cấp kiến thức sâu rộng mà còn tạo ra môi trường học tập tích cực, khuyến khích sự sáng tạo.</p>
                             <div class="clint-info-wrapper">
                                 <div class="thumb">
                                     <img src="/public/assets/images/testimonial/client-02.png" alt="Clint Images">
@@ -249,8 +253,7 @@
                             <img src="/public/assets/images/icons/yelp.png" alt="Clint Images">
                         </div>
                         <div class="description">
-                            <p class="subtitle-3">Our educational, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                            <p class="subtitle-3">Khóa học linh hoạt và phù hợp với mọi trình độ, từ người mới học đến chuyên gia. Chúng tôi đã thấy sự tăng cường kỹ năng lập trình và sự tự tin của nhân viên.</p>
                             <div class="clint-info-wrapper">
                                 <div class="thumb">
                                     <img src="/public/assets/images/testimonial/client-03.png" alt="Clint Images">
@@ -273,8 +276,7 @@
                             <img src="/public/assets/images/icons/facebook.png" alt="Clint Images">
                         </div>
                         <div class="description">
-                            <p class="subtitle-3">People says about, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                            <p class="subtitle-3">Bài giảng chất lượng và giáo viên nhiệt tình. Chúng tôi đánh giá cao việc hỗ trợ sau khóa học và cơ hội thực hành trên các dự án thực tế.</p>
                             <div class="clint-info-wrapper">
                                 <div class="thumb">
                                     <img src="/public/assets/images/testimonial/client-04.png" alt="Clint Images">
@@ -296,8 +298,7 @@
                             <img src="/public/assets/images/icons/bing.png" alt="Clint Images">
                         </div>
                         <div class="description">
-                            <p class="subtitle-3">Like this histudy, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                            <p class="subtitle-3">Khóa học không chỉ giúp nhân viên nâng cao kỹ năng lập trình mà còn giúp họ hiểu rõ hơn về các xu hướng công nghệ, giúp doanh nghiệp chúng tôi luôn đứng đầu trong ngành.</p>
                             <div class="clint-info-wrapper">
                                 <div class="thumb">
                                     <img src="/public/assets/images/testimonial/client-05.png" alt="Clint Images">
@@ -312,323 +313,9 @@
             </div>
             <!-- End Single Testimonial  -->
 
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-odd">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/facebook.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Educational template, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-01.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Mandy F. Wood, <span>SR Designer</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-odd">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/hubs.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Online leaning, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-07.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Mildred W. Diaz, <span>Executive</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-odd">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/bing.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Remote learning, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-08.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Christopher, <span>CEO</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-odd">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/yelp.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-06.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Fatima, <span>Child</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
         </div>
     </div>
 
-    <div class="scroll-animation-wrapper no-overlay mt--30">
-        <div class="scroll-animation scroll-left-right">
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/facebook.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">After the launch, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-01.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Martha Maldonado, <span>CEO</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/google.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Histudy education, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-02.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Michael D., <span>CEO</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/yelp.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Our educational, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-03.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Valerie J., <span>CEO</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/bing.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">People says about, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-04.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Hannah R., <span>CEO</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/hubs.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Like this histudy, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-05.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Pearl B. Hill, <span>Marketing</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/yelp.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Educational template, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-01.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Mandy F. Wood, <span>SR Designer</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/bing.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Online leaning, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-07.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Mildred W. Diaz, <span>Executive</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/facebook.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">Remote learning, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-08.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Christopher, <span>CEO</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-
-            <!-- Start Single Testimonial  -->
-            <div class="single-column-20 bg-theme-gradient-even">
-                <div class="rbt-testimonial-box style-2">
-                    <div class="inner">
-                        <div class="icons">
-                            <img src="/public/assets/images/icons/yelp.png" alt="Clint Images">
-                        </div>
-                        <div class="description">
-                            <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
-                                auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
-                            <div class="clint-info-wrapper">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/testimonial/client-06.png" alt="Clint Images">
-                                </div>
-                                <div class="client-info">
-                                    <h5 class="title">Fatima, <span>Child</span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Testimonial  -->
-        </div>
-    </div>
 </div>
 <div class="rbt-team-area bg-color-white rbt-section-gap">
     <div class="container">
