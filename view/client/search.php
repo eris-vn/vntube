@@ -23,9 +23,9 @@
 
                             <div class=" title-wrapper">
                                 <h1 class="title mb--0">All Courses</h1>
-                                <a href="#" class="rbt-badge-2">
+                                <!-- <a href="#" class="rbt-badge-2">
                                     <div class="image">🎉</div> 50 Courses
-                                </a>
+                                </a> -->
                             </div>
 
                             <p class="description">Courses that help beginner designers become true unicorns. </p>
@@ -62,14 +62,6 @@
                                             <i class="feather-search"></i>
                                         </button>
                                     </form>
-                                    <?php
-                                        if (isset($_POST['btn'])) {
-                                            $keyword = $_POST['keyword'];
-                                        }
-                                        else {
-                                            echo $keyword = false; 
-                                        }
-                                    ?>
                                     
                                     
                                 </div>
@@ -82,55 +74,55 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Start Filter Toggle  -->
                     <div class="default-exp-wrapper default-exp-expand">
-                        <div class="filter-inner">
+                        <div class="filter-inner" style="justify-content: flex-start;">
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
-                                    <span class="select-label d-block">Sort By</span>
+                                    <span class="select-label d-block">Sắp xếp theo giá</span>
                                     <select id="sort_by">
-                                        <option value="asc">Price: low to high</option>
-                                        <option value="desc">Price: high to low</option>
+                                        <option value="asc">Từ thấp đến cao</option>
+                                        <option value="desc">Từ cao đến thấp</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
-                                    <span class="select-label d-block">Short By Author</span>
+                                    <span class="select-label d-block">Sắp xếp theo giảng viên</span>
                                     <select id="sb_author" data-live-search="true" title="Select Author" multiple="" data-size="7" data-actions-box="true" data-selected-text-format="count > 2">
-                                        <option data-subtext="Experts">Janin Afsana</option>
-                                        <option data-subtext="Experts">Joe Biden</option>
-                                        <option data-subtext="Experts">Fatima Asrafy</option>
-                                        <option data-subtext="Experts">Aysha Baby</option>
+                                    <?php foreach ($search_course['data'] as $course) : ?>
+                                        <?php $authour = (new User)->where('id', '=', $course['user_id'])->first() ?>
+                                    <option value="<?= $authour['id'] ?>" data-subtext=""><?= $authour['name'] ?></option>
+                                        
+                                    <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
-                                    <span class="select-label d-block">Short By Offer</span>
+                                    <span class="select-label d-block">Sắp xếp theo ưu đãi</span>
                                     <select id="sb_offer">
-                                        <option>Free</option>
-                                        <option>Paid</option>
+                                        <option value="0">Miễn Phí</option>
+                                        <option value="1">Trả phí</option>
                                     </select>
                                 </div>
                             </div>
-
+<!-- 
                             <div class="filter-select-option">
                                 <div class="filter-select rbt-modern-select">
-                                    <span class="select-label d-block">Short By Category</span>
+                                    <span class="select-label d-block">Sắp xếp theo doanh mục</span>
                                     <select id="sb_category" data-live-search="true">
-                                        <option>Web Design</option>
-                                        <option>Graphic</option>
-                                        <option>App Development</option>
-                                        <option>Figma Design</option>
+                                        <?php foreach ($search_course['data'] as $course) : ?>
+                                        <option><?= $course['slug'] ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="filter-select-option">
+                            <!-- <div class="filter-select-option">
                                 <div class="filter-select">
                                     <span class="select-label d-block">Price Range</span>
 
@@ -152,9 +144,10 @@
 
 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
+                    
                     <!-- End Filter Toggle  -->
                 </div>
             </div>
@@ -169,7 +162,7 @@
                 <div class="rbt-course-grid-column" id="search_body">
                 <div class="row g-5">
                     <!-- Start Single Card  -->
-                    <?php foreach ($search_course as $course) : ?>
+                    <?php foreach ($search_course['data'] as $course) : ?>
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
                     <div class="rbt-card variation-01 rbt-hover">
                         <div class="rbt-card-img">
@@ -225,11 +218,7 @@
                     <div class="col-lg-12 mt--60">
                         <nav>
                             <ul class="rbt-pagination">
-                                <li><a href="#" aria-label="Previous"><i class="feather-chevron-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#" aria-label="Next"><i class="feather-chevron-right"></i></a></li>
+                                <?= (new Model)->renderHtml($search_course) ?>
                             </ul>
                         </nav>
                     </div>
@@ -238,12 +227,6 @@
         </div>
     </div>
 
-
-    <div class="rbt-separator-mid">
-        <div class="container">
-            <hr class="rbt-separator m-0">
-        </div>
-    </div>
 
     <script>
             $("#form_search").on("submit", function(event) {

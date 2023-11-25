@@ -10,26 +10,34 @@ class SearchController
 {
     function searchpage()
     {
-        $search_course = (new Course)->limit(6)->getArray();
+        $search_course = (new Course)->limit(6)->paginate(6);
         return view('client.search',compact('search_course'), 'default');
     }
     function search() {
-        validate_api($_POST, [
-            'keyword' => ['required:từ khóa']
-        ]);
+        // validate_api($_POST, [
+        //     'keyword' => ['required:từ khóa']
+        // ]);
         
         $course = (new Course)->where('name', 'like', '%'.$_POST['keyword'].'%')->when($_POST['sort_by'],function ($query) {
 
             $query->orderBy('price',$_POST['sort_by']);
-        // })->when($_POST['sb_author'],function ($query) {
 
-        //     $query->orderBy('price',$_POST['sb_author']);
-        // })->when('price', $_POST['sb_offer'],function ($query) {
+        })->when($_POST['sb_author'],function ($query) {
 
-        //     $query->orderBy('price', '=', '0', $_POST['sb_offer']);
-        // })->when($_POST['sb_category'],function ($query_) {
+            $query->whereIn('user_id',$_POST['sb_author']);
 
-        //     $query->orderBy('slug',$_POST['sb_category']);
+        })->when($_POST['sb_offer'] == "0" || $_POST['sb_offer'] == "1", function ($query) {
+            if ($_POST['sb_offer']=='0') {
+                $query->where('price', '=', 0);
+            }
+            else {
+                $query->where('price', '!=', 0);
+            }
+            
+
+        })->when($_POST['sb_category'],function ($query) {
+
+            $query->where('slug',$_POST['sb_category']);
         })->limit(6)->getArray();
 
         return api(['status'=>200, 'data'=>$this->convert($course)]);
