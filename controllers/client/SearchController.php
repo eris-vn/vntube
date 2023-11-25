@@ -18,22 +18,19 @@ class SearchController
         // validate_api($_POST, [
         //     'keyword' => ['required:từ khóa']
         // ]);
+        $sb_author = isset($_POST['sb_author']) ? $_POST['sb_author'] : null;
+        $sb_offer = isset($_POST['sb_offer']) ? $_POST['sb_offer'] : null;
 
         $course = (new Course)->where('name', 'like', '%' . $_POST['keyword'] . '%')->when($_POST['sort_by'], function ($query) {
-
-            $query->orderBy('price', $_POST['sort_by']);
-        })->when($_POST['sb_author'], function ($query) {
-
-            $query->whereIn('user_id', $_POST['sb_author']);
-        })->when($_POST['sb_offer'] == "0" || $_POST['sb_offer'] == "1", function ($query) {
+            // $query->orderBy('price', $_POST['sort_by']);
+        })->when($sb_author, function ($query) {
+            // $query->whereIn('user_id', $_POST['sb_author']);
+        })->when($sb_offer == "0" || $sb_offer == "1", function ($query) {
             if ($_POST['sb_offer'] == '0') {
                 $query->where('price', '=', 0);
             } else {
                 $query->where('price', '!=', 0);
             }
-        })->when($_POST['sb_category'], function ($query) {
-
-            $query->where('slug', $_POST['sb_category']);
         })->limit(6)->getArray();
 
         return api(['status' => 200, 'data' => $this->convert($course)]);

@@ -80,6 +80,7 @@
                             <div class="filter-select rbt-modern-select">
                                 <span class="select-label d-block">Sắp xếp theo giá</span>
                                 <select id="sort_by">
+                                    <option value="" class="d-none">Chưa chọn</option>
                                     <option value="asc">Từ thấp đến cao</option>
                                     <option value="desc">Từ cao đến thấp</option>
                                 </select>
@@ -89,7 +90,7 @@
                         <div class="filter-select-option">
                             <div class="filter-select rbt-modern-select">
                                 <span class="select-label d-block">Sắp xếp theo giảng viên</span>
-                                <select id="sb_author" data-live-search="true" title="Select Author" multiple="" data-size="7" data-actions-box="true" data-selected-text-format="count > 2">
+                                <select id="sb_author" data-live-search="true" title="Chọn giảng viên" multiple="" data-size="7" data-actions-box="true" data-selected-text-format="count > 2">
                                     <?php foreach ($search_course['data'] as $course) : ?>
                                         <?php $authour = (new User)->where('id', '=', $course['user_id'])->first() ?>
                                         <option value="<?= $authour['id'] ?>" data-subtext=""><?= $authour['name'] ?></option>
@@ -103,6 +104,7 @@
                             <div class="filter-select rbt-modern-select">
                                 <span class="select-label d-block">Sắp xếp theo ưu đãi</span>
                                 <select id="sb_offer">
+                                    <option value="" class="d-none">Chọn ưu đãi</option>
                                     <option value="0">Miễn Phí</option>
                                     <option value="1">Trả phí</option>
                                 </select>
