@@ -4,7 +4,7 @@ session_start();
 
 require_once 'model/model.php';
 require_once 'model/connection.php';
-require_once 'core/core.php';
+require_once 'core.php';
 
 $conn = (new DB())->connect();
 
