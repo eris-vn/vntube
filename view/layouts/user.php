@@ -78,17 +78,19 @@ $user = user();
                                     </div> -->
                                 </div>
                             </div>
-                            <div class="rbt-tutor-information-right">
-                                <div class="tutor-btn">
-                                    <a class="rbt-btn btn-md hover-icon-reverse" href="/user/course/create">
-                                        <span class="icon-reverse-wrapper">
-                                            <span class="btn-text">Tạo khoá học</span>
-                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        </span>
-                                    </a>
+                            <?php if (is_instructor()) : ?>
+                                <div class="rbt-tutor-information-right">
+                                    <div class="tutor-btn">
+                                        <a class="rbt-btn btn-md hover-icon-reverse" href="/user/course/create">
+                                            <span class="icon-reverse-wrapper">
+                                                <span class="btn-text">Tạo khoá học</span>
+                                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                            </span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
                         <!-- End Tutor Information  -->
                     </div>
@@ -110,34 +112,37 @@ $user = user();
                                                     <li><a href="/user/dashboard" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/dashboard" ? 'active' : '' ?>"><i class="feather-home"></i><span>Thống Kê</span></a></li>
                                                     <li><a href="instructor-profile.html"><i class="feather-user"></i><span>My Profile</span></a></li>
                                                     <li><a href="/user/enrolled-courses" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/enrolled-courses" ? 'active' : '' ?>"><i class="feather-book-open"></i><span>Đã tham gia</span></a></li>
-                                                    <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Wishlist</span></a></li>
-                                                    <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li>
-                                                    <li><a href="instructor-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>My Quiz Attempts</span></a></li>
+                                                    <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Yêu thích</span></a></li>
+                                                    <!-- <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li> -->
+                                                    <li><a href="instructor-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>Kết quả quiz</span></a></li>
                                                     <li><a href="/user/payment-history" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/payment-history" ? 'active' : '' ?>"><i class="feather-shopping-bag"></i><span>Lịch sử thanh toán</span></a></li>
                                                 </ul>
                                             </nav>
 
+                                            <?php if (is_instructor()) : ?>
+
+                                                <div class="section-title mt--40 mb--20">
+                                                    <h6 class="rbt-title-style-2">GIẢNG VIÊN</h6>
+                                                </div>
+
+                                                <nav class="mainmenu-nav">
+                                                    <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                        <li><a href="/user/my-course" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/my-course" ? 'active' : '' ?>"><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
+                                                        <!-- <li><a href="instructor-announcements.html"><i class="feather-volume-2"></i><span>Announcements</span></a></li> -->
+                                                        <li><a href="instructor-quiz-attempts.html"><i class="feather-message-square"></i><span>Quản lí quiz</span></a></li>
+                                                        <!-- <li><a href="instructor-assignments.html"><i class="feather-list"></i><span>Assignments</span></a></li> -->
+                                                    </ul>
+                                                </nav>
+                                            <?php endif; ?>
+
                                             <div class="section-title mt--40 mb--20">
-                                                <h6 class="rbt-title-style-2">Instructor</h6>
+                                                <h6 class="rbt-title-style-2">NGƯỜI DÙNG</h6>
                                             </div>
 
                                             <nav class="mainmenu-nav">
                                                 <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                                                    <li><a href="/user/my-course" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/my-course" ? 'active' : '' ?>"><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
-                                                    <li><a href="instructor-announcements.html"><i class="feather-volume-2"></i><span>Announcements</span></a></li>
-                                                    <li><a href="instructor-quiz-attempts.html"><i class="feather-message-square"></i><span>Quiz Attempts</span></a></li>
-                                                    <li><a href="instructor-assignments.html"><i class="feather-list"></i><span>Assignments</span></a></li>
-                                                </ul>
-                                            </nav>
-
-                                            <div class="section-title mt--40 mb--20">
-                                                <h6 class="rbt-title-style-2">User</h6>
-                                            </div>
-
-                                            <nav class="mainmenu-nav">
-                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                                                    <li><a href="instructor-settings.html"><i class="feather-settings"></i><span>Settings</span></a></li>
-                                                    <li><a href="index.html"><i class="feather-log-out"></i><span>Logout</span></a></li>
+                                                    <li><a href="instructor-settings.html"><i class="feather-settings"></i><span>Cài đặt</span></a></li>
+                                                    <li><a href="/auth/logout"><i class="feather-log-out"></i><span>Đăng xuất</span></a></li>
                                                 </ul>
                                             </nav>
                                         </div>

@@ -674,7 +674,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="load-more-btn text-start text-md-end">
-                    <a class="rbt-btn rbt-switch-btn bg-primary-opacity" href="course.html">
+                    <a class="rbt-btn rbt-switch-btn bg-primary-opacity" href="/search">
                         <span data-text="Xem tất cả">Xem tất cả</span>
                     </a>
                 </div>
