@@ -25,11 +25,11 @@
                                 <!-- End Mega Menu  -->
                             </li>
                             <li class="with-megamenu has-menu-child-item">
-                                <a href="#">Liên hệ </a>
+                                <a href="/contact">Liên hệ </a>
                                 <!-- End Mega Menu  -->
                             </li>
                             <li class="with-megamenu has-menu-child-item">
-                                <a href="#">Về chúng tôi </a>
+                                <a href="/about">Về chúng tôi </a>
                                 <!-- End Mega Menu  -->
                             </li>
                         </ul>
@@ -64,7 +64,7 @@
                                     <div class="inner">
                                         <div class="rbt-admin-profile">
                                             <div class="admin-thumbnail">
-                                                <img src="/public/assets/images/team/avatar.jpg" alt="User Images">
+                                                <img src="<?= $user['avatar_url'] ? $user['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="User Images">
                                             </div>
                                             <div class="admin-info">
                                                 <span class="name"><?= $user['name'] ?></span>
@@ -81,23 +81,17 @@
                                             <li>
                                                 <a href="/user/enrolled-courses">
                                                     <i class="feather-shopping-bag"></i>
-                                                    <span>Khoá học của tôi</span>
+                                                    <span>Đã tham gia</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="instructor-wishlist.html">
-                                                    <i class="feather-heart"></i>
-                                                    <span>Yêu thích</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="instructor-reviews.html">
+                                                <a href="/user/dashboard">
                                                     <i class="feather-star"></i>
                                                     <span>Đánh gía</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="instructor-my-quiz-attempts.html">
+                                                <a href="/user/quiz-history">
                                                     <i class="feather-list"></i>
                                                     <span>Kết quả Quiz</span>
                                                 </a>
@@ -113,17 +107,11 @@
                                         <hr class="mt--10 mb--10">
                                         <ul class="user-list-wrapper">
                                             <li><a href="/user/my-course" class=""><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
-                                            <li>
-                                                <a href="instructor-quiz-attempts.html">
-                                                    <i class="feather-message-square"></i>
-                                                    <span>Quản lý Quiz</span>
-                                                </a>
-                                            </li>
                                         </ul>
                                         <hr class="mt--10 mb--10">
                                         <ul class="user-list-wrapper">
                                             <li>
-                                                <a href="instructor-settings.html">
+                                                <a href="/user/setting">
                                                     <i class="feather-settings"></i>
                                                     <span>Cài đặt</span>
                                                 </a>
@@ -258,153 +246,13 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="#">
+                        <form action="/search">
                             <input type="text" placeholder="What are you looking for?">
                             <div class="submit-btn">
-                                <a class="rbt-btn btn-gradient btn-md" href="#">Search</a>
+                                <button class="rbt-btn btn-gradient btn-md" type="submit">Search</button>
                             </div>
                         </form>
                     </div>
-                </div>
-
-                <div class="rbt-separator-mid">
-                    <hr class="rbt-separator m-0">
-                </div>
-
-                <div class="row g-4 pt--30 pb--60">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h5 class="rbt-title-style-2">Our Top Course</h5>
-                        </div>
-                    </div>
-
-                    <!-- Start Single Card  -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                        <div class="rbt-card variation-01 rbt-hover">
-                            <div class="rbt-card-img">
-                                <a href="course-details.html">
-                                    <img src="/public/assets/images/course/course-online-01.jpg" alt="Card image">
-                                </a>
-                            </div>
-                            <div class="rbt-card-body">
-                                <h5 class="rbt-card-title"><a href="course-details.html">React Js</a>
-                                </h5>
-                                <div class="rbt-review">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count"> (15 Reviews)</span>
-                                </div>
-                                <div class="rbt-card-bottom">
-                                    <div class="rbt-price">
-                                        <span class="current-price">$15</span>
-                                        <span class="off-price">$25</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Card  -->
-
-                    <!-- Start Single Card  -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                        <div class="rbt-card variation-01 rbt-hover">
-                            <div class="rbt-card-img">
-                                <a href="course-details.html">
-                                    <img src="/public/assets/images/course/course-online-02.jpg" alt="Card image">
-                                </a>
-                            </div>
-                            <div class="rbt-card-body">
-                                <h5 class="rbt-card-title"><a href="course-details.html">Java Program</a>
-                                </h5>
-                                <div class="rbt-review">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count"> (15 Reviews)</span>
-                                </div>
-                                <div class="rbt-card-bottom">
-                                    <div class="rbt-price">
-                                        <span class="current-price">$10</span>
-                                        <span class="off-price">$40</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Card  -->
-
-                    <!-- Start Single Card  -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                        <div class="rbt-card variation-01 rbt-hover">
-                            <div class="rbt-card-img">
-                                <a href="course-details.html">
-                                    <img src="/public/assets/images/course/course-online-03.jpg" alt="Card image">
-                                </a>
-                            </div>
-                            <div class="rbt-card-body">
-                                <h5 class="rbt-card-title"><a href="course-details.html">Web Design</a>
-                                </h5>
-                                <div class="rbt-review">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count"> (15 Reviews)</span>
-                                </div>
-                                <div class="rbt-card-bottom">
-                                    <div class="rbt-price">
-                                        <span class="current-price">$10</span>
-                                        <span class="off-price">$20</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Card  -->
-
-                    <!-- Start Single Card  -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                        <div class="rbt-card variation-01 rbt-hover">
-                            <div class="rbt-card-img">
-                                <a href="course-details.html">
-                                    <img src="/public/assets/images/course/course-online-04.jpg" alt="Card image">
-                                </a>
-                            </div>
-                            <div class="rbt-card-body">
-                                <h5 class="rbt-card-title"><a href="course-details.html">Web Design</a>
-                                </h5>
-                                <div class="rbt-review">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="rating-count"> (15 Reviews)</span>
-                                </div>
-                                <div class="rbt-card-bottom">
-                                    <div class="rbt-price">
-                                        <span class="current-price">$20</span>
-                                        <span class="off-price">$40</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Card  -->
                 </div>
 
             </div>

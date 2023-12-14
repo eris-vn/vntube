@@ -50,7 +50,7 @@ class CallbackController
         $details = (new InvoiceDetail)->where('invoice_id', '=', $orderId)->get();
 
         foreach ($details as $item) {
-            $instructor = (new Course)->where('id', '=', $item['course_id'])->first();
+            $instructor = (new Course)->where("status", "=", 0)->where('id', '=', $item['course_id'])->first();
             (new Enrollment)->insert(['user_id' => $invoice['user_id'], 'course_id' => $item['course_id'], 'instructor_id' => $instructor['user_id']]);
         }
 

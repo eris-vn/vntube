@@ -40,7 +40,7 @@
                                         <?php if ($cart) : ?>
                                             <?php foreach ($cart as $item) : ?>
                                                 <?php
-                                                $course = (new Course)->where('id', '=', $item)->first();
+                                                $course = (new Course)->where("status", "=", 0)->where('id', '=', $item)->first();
                                                 ?>
                                                 <tr>
                                                     <td class="pro-thumbnail"><a href="#"><img src="<?= $course['thumbnails'] ?>" alt="Product"></a></td>

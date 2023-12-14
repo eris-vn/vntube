@@ -35,6 +35,7 @@ $user = user();
     <link rel="stylesheet" href="/public/assets/css/plugins/plyr.css">
     <link rel="stylesheet" href="/public/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- jQuery JS -->
     <script src="/public/assets/js/vendor/jquery.js"></script>
@@ -62,7 +63,7 @@ $user = user();
                         <div class="rbt-tutor-information">
                             <div class="rbt-tutor-information-left">
                                 <div class="thumbnail rbt-avatars size-lg">
-                                    <img src="/public/assets/images/team/avatar.jpg" alt="Instructor">
+                                    <img src="<?= $user['avatar_url'] ? $user['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="Instructor">
                                 </div>
                                 <div class="tutor-content">
                                     <h5 class="title"><?= user()['name'] ?></h5>
@@ -110,11 +111,11 @@ $user = user();
                                             <nav class="mainmenu-nav">
                                                 <ul class="dashboard-mainmenu rbt-default-sidebar-list">
                                                     <li><a href="/user/dashboard" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/dashboard" ? 'active' : '' ?>"><i class="feather-home"></i><span>Thống Kê</span></a></li>
-                                                    <li><a href="instructor-profile.html"><i class="feather-user"></i><span>My Profile</span></a></li>
+                                                    <li><a href="/user/profile" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/profile" ? 'active' : '' ?>"><i class="feather-user"></i><span>Hồ sơ của tôi</span></a></li>
                                                     <li><a href="/user/enrolled-courses" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/enrolled-courses" ? 'active' : '' ?>"><i class="feather-book-open"></i><span>Đã tham gia</span></a></li>
-                                                    <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Yêu thích</span></a></li>
+                                                    <!-- <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Yêu thích</span></a></li> -->
                                                     <!-- <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li> -->
-                                                    <li><a href="instructor-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>Kết quả quiz</span></a></li>
+                                                    <li><a href="/user/quiz-history" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/quiz-history" ? 'active' : '' ?>"><i class="feather-help-circle"></i><span>Kết quả quiz</span></a></li>
                                                     <li><a href="/user/payment-history" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/payment-history" ? 'active' : '' ?>"><i class="feather-shopping-bag"></i><span>Lịch sử thanh toán</span></a></li>
                                                 </ul>
                                             </nav>
@@ -129,7 +130,6 @@ $user = user();
                                                     <ul class="dashboard-mainmenu rbt-default-sidebar-list">
                                                         <li><a href="/user/my-course" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/my-course" ? 'active' : '' ?>"><i class="feather-monitor"></i><span>Khoá học của tôi</span></a></li>
                                                         <!-- <li><a href="instructor-announcements.html"><i class="feather-volume-2"></i><span>Announcements</span></a></li> -->
-                                                        <li><a href="instructor-quiz-attempts.html"><i class="feather-message-square"></i><span>Quản lí quiz</span></a></li>
                                                         <!-- <li><a href="instructor-assignments.html"><i class="feather-list"></i><span>Assignments</span></a></li> -->
                                                     </ul>
                                                 </nav>
@@ -141,7 +141,7 @@ $user = user();
 
                                             <nav class="mainmenu-nav">
                                                 <ul class="dashboard-mainmenu rbt-default-sidebar-list">
-                                                    <li><a href="instructor-settings.html"><i class="feather-settings"></i><span>Cài đặt</span></a></li>
+                                                    <li><a href="/user/setting" class="<?= strtok($_SERVER['REQUEST_URI'], '?') == "/user/setting" ? 'active' : '' ?>"><i class="feather-settings"></i><span>Cài đặt</span></a></li>
                                                     <li><a href="/auth/logout"><i class="feather-log-out"></i><span>Đăng xuất</span></a></li>
                                                 </ul>
                                             </nav>
@@ -200,6 +200,7 @@ $user = user();
     <script src="/public/assets/js/vendor/paralax-scroll.js"></script>
     <script src="/public/assets/js/vendor/paralax.min.js"></script>
     <script src="/public/assets/js/vendor/countdown.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="/public/assets/js/vendor/plyr.js"></script>
     <!-- Main JS -->
     <script src="/public/assets/js/main.js"></script>

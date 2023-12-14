@@ -41,12 +41,12 @@
                             <div class="col-lg-6">
                                 <div class="rbt-checkbox">
                                     <input type="checkbox" id="rememberme" name="rememberme">
-                                    <label for="rememberme">Remember me</label>
+                                    <label for="rememberme">lưu mật khẩu</label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="rbt-lost-password text-end">
-                                    <a class="rbt-btn-link" href="#">Quên mật khẩu?</a>
+                                    <a class="rbt-btn-link" href="/forgot">Quên mật khẩu?</a>
                                 </div>
                             </div>
                         </div>
@@ -110,68 +110,111 @@
         </div>
     </div>
 </div>
+<script src="https://static.geetest.com/v4/gt4.js"></script>
 
 
 <script>
     $("#register").on("submit", function(event) {
         event.preventDefault();
 
-        $.ajax({
-                method: "POST",
-                url: "/auth/register",
-                data: {
-                    name: $('#register_user').val(),
-                    email: $('#register_email').val(),
-                    password: $('#register_password').val(),
-                    re_password: $('#register_conpassword').val()
-                }
-            })
-            .done(function(data) {
-                if (data.status == 200) {
-                    Swal.fire({
-                        title: "THÀNH CÔNG",
-                        text: data.msg,
-                        icon: "success"
-                    }).then((result) => {
-                        window.location.href = '/';
-                    });
-                } else {
-                    Swal.fire({
-                        title: "THẤT BẠI",
-                        text: data.msg,
-                        icon: "error"
-                    });
-                }
-            });
+        initGeetest4({
+                captchaId: "a970d1d94015b2f22129b41d358399df",
+                product: "bind",
+                language: "eng",
+                riskType: "slide",
+            },
+            (captcha) => {
+                captcha
+                    .onReady(function() {
+                        captcha.showCaptcha();
+                    })
+                    .onSuccess(async () => {
+                        var captcha_result = captcha.getValidate();
+
+                        $.ajax({
+                                method: "POST",
+                                url: "/auth/register",
+                                data: {
+                                    captcha: captcha_result,
+                                    name: $('#register_user').val(),
+                                    email: $('#register_email').val(),
+                                    password: $('#register_password').val(),
+                                    re_password: $('#register_conpassword').val()
+                                }
+                            })
+                            .done(function(data) {
+                                if (data.status == 200) {
+                                    Swal.fire({
+                                        title: "THÀNH CÔNG",
+                                        text: data.msg,
+                                        icon: "success"
+                                    }).then((result) => {
+                                        window.location.href = '/';
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "THẤT BẠI",
+                                        text: data.msg,
+                                        icon: "error"
+                                    });
+                                }
+                            });
+                    })
+                    .onError(function() {});
+            }
+        );
+
+
     });
 
     $("#login").on("submit", function(event) {
         event.preventDefault();
 
-        $.ajax({
-                method: "POST",
-                url: "/auth/login",
-                data: {
-                    email: $('#login_email').val(),
-                    password: $('#login_password').val(),
-                }
-            })
-            .done(function(data) {
-                if (data.status == 200) {
-                    Swal.fire({
-                        title: "THÀNH CÔNG",
-                        text: data.msg,
-                        icon: "success"
-                    }).then((result) => {
-                        window.location.href = '/';
-                    });
-                } else {
-                    Swal.fire({
-                        title: "THẤT BẠI",
-                        text: data.msg,
-                        icon: "error"
-                    });
-                }
-            });
+        initGeetest4({
+                captchaId: "a970d1d94015b2f22129b41d358399df",
+                product: "bind",
+                language: "eng",
+                riskType: "slide",
+            },
+            (captcha) => {
+                captcha
+                    .onReady(function() {
+                        captcha.showCaptcha();
+                    })
+                    .onSuccess(async () => {
+                        var captcha_result = captcha.getValidate();
+
+                        $.ajax({
+                                method: "POST",
+                                url: "/auth/login",
+                                data: {
+                                    captcha: captcha_result,
+                                    email: $('#login_email').val(),
+                                    password: $('#login_password').val(),
+                                }
+                            })
+                            .done(function(data) {
+                                if (data.status == 200) {
+                                    Swal.fire({
+                                        title: "THÀNH CÔNG",
+                                        text: data.msg,
+                                        icon: "success"
+                                    }).then((result) => {
+                                        window.location.href = '/';
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "THẤT BẠI",
+                                        text: data.msg,
+                                        icon: "error"
+                                    });
+                                }
+                            });
+                    })
+                    .onError(function() {});
+            }
+        );
+
+
     });
 </script>

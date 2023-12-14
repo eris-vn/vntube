@@ -16,7 +16,7 @@ class ChapterController
         ]);
 
         $user = user();
-        $course = (new Course)->where('id', '=', $_POST['course_id'])->where('user_id', '=', $user['id'])->first();
+        $course = (new Course)->where("status", "=", 0)->where('id', '=', $_POST['course_id'])->where('user_id', '=', $user['id'])->first();
 
         if (!$course) {
             return ['status' => -101, 'msg' => 'Không tìm thấy khoá học'];

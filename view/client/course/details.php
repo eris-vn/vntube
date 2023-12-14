@@ -236,23 +236,24 @@
                                     <div class="section-title mb--30">
                                         <h4 class="rbt-title-style-3">Giảng viên</h4>
                                     </div>
+                                    <?php $instructor = (new User)->where('id', '=', $course['user_id'])->first(); ?>
+
                                     <div class="media align-items-center">
                                         <div class="thumbnail">
                                             <a href="#">
-                                                <img src="/public/assets/images/user/default.png" alt="Author Images">
+                                                <img src="<?= $instructor['avatar_url'] ? $instructor['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="Author Images">
                                             </a>
                                         </div>
-                                        <?php $instructor = (new User)->where('id', '=', $course['user_id'])->first(); ?>
                                         <div class="media-body">
                                             <div class="author-info">
                                                 <h5 class="title">
-                                                    <a class="hover-flip-item-wrapper" href="#"><?= $instructor['name'] ?></a>
+                                                    <a class="hover-flip-item-wrapper" href="/profile/<?= $instructor['id'] ?>"><?= $instructor['name'] ?></a>
                                                 </h5>
                                                 <!-- <span class="b3 subtitle">Advanced Educator</span> -->
                                                 <ul class="rbt-meta mb--20 mt--10">
                                                     <!-- <li><i class="fa fa-star color-warning"></i>75,237 Reviews <span class="rbt-badge-5 ml--5">4.4 Rating</span></li> -->
                                                     <li><i class="feather-users"></i><?= (new Enrollment)->where('instructor_id', '=', $course['user_id'])->count() ?> Học viên</li>
-                                                    <li><a href="#"><i class="feather-video"></i><?= (new Course)->where('user_id', '=', $course['user_id'])->count() ?> khoá học</a></li>
+                                                    <li><a href="#"><i class="feather-video"></i><?= (new Course)->where("status", "=", 0)->where('user_id', '=', $course['user_id'])->count() ?> khoá học</a></li>
                                                 </ul>
                                             </div>
                                             <div class="content">
@@ -287,368 +288,139 @@
                             <!-- End Intructor Area  -->
 
                             <!-- Start Edu Review List  -->
-                            <!-- <div class="rbt-review-wrapper rbt-shadow-box review-wrapper mt--30" id="review">
-                                <div class="course-content">
-                                    <div class="section-title">
-                                        <h4 class="rbt-title-style-3">Review</h4>
-                                    </div>
-                                    <div class="row g-5 align-items-center">
-                                        <div class="col-lg-3">
-                                            <div class="rating-box">
-                                                <div class="rating-number">5.0</div>
-                                                <div class="rating">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                    </svg>
-                                                </div>
-                                                <span class="sub-title">Course Rating</span>
-                                            </div>
+                            <?php if ($review['data']) : ?>
+                                <div class="rbt-review-wrapper rbt-shadow-box review-wrapper mt--30" id="review">
+                                    <div class="course-content">
+                                        <div class="section-title">
+                                            <h4 class="rbt-title-style-3">TỔNG ĐÁNH GIÁ</h4>
+
                                         </div>
-                                        <div class="col-lg-9">
-                                            <div class="review-wrapper">
-                                                <div class="single-progress-bar">
-                                                    <div class="rating-text">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
+                                        <div class="row g-5 align-items-center">
+                                            <div class="col-lg-3">
+                                                <div class="rating-box">
+                                                    <?php
+                                                    $total = (new Review)->where('course_id', '=', $course['id'])->count();
+                                                    $avg = (new Review)->where('course_id', '=', $course['id'])->avg('rating');
+                                                    ?>
+                                                    <div class="rating-number"><?= round($avg, 2) ?></div>
+                                                    <div class="rating">
+                                                        <?php foreach (range(1, 5) as $s) : ?>
+                                                            <?php if ($s <= $avg) : ?>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                                </svg>
+                                                            <?php else : ?>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
+                                                                </svg>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
                                                     </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: 63%" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <span class="value-text">63%</span>
+                                                    <span class="sub-title">Xếp hạng khoá học</span>
                                                 </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="review-wrapper">
+                                                    <?php foreach (range(5, 1) as $stars) : ?>
+                                                        <?php
+                                                        $count = (new Review)->where('course_id', '=', $course['id'])->where('rating', '=', $stars)->count();
+                                                        $count = $count ? $count : 0;
 
-                                                <div class="single-progress-bar">
-                                                    <div class="rating-text">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: 29%" aria-valuenow="29" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <span class="value-text">29%</span>
-                                                </div>
+                                                        $percent = round(($count / $total) * 100, 0);
+                                                        ?>
+                                                        <div class="single-progress-bar">
+                                                            <div class="rating-text">
+                                                                <?php foreach (range(1, 5) as $s) : ?>
+                                                                    <?php if ($s <= $stars) : ?>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                                        </svg>
+                                                                    <?php else : ?>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
+                                                                        </svg>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            </div>
 
-                                                <div class="single-progress-bar">
-                                                    <div class="rating-text">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: 6%" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <span class="value-text">6%</span>
-                                                </div>
-
-                                                <div class="single-progress-bar">
-                                                    <div class="rating-text">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <span class="value-text">1%</span>
-                                                </div>
-
-                                                <div class="single-progress-bar">
-                                                    <div class="rating-text">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <span class="value-text">1%</span>
+                                                            <div class="progress">
+                                                                <div class="progress-bar" role="progressbar" style="width: <?= $percent ?>%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                            <span class="value-text"><?= $percent ?>%</span>
+                                                        </div>
+                                                    <?php endforeach; ?>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            <?php endif; ?>
                             <!-- End Edu Review List  -->
 
-                            <!-- <div class="about-author-list rbt-shadow-box featured-wrapper mt--30 has-show-more">
+                            <div class="about-author-list rbt-shadow-box featured-wrapper mt--30 has-show-more">
                                 <div class="section-title">
-                                    <h4 class="rbt-title-style-3">Featured review</h4>
+                                    <h4 class="rbt-title-style-3">
+                                        <div class="row">
+                                            <div class="col-lg-6">ĐÁNH GIÁ</div>
+                                            <div class="col-lg-6">
+                                                <div class="float-end">
+                                                    <button class="rbt-btn btn-md btn-gradient hover-icon-reverse" type="button" data-bs-toggle="modal" data-bs-target="#post-review">
+                                                        <span class="icon-reverse-wrapper">
+                                                            <span class="btn-text">THÊM ĐÁNH GIÁ</span>
+                                                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h4>
                                 </div>
                                 <div class="has-show-more-inner-content rbt-featured-review-list-wrapper">
-                                    <div class="rbt-course-review about-author">
-                                        <div class="media">
-                                            <div class="thumbnail">
-                                                <a href="#">
-                                                    <img src="/public/assets/images/testimonial/testimonial-3.jpg" alt="Author Images">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="author-info">
-                                                    <h5 class="title">
-                                                        <a class="hover-flip-item-wrapper" href="#">
-                                                            Farjana Bawnia
+                                    <?php if ($review['data']) : ?>
+                                        <?php foreach ($review['data'] as $rv) : ?>
+                                            <?php $user_review = (new User)->where('id', '=', $rv['user_id'])->first() ?>
+                                            <div class="rbt-course-review about-author">
+                                                <div class="media">
+                                                    <div class="thumbnail">
+                                                        <a href="javascript:;">
+                                                            <img src="<?= $user_review['avatar_url'] ? $user_review['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="Author Images">
                                                         </a>
-                                                    </h5>
-                                                    <div class="rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="author-info">
+                                                            <h5 class="title">
+                                                                <div class="hover-flip-item-wrapper">
+                                                                    <?= $user_review['name'] ?>
+                                                                </div>
+                                                            </h5>
+                                                            <div class="rating">
+                                                                <?php foreach (range(1, $rv['rating']) as $star) : ?>
+                                                                    <a href="javascript:;"><i class="fa fa-star"></i></a>
+                                                                <?php endforeach; ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="content">
+                                                            <p class="description"><?= $rv['content'] ?></p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="content">
-                                                    <p class="description">At 29 years old, my favorite compliment is being
-                                                        told that I look like my mom. Seeing myself in her image, like this
-                                                        daughter up top.</p>
-                                                    <ul class="social-icon social-default transparent-with-border justify-content-start">
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-up"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-down"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="rbt-course-review about-author">
-                                        <div class="media">
-                                            <div class="thumbnail">
-                                                <a href="#">
-                                                    <img src="/public/assets/images/testimonial/testimonial-4.jpg" alt="Author Images">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="author-info">
-                                                    <h5 class="title">
-                                                        <a class="hover-flip-item-wrapper" href="#">Razwan Islam</a>
-                                                    </h5>
-                                                    <div class="rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <p class="description">My favorite compliment is being
-                                                        told that I look like my mom. Seeing myself in her image, like this
-                                                        daughter up top.</p>
-                                                    <ul class="social-icon social-default transparent-with-border justify-content-start">
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-up"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-down"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rbt-course-review about-author">
-                                        <div class="media">
-                                            <div class="thumbnail">
-                                                <a href="#">
-                                                    <img src="/public/assets/images/testimonial/testimonial-1.jpg" alt="Author Images">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="author-info">
-                                                    <h5 class="title">
-                                                        <a class="hover-flip-item-wrapper" href="#">Babor Azom</a>
-                                                    </h5>
-                                                    <div class="rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <p class="description">My favorite compliment is being
-                                                        told that I look like my mom. Seeing myself in her image, like this
-                                                        daughter up top.</p>
-                                                    <ul class="social-icon social-default transparent-with-border justify-content-start">
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-up"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-down"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rbt-course-review about-author">
-                                        <div class="media">
-                                            <div class="thumbnail">
-                                                <a href="#">
-                                                    <img src="/public/assets/images/testimonial/testimonial-6.jpg" alt="Author Images">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="author-info">
-                                                    <h5 class="title">
-                                                        <a class="hover-flip-item-wrapper" href="#">Mohammad Ali</a>
-                                                    </h5>
-                                                    <div class="rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <p class="description">My favorite compliment is being
-                                                        told that I look like my mom. Seeing myself in her image, like this
-                                                        daughter up top.</p>
-                                                    <ul class="social-icon social-default transparent-with-border justify-content-start">
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-up"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-down"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rbt-course-review about-author">
-                                        <div class="media">
-                                            <div class="thumbnail">
-                                                <a href="#">
-                                                    <img src="/public/assets/images/testimonial/testimonial-8.jpg" alt="Author Images">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="author-info">
-                                                    <h5 class="title">
-                                                        <a class="hover-flip-item-wrapper" href="#">Sakib Al Hasan</a>
-                                                    </h5>
-                                                    <div class="rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <p class="description">My favorite compliment is being
-                                                        told that I look like my mom. Seeing myself in her image, like this
-                                                        daughter up top.</p>
-                                                    <ul class="social-icon social-default transparent-with-border justify-content-start">
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-up"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li><a href="#">
-                                                                <i class="feather-thumbs-down"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <?php endforeach; ?>
+                                        <?php if (count($review['data']) >= 5) : ?>
+                                            <div class="rbt-show-more-btn">Show More</div>
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <div>Chưa có đánh giá nào</div>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="rbt-show-more-btn">Show More</div>
-                            </div> -->
+
+                            </div>
                         </div>
                         <!-- End Course Details  -->
 
                         <!-- Start Related Course  -->
-                        <?php $related_course = (new Course)->where('user_id', '=', $instructor['id'])->where('id', '!=', $course['id'])->limit(2)->getArray(); ?>
+                        <?php $related_course = (new Course)->where("status", "=", 0)->where('user_id', '=', $instructor['id'])->where('id', '!=', $course['id'])->limit(2)->getArray(); ?>
                         <?php if ($related_course) : ?>
                             <div class="related-course mt--60">
                                 <div class="row g-5 align-items-end mb--40">
@@ -700,7 +472,7 @@
                                                         </div>
                                                     </div> -->
 
-                                                    <h4 class="rbt-card-title"><a href="/course/<?= $related_course['slug'] ?>/details"><?= $related_course['name'] ?></a>
+                                                    <h4 style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;" class="rbt-card-title"><a href="/course/<?= $related_course['slug'] ?>/details"><?= $related_course['name'] ?></a>
                                                     </h4>
 
                                                     <ul class="rbt-meta">
@@ -708,15 +480,16 @@
                                                         <li><i class="feather-users"></i><?= (new Enrollment)->where('course_id', '=', $related_course['id'])->count() ?> học viên</li>
                                                     </ul>
 
-                                                    <p class="rbt-card-text"><?= $related_course['short_description'] ?></p>
+                                                    <p style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;" class="rbt-card-text"><?= $related_course['short_description'] ?></p>
                                                     <div class="rbt-author-meta mb--10">
                                                         <div class="rbt-avater">
                                                             <a href="#">
-                                                                <img src="/public/assets/images/client/avatar-02.png" alt="Sophia Jaymes">
+                                                                <?php $user = (new User)->where('id', '=', $related_course['user_id'])->first();  ?>
+                                                                <img src="<?= $user['avatar_url'] ? $user['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="Sophia Jaymes">
                                                             </a>
                                                         </div>
                                                         <div class="rbt-author-info">
-                                                            bởi <a href="#"><?= (new User)->where('id', '=', $related_course['user_id'])->first()['name'] ?></a>
+                                                            bởi <a href="/profile/<?= $user['id'] ?>"><?= $user['name'] ?></a>
                                                         </div>
                                                     </div>
                                                     <div class="rbt-card-bottom">
@@ -828,43 +601,123 @@
     </div>
 </div>
 
+<!-- Start Modal Area  -->
+<div class="rbt-default-modal modal fade" id="post-review" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="feather-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="inner rbt-default-form">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="modal-title mb--20" id="exampleModalLabel">ĐĂNG ĐÁNH GIÁ</h5>
+                            <div class="course-field mb--20">
+                                <label for="modal-field-2">Điểm số</label>
+                                <!-- Inspired by: https://codepen.io/jamesbarnett/pen/vlpkh -->
+                                <div class="star-rating">
+                                    <input type="radio" id="5-stars" name="review-rating" value="5" />
+                                    <label for="5-stars" class="star">&#9733;</label>
+                                    <input type="radio" id="4-stars" name="review-rating" value="4" />
+                                    <label for="4-stars" class="star">&#9733;</label>
+                                    <input type="radio" id="3-stars" name="review-rating" value="3" />
+                                    <label for="3-stars" class="star">&#9733;</label>
+                                    <input type="radio" id="2-stars" name="review-rating" value="2" />
+                                    <label for="2-stars" class="star">&#9733;</label>
+                                    <input type="radio" id="1-star" name="review-rating" value="1" />
+                                    <label for="1-star" class="star">&#9733;</label>
+                                </div>
+                            </div>
+                            <div class="course-field mb--20">
+                                <label for="modal-field-2">Nội dung</label>
+                                <textarea id="review_content" placeholder="Thêm đánh giá của bạn"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-circle-shape"></div>
+            <div class="modal-footer pt--30">
+                <button class="rbt-btn btn-md btn-gradient hover-icon-reverse" onclick="on_review()">
+                    <span class="icon-reverse-wrapper">
+                        <span class="btn-text">ĐÁNH GIÁ</span>
+                        <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                        <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                    </span>
+                </button>
+                <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">HUỶ</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Area  -->
+
 <div class="rbt-separator-mid">
     <div class="container">
         <hr class="rbt-separator m-0">
     </div>
 </div>
 
-
-<!-- Start Course Action Bottom  -->
-<div class="rbt-course-action-bottom">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-6">
-                <div class="section-title text-center text-md-start">
-                    <h5 class="title mb--0">The Complete Histudy 2023: From Zero to Expert!</h5>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 mt_sm--15">
-                <div class="course-action-bottom-right rbt-single-group">
-                    <div class="rbt-single-list rbt-price large-size justify-content-center">
-                        <span class="current-price color-primary">$750.00</span>
-                        <span class="off-price">$1500.00</span>
-                    </div>
-                    <div class="rbt-single-list action-btn">
-                        <a class="rbt-btn btn-gradient hover-icon-reverse btn-md" href="#">
-                            <span class="icon-reverse-wrapper">
-                                <span class="btn-text">Purchase Now</span>
-                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-
+    function on_review() {
+        $.ajax({
+            method: "POST",
+            url: "/api/course/review/submit",
+            data: {
+                rate: $('input[name="review-rating"]:checked').val(),
+                content: $('#review_content').val(),
+                courses_id: <?= $course['id'] ?>
+            },
+        }).done(function(data) {
+            if (data.status == 200) {
+                // window.location.reload();
+            } else {
+                Swal.close();
+                Toastify({
+                    text: data.msg,
+                    duration: 3000,
+                    style: {
+                        background: "linear-gradient(to right, #F64C18, #EE9539)",
+                    },
+                }).showToast();
+            }
+        });
+    }
 </script>
+
+<style>
+    .star-rating {
+        display: flex;
+        flex-direction: row-reverse;
+        font-size: 1.5em;
+        justify-content: space-around;
+        /* padding: 0 .2em; */
+        text-align: center;
+        width: 5em;
+    }
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .star-rating :checked~label {
+        color: #f90;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label {
+        color: #fc0;
+    }
+
+    .star-rating .star::before {
+        display: none;
+    }
+</style>

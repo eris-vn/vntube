@@ -174,53 +174,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="accordion-item card rbt-course-field-wrapper">
-                                <h2 class="accordion-header card-header" id="accSix">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accCollapseSix" aria-expanded="false" aria-controls="accCollapseSix">
-                                        Thông tin thêm
-                                    </button>
-                                </h2>
-                                <div id="accCollapseSix" class="accordion-collapse collapse" aria-labelledby="accSix" data-bs-parent="#tutionaccordionExamplea1">
-                                    <div class="accordion-body card-body rbt-course-field-wrapper rbt-default-form row row-15">
-
-                                        <!-- <div class="col-lg-6">
-                                            <div class="course-field mb--15">
-                                                <label for="whatLearn">Yêu cầu</label>
-                                                <textarea id="whatLearn" rows="5" placeholder="Add your course benefits here."></textarea>
-                                                <small class="d-block mt_dec--5"><i class="feather-info"></i> Nhập từng dòng.</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <div class="course-field mb--15">
-                                                <label for="description">Mô tả</label>
-                                                <textarea id="description" rows="5" placeholder="Add your course benefits here."></textarea>
-
-                                                <small class="d-block mt_dec--5"><i class="feather-info"></i> Nhập từng dòng.</small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-12">
-                                            <hr class="mt--10 mb--20">
-                                        </div> -->
-
-                                        <div class="col-lg-12">
-                                            <div class="course-field mb--15">
-                                                <label>Tổng thời gian học</label>
-                                                <div class="row row--15">
-                                                    <div class="col-lg-12">
-                                                        <input id="minutes" type="number" placeholder="00" max="60" value="<?= $course['minutes'] ?>">
-                                                        <small class="d-block mt_dec--5"><i class="feather-info"></i> Phút.</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 

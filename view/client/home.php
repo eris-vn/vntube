@@ -54,9 +54,15 @@
                                                 <li><i class="feather-book"></i><?= (new Lesson)->where('course_id', '=', $course['id'])->count() ?> bài học </li>
                                                 <li><i class="feather-users"></i><?= (new Enrollment)->where('course_id', '=', $course['id'])->count() ?> học viên</li>
                                             </ul>
-                                            <h4 class="rbt-card-title"><a href="/course/<?= $course['slug'] ?>/details"><?= $course['name'] ?></a>
+                                            <h4 class="rbt-card-title"><a href="/course/<?= $course['slug'] ?>/details" style="display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;"><?= $course['name'] ?></a>
                                             </h4>
-                                            <p class="rbt-card-text"><?= $course['short_description'] ?></p>
+                                            <p class="rbt-card-text" style="display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;"><?= $course['short_description'] ?></p>
                                             <!-- <div class="rbt-review">
                                                 <div class="rating">
                                                     <i class="fas fa-star"></i>
@@ -317,352 +323,7 @@
     </div>
 
 </div>
-<div class="rbt-team-area bg-color-white rbt-section-gap">
-    <div class="container">
-        <div class="row mb--60">
-            <div class="col-lg-12">
-                <div class="section-title text-center">
-                    <span class="subtitle bg-primary-opacity">Our Teacher</span>
-                    <h2 class="title">Whose Inspirations You</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row g-5">
 
-            <div class="col-lg-7">
-                <!-- Start Tab Content  -->
-                <div class="rbt-team-tab-content tab-content" id="myTabContent">
-                    <div class="tab-pane fade active show" id="team-tab1" role="tabpanel" aria-labelledby="team-tab1-tab">
-                        <div class="inner">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-01.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                            <div class="rbt-team-details">
-                                <div class="author-info">
-                                    <h4 class="title">Mames Mary</h4>
-                                    <span class="designation theme-gradient">English Teacher</span>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="team-tab2" role="tabpanel" aria-labelledby="team-tab2-tab">
-                        <div class="inner">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-02.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                            <div class="rbt-team-details">
-                                <div class="author-info">
-                                    <h4 class="title">Robert Song</h4>
-                                    <span class="designation theme-gradient">Math Teacher</span>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p>Education The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="team-tab3" role="tabpanel" aria-labelledby="team-tab3-tab">
-                        <div class="inner">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-03.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                            <div class="rbt-team-details">
-                                <div class="author-info">
-                                    <h4 class="title">William Susan</h4>
-                                    <span class="designation theme-gradient">React Teacher</span>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p>React The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="team-tab4" role="tabpanel" aria-labelledby="team-tab4-tab">
-                        <div class="inner">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-04.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                            <div class="rbt-team-details">
-                                <div class="author-info">
-                                    <h4 class="title">Soseph Sara</h4>
-                                    <span class="designation theme-gradient">Web Teacher</span>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="team-tab5" role="tabpanel" aria-labelledby="team-tab5-tab">
-                        <div class="inner">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-05.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                            <div class="rbt-team-details">
-                                <div class="author-info">
-                                    <h4 class="title">Thomas Dal</h4>
-                                    <span class="designation theme-gradient">Graphic Teacher</span>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="team-tab6" role="tabpanel" aria-labelledby="team-tab6-tab">
-                        <div class="inner">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-06.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                            <div class="rbt-team-details">
-                                <div class="author-info">
-                                    <h4 class="title">Christopher Lisa</h4>
-                                    <span class="designation theme-gradient">English Teacher</span>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="top-circle-shape"></div>
-                </div>
-                <!-- End Tab Content  -->
-            </div>
-
-            <div class="col-lg-5">
-                <!-- Start Tab Nav  -->
-                <ul class="rbt-team-tab-thumb nav nav-tabs" id="myTab" role="tablist">
-                    <li>
-                        <a class="active" id="team-tab1-tab" data-bs-toggle="tab" data-bs-target="#team-tab1" role="tab" aria-controls="team-tab1" aria-selected="true">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-01.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a id="team-tab2-tab" data-bs-toggle="tab" data-bs-target="#team-tab2" role="tab" aria-controls="team-tab2" aria-selected="false">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-02.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a id="team-tab3-tab" data-bs-toggle="tab" data-bs-target="#team-tab3" role="tab" aria-controls="team-tab3" aria-selected="false">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-03.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a id="team-tab4-tab" data-bs-toggle="tab" data-bs-target="#team-tab4" role="tab" aria-controls="team-tab4" aria-selected="false">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-04.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a id="team-tab5-tab" data-bs-toggle="tab" data-bs-target="#team-tab5" role="tab" aria-controls="team-tab5" aria-selected="false">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-05.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a id="team-tab6-tab" data-bs-toggle="tab" data-bs-target="#team-tab6" role="tab" aria-controls="team-tab6" aria-selected="false">
-                            <div class="rbt-team-thumbnail">
-                                <div class="thumb">
-                                    <img src="/public/assets/images/team/team-06.jpg" alt="Testimonial Images">
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                </ul>
-                <!-- End Tab Content  -->
-            </div>
-        </div>
-    </div>
-</div>
 <div class="rbt-course-area bg-color-white rbt-section-gap">
     <div class="container">
         <div class="row mb--55 g-5 align-items-end">
@@ -713,7 +374,7 @@
                             </div>
                         </div> -->
 
-                            <h4 class="rbt-card-title"><a href="/course/<?= $course['slug'] ?>/details"><?= $course['name'] ?></a>
+                            <h4 class="rbt-card-title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;"><a href="/course/<?= $course['slug'] ?>/details"><?= $course['name'] ?></a>
                             </h4>
 
                             <ul class="rbt-meta">
@@ -721,15 +382,16 @@
                                 <li><i class="feather-users"></i><?= (new Enrollment)->where('course_id', '=', $course['id'])->count() ?> học viên</li>
                             </ul>
 
-                            <p class="rbt-card-text"><?= $course['short_description'] ?></p>
+                            <?php $instructor = (new User)->where('id', '=', $course['user_id'])->first() ?>
+                            <p class="rbt-card-text" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;"><?= $course['short_description'] ?></p>
                             <div class="rbt-author-meta mb--10">
                                 <div class="rbt-avater">
                                     <a href="#">
-                                        <img src="/public/assets/images/client/avatar-02.png" alt="Sophia Jaymes">
+                                        <img src="<?= $instructor['avatar_url'] ? $instructor['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="Sophia Jaymes">
                                     </a>
                                 </div>
                                 <div class="rbt-author-info">
-                                    bởi <a href="#"><?= (new User)->where('id', '=', $course['user_id'])->first()['name'] ?></a>
+                                    bởi <a href="#"><?= $instructor['name'] ?></a>
                                 </div>
                             </div>
                             <div class="rbt-card-bottom">

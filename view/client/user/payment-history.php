@@ -9,7 +9,6 @@
                 <thead>
                     <tr>
                         <th>Mã đơn</th>
-                        <th>Tên khoá học</th>
                         <th>Ngày tạo</th>
                         <th>Giá</th>
                         <th>Trang thái</th>
@@ -20,8 +19,7 @@
                     <?php if (isset($history_payment['data'])) : ?>
                         <?php foreach ($history_payment['data'] as $history) : ?>
                             <tr>
-                                <th><?= $history['id'] ?></th>
-                                <td><?= $history['name'] ?></td>
+                                <th>Hoá đơn #<?= $history['id'] ?></th>
                                 <td><?= $history['created_at'] ?></td>
                                 <td><?= number_format($history['price']) ?> vnđ</td>
                                 <td>

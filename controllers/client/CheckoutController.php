@@ -27,13 +27,16 @@ class CheckoutController
         }
 
         $user = user();
-        $courses = (new Course)->whereIn('id', $cart)->getArray();
-        $total_price = (new Course)->whereIn('id', $cart)->sum('price');
+        $courses = (new Course)->where("status", "=", 0)->whereIn('id', $cart)->getArray();
+        $total_price = (new Course)->where("status", "=", 0)->whereIn('id', $cart)->sum('price');
 
         if ($total_price == 0) {
+            (new Invoice)->insert(['user_id' => $user['id'], 'name' => 'Thanh toán qua VNPAY', 'price' => $total_price, 'status' => InvoiceCode::SUCCESS]);
+            $invoice = (new Invoice)->where('user_id', '=', $user['id'])->where('status', '=', InvoiceCode::SUCCESS)->orderBy('id', 'desc')->first();
+
             foreach ($courses as $course) {
-                (new Invoice)->insert(['user_id' => $user['id'], 'name' => $course['name'], 'price' => $course['price'], 'status' => InvoiceCode::SUCCESS]);
                 (new Enrollment)->insert(['user_id' => $user['id'], 'course_id' => $course['id'], 'instructor_id' => $course['user_id']]);
+                (new InvoiceDetail)->insert(['invoice_id' => $invoice['id'], 'course_id' => $course['id']]);
             }
             $_SESSION['cart'] = [];
             return api(['status' => 200, 'msg' => 'Thanh toán thành công']);

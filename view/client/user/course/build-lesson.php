@@ -33,6 +33,13 @@
                                                 <span class="btn-icon"><i class="feather-plus-circle"></i></span>
                                             </span>
                                         </button>
+                                        <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mb--20 mr--10" onclick="on_show_create_question()">
+                                            <span class="icon-reverse-wrapper">
+                                                <span class="btn-text">Thêm câu hỏi</span>
+                                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                                <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                            </span>
+                                        </button>
 
                                         <div class="rbt-accordion-style rbt-accordion-02 for-right-content accordion">
 
@@ -42,14 +49,14 @@
                                                     <?php foreach ($chapters as $chapter) : ?>
 
                                                         <?php
-                                                        require_once 'model/lesson.php';
                                                         $lessions = (new Lesson)->where('chapter_id', '=', $chapter['id'])->getArray();
+                                                        $questions = (new Question)->where('chapter_id', '=', $chapter['id'])->getArray();
                                                         ?>
 
                                                         <div class="accordion-item card">
                                                             <h2 class="accordion-header card-header" id="headingTwo1">
                                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#<?= toSlug($chapter['name']) ?>" aria-controls="collapseTwo1">
-                                                                    <?= $chapter['name'] ?> <span class="rbt-badge-5 ml--10"><?= count($lessions) ?> bài học</span>
+                                                                    <?= $chapter['name'] ?> <span class="rbt-badge-5 ml--10"><?= count($lessions) ?> bài học</span> <span class="rbt-badge-5 ml--10"><?= count($questions) ?> câu hỏi</span>
                                                                 </button>
                                                             </h2>
                                                             <div id="<?= toSlug($chapter['name']) ?>" class="accordion-collapse collapse" aria-labelledby="headingTwo1">
@@ -57,8 +64,6 @@
                                                                     <ul class="rbt-course-main-content liststyle">
 
                                                                         <?php if ($lessions) : ?>
-
-
 
                                                                             <?php foreach ($lessions as $lession) : ?>
                                                                                 <li>
@@ -88,16 +93,32 @@
                                                                             </li>
 
                                                                         <?php endif ?>
+
+                                                                        <?php if ($questions) : ?>
+                                                                            <?php foreach ($questions as $question) : ?>
+                                                                                <li>
+                                                                                    <a href="#">
+                                                                                        <div class="course-content-left">
+                                                                                            <i class="feather-help-circle"></i> <span class="text"><?= $question['title'] ?></span>
+                                                                                        </div>
+                                                                                        <div class="course-content-right">
+                                                                                            <span class="rbt-check" onclick="on_show_question(<?= $question['id'] ?>)"><i class="fa-solid fa-pen-to-square"></i></span>
+                                                                                            <span class="rbt-check" onclick="on_delete_question(<?= $question['id'] ?>)"><i class="fa-solid fa-trash-can"></i></span>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </li>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endif ?>
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                </div>
+                                                    <?php endforeach; ?>
 
-                                            <?php endforeach; ?>
-                                        <?php else : ?>
-                                            <div>Chưa có mục nào.</div>
-                                        <?php endif; ?>
+                                                </div>
+                                            <?php else : ?>
+                                                <div>Chưa có mục nào.</div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -110,11 +131,11 @@
                     <div class="mt--10 row g-5">
                         <div class="col-lg-12">
                             <div class="rbt-btn btn-gradient hover-icon-reverse w-100 text-center">
-                                <span class="icon-reverse-wrapper" onclick="on_create()">
+                                <a href="/user/my-course" class="icon-reverse-wrapper">
                                     <span class="btn-text">LƯU KHOÁ HỌC</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                </span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -405,6 +426,85 @@
     </div>
     <!-- End Modal Area  -->
 
+
+    <!-- Start chapter modal Area  -->
+    <div class="rbt-default-modal modal fade" id="create_question" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="rbt-round-btn" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="feather-x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="inner rbt-default-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input id="question_id" type="text" class="d-none">
+                                <h5 class="modal-title mb--20" id="modal_question_title">Thêm câu hỏi</h5>
+
+                                <div class="course-field mb--20">
+                                    <label for="videoUrl">Chọn mục</label>
+                                    <div class="rbt-modern-select bg-transparent height-45 mb--10">
+                                        <select class="w-100" id="question_chapter">
+                                            <option value="" disabled="" selected="" style="display: none">Chọn mục cho khoá học</option>
+                                            <?php if ($chapters) : ?>
+                                                <?php foreach ($chapters as $chapter) : ?>
+                                                    <option value="<?= $chapter['id'] ?>"><?= $chapter['name'] ?></option>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <option value="" disabled>Chưa có mục nào</option>
+                                            <?php endif; ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="course-field mb--20">
+                                    <label for="modal-field-1">Đặt câu hỏi</label>
+                                    <input id="question_name" type="text" placeholder="Đặt câu hỏi">
+                                </div>
+
+                                <label for="modal-field-1">Câu trả lời</label>
+                                <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10 mb--20" onclick="add_answer()">
+                                    <span class="icon-reverse-wrapper">
+                                        <span class="btn-text">Thêm câu trả lời</span>
+                                        <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                        <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                                    </span>
+                                </button>
+
+                                <div id="answers">
+                                    <div class="course-field mb--10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="correct_answer" id="correct_answer" value="1" checked>
+                                            <label class="form-check-label" for="correct_answer">
+                                                Câu đúng
+                                            </label>
+                                        </div>
+                                        <span class="rbt-check" onclick="del_answer(this)"><i class="fa-solid fa-trash-can"></i></span>
+                                        <input id="answer_1" type="text" placeholder="Nhập đáp án">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-circle-shape"></div>
+                <div class="modal-footer pt--30">
+                    <button class="rbt-btn btn-md btn-gradient hover-icon-reverse mr--10" id="model_question_action" onclick="on_create_question()">
+                        <span class="icon-reverse-wrapper">
+                            <span class="btn-text">Lưu câu hỏi</span>
+                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                            <span class="btn-icon"><i class="feather-plus-circle"></i></span>
+                        </span>
+                    </button>
+                    <button type="button" class="rbt-btn btn-border btn-md radius-round-10" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End chapter Modal Area  -->
+
     <div class="rbt-separator-mid">
         <div class="container">
             <hr class="rbt-separator m-0">
@@ -678,6 +778,213 @@
                     });
             }
         });
+    }
+
+    function on_create_question() {
+
+        $.ajax({
+                method: "POST",
+                url: "/api/user/question/create",
+                data: {
+                    course_id: $('#course_id').val(),
+                    chapter_id: $('#question_chapter :selected').val(),
+                    name: $('#question_name').val(),
+                    answers: convert_answer(),
+                },
+            })
+            .done(function(data) {
+                if (data.status == 200) {
+                    Toastify({
+                        text: data.msg,
+                        duration: 3000,
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                    }).showToast();
+                    window.location.reload();
+                } else {
+                    Toastify({
+                        text: data.msg,
+                        duration: 3000,
+                        style: {
+                            background: "linear-gradient(to right, #F64C18, #EE9539)",
+                        },
+                    }).showToast();
+                }
+            });
+    }
+
+    function on_show_create_question() {
+        $('#modal_question_title').text('Tạo câu hỏi');
+        $('#question_name').val('');
+        $('#model_question_action').attr('onclick', 'on_create_question()');
+        $('#create_question').modal('show');
+    }
+
+    function on_show_question(id) {
+
+        $.ajax({
+                method: "POST",
+                url: "/api/user/question/info",
+                data: {
+                    question_id: id,
+                },
+            })
+            .done(function(data) {
+                if (data.status == 200) {
+                    $('#question_id').val(data.data.id);
+                    $('#modal_question_title').text('Chỉnh câu hỏi');
+                    $('#question_name').val(data.data.title);
+                    $('#model_question_action').attr('onclick', 'on_edit_question()');
+                    $("#question_chapter").selectpicker('val', data.data.chapter_id);
+                    let html = '';
+
+                    data.data.answers.forEach((e) => {
+                        html += `
+                            <div class="course-field mb--10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="correct_answer" id="correct_answer_${e.id}" value="${e.id}" ${e.correct == "1" ? 'checked' : ''}>
+                                    <label class="form-check-label" for="correct_answer_${e.id}">
+                                        Câu đúng
+                                    </label>
+                                </div>
+                                <span class="rbt-check" onclick="del_answer(${e.id})"><i class="fa-solid fa-trash-can"></i></span>
+                                <input id="answer_${e.id}" type="text" placeholder="Nhập đáp án" value="${e.content}">
+                            </div>
+                        `;
+                    })
+
+                    $('#answers').html(html);
+
+
+                    $('#create_question').modal('show');
+                } else {
+                    Toastify({
+                        text: data.msg,
+                        duration: 3000,
+                        style: {
+                            background: "linear-gradient(to right, #F64C18, #EE9539)",
+                        },
+                    }).showToast();
+                }
+            });
+    }
+
+    function on_edit_question() {
+        $.ajax({
+                method: "POST",
+                url: "/api/user/question/edit",
+                data: {
+                    name: $('#question_name').val(),
+                    chapter_id: $('#question_chapter :selected').val(),
+                    question_id: $('#question_id').val(),
+                    answers: convert_answer(),
+                },
+            })
+            .done(function(data) {
+                if (data.status == 200) {
+                    Toastify({
+                        text: data.msg,
+                        duration: 3000,
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                    }).showToast();
+                    window.location.reload();
+                } else {
+                    Toastify({
+                        text: data.msg,
+                        duration: 3000,
+                        style: {
+                            background: "linear-gradient(to right, #F64C18, #EE9539)",
+                        },
+                    }).showToast();
+                }
+            });
+    }
+
+    function on_delete_question(id) {
+        Swal.fire({
+            title: "THÔNG BÁO",
+            text: "Bạn có chắc muốn xoá câu hỏi này!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "VÂNG",
+            confirmCancelText: "THÔI"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                        method: "POST",
+                        url: "/api/user/question/delete",
+                        data: {
+                            question_id: id
+                        },
+                    })
+                    .done(function(data) {
+                        if (data.status == 200) {
+                            Toastify({
+                                text: data.msg,
+                                duration: 3000,
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                            }).showToast();
+                            window.location.reload();
+                        } else {
+                            Toastify({
+                                text: data.msg,
+                                duration: 3000,
+                                style: {
+                                    background: "linear-gradient(to right, #F64C18, #EE9539)",
+                                },
+                            }).showToast();
+                        }
+                    });
+            }
+        });
+    }
+
+    function add_answer() {
+        let id = Date.now();
+
+        var html = `
+                <div class="course-field mb--10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="correct_answer" id="correct_answer_${id}" value="${id}">
+                        <label class="form-check-label" for="correct_answer_${id}">
+                            Câu đúng
+                        </label>
+                    </div>
+                    <span class="rbt-check" onclick="del_answer(${id})"><i class="fa-solid fa-trash-can"></i></span>
+                    <input id="answer_${id}" type="text" placeholder="Nhập đáp án">
+                </div>
+            `;
+
+        $('#answers').append(html);
+    }
+
+    function del_answer(id) {
+        $('#answer_' + id).parent().remove();
+    }
+
+    function convert_answer() {
+        var dataArray = [];
+
+        $('#answers .course-field').each(function(index) {
+            var id = $(this).find('.form-check-input').val();
+            var content = $(this).find('input[type="text"]').val();
+            var isCorrect = $(this).find('.form-check-input').prop('checked');
+
+            dataArray.push({
+                id: id,
+                content: content,
+                is_correct: isCorrect ? 1 : 0
+            });
+        });
+
+        return dataArray;
     }
 </script>
 

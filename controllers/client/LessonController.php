@@ -5,13 +5,15 @@ require_once 'model/chapter.php';
 require_once 'model/lesson.php';
 require_once 'model/enrollment.php';
 require_once 'model/user_lesson.php';
+require_once 'model/question.php';
+require_once 'model/answer.php';
 
 class LessonController
 {
     function view()
     {
         $user = user();
-        $course = (new Course)->where('slug', '=', $_GET['course_slug'])->first();
+        $course = (new Course)->where("status", "=", 0)->where('slug', '=', $_GET['course_slug'])->first();
 
         if (!$course) {
             return view('client.404', 'default');

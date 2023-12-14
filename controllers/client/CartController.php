@@ -26,7 +26,7 @@ class CartController
             }
         }
 
-        $course = (new Course)->where('id', '=', $_POST['id'])->first();
+        $course = (new Course)->where("status", "=", 0)->where('id', '=', $_POST['id'])->first();
         if (!$course) {
             return api(['status' => -101, 'msg' => 'Khoá học đã xoá hoặc không tồn tại.']);
         }
@@ -46,7 +46,7 @@ class CartController
         $result = [];
 
         foreach ($data as $item) {
-            $course = (new Course)->where('id', '=', $item)->first();
+            $course = (new Course)->where("status", "=", 0)->where('id', '=', $item)->first();
 
             if ($course) {
                 $result[] = [

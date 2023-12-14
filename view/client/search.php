@@ -11,22 +11,21 @@
                     <div class="col-lg-12">
                         <!-- Start Breadcrumb Area  -->
                         <ul class="page-list">
-                            <li class="rbt-breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="rbt-breadcrumb-item"><a href="/">Trang chủ</a></li>
                             <li>
                                 <div class="icon-right"><i class="feather-chevron-right"></i></div>
                             </li>
-                            <li class="rbt-breadcrumb-item active">All Courses</li>
+                            <li class="rbt-breadcrumb-item active">Tất cả khoá học</li>
                         </ul>
                         <!-- End Breadcrumb Area  -->
 
                         <div class=" title-wrapper">
-                            <h1 class="title mb--0">All Courses</h1>
-                            <!-- <a href="#" class="rbt-badge-2">
-                                    <div class="image">🎉</div> 50 Courses
-                                </a> -->
+                            <h1 class="title mb--0">Tất cả khoá học</h1>
+                            <a href="#" class="rbt-badge-2">
+                                <div class="image">🎉</div> <?= (new Course)->where("status", "=", 0)->count() ?> khoá học
+                            </a>
                         </div>
 
-                        <p class="description">Courses that help beginner designers become true unicorns. </p>
                     </div>
                 </div>
             </div>
@@ -41,12 +40,9 @@
                         <div class="rbt-sorting-list d-flex flex-wrap align-items-center">
                             <div class="rbt-short-item switch-layout-container">
                                 <ul class="course-switch-layout">
-                                    <li class="course-switch-item"><button class="rbt-grid-view active" title="Grid Layout"><i class="feather-grid"></i> <span class="text">Grid</span></button></li>
-                                    <li class="course-switch-item"><button class="rbt-list-view" title="List Layout"><i class="feather-list"></i> <span class="text">List</span></button></li>
+                                    <li class="course-switch-item"><button class="rbt-grid-view active" title="Grid Layout"><i class="feather-grid"></i> <span class="text">Mục</span></button></li>
+                                    <li class="course-switch-item"><button class="rbt-list-view" title="List Layout"><i class="feather-list"></i> <span class="text">Danh sách</span></button></li>
                                 </ul>
-                            </div>
-                            <div class="rbt-short-item">
-                                <span class="course-index">Showing 1-9 of 19 results</span>
                             </div>
                         </div>
                     </div>
@@ -55,7 +51,7 @@
                         <div class="rbt-sorting-list d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end">
                             <div class="rbt-short-item">
                                 <form method="post" action="#" class="rbt-search-style me-0" id="form_search">
-                                    <input type="text" id="keyword" placeholder="Search Your Course..">
+                                    <input type="text" id="keyword" placeholder="Nội dung tìm kiếm...">
                                     <button type="submit" name="btn" class="rbt-search-btn rbt-round-btn">
                                         <i class="feather-search"></i>
                                     </button>
@@ -66,7 +62,7 @@
 
                             <div class="rbt-short-item">
                                 <div class="view-more-btn text-start text-sm-end">
-                                    <button class="discover-filter-button discover-filter-activation rbt-btn btn-white btn-md radius-round">Filter<i class="feather-filter"></i></button>
+                                    <button class="discover-filter-button discover-filter-activation rbt-btn btn-white btn-md radius-round">Bộ lọc<i class="feather-filter"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -91,9 +87,8 @@
                             <div class="filter-select rbt-modern-select">
                                 <span class="select-label d-block">Sắp xếp theo giảng viên</span>
                                 <select id="sb_author" data-live-search="true" title="Chọn giảng viên" multiple="" data-size="7" data-actions-box="true" data-selected-text-format="count > 2">
-                                    <?php foreach ($search_course['data'] as $course) : ?>
-                                        <?php $authour = (new User)->where('id', '=', $course['user_id'])->first() ?>
-                                        <option value="<?= $authour['id'] ?>" data-subtext=""><?= $authour['name'] ?></option>
+                                    <?php foreach ($instructors as $instructor) : ?>
+                                        <option value="<?= $instructor['id'] ?>" data-subtext=""><?= $instructor['name'] ?></option>
 
                                     <?php endforeach; ?>
                                 </select>
@@ -163,36 +158,33 @@
                 <div class="row g-5">
                     <!-- Start Single Card  -->
                     <?php foreach ($search_course['data'] as $course) : ?>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                        <div class="course-grid-3">
                             <div class="rbt-card variation-01 rbt-hover">
                                 <div class="rbt-card-img">
-                                    <a href="/course/details/<?= $course['id'] ?>">
+                                    <a href="/course/<?= $course['slug'] ?>/details">
                                         <img src="<?= $course['thumbnails'] ?>" alt="Card image">
-                                        <!-- <div class="rbt-badge-3 bg-white">
-                                <span>-40%</span>
-                                <span>Off</span>
-                            </div> -->
                                     </a>
                                 </div>
                                 <div class="rbt-card-body">
-
-                                    <h4 class="rbt-card-title"><a href="/course/details/<?= $course['id'] ?>"><?= $course['name'] ?></a>
+                                    <h4 class="rbt-card-title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;"><a href="/course/<?= $course['slug'] ?>/details"><?= $course['name'] ?></a>
                                     </h4>
+
 
                                     <ul class="rbt-meta">
                                         <li><i class="feather-book"></i><?= (new Lesson)->where('course_id', '=', $course['id'])->count() ?> bài học </li>
                                         <li><i class="feather-users"></i><?= (new Enrollment)->where('course_id', '=', $course['id'])->count() ?> học viên</li>
                                     </ul>
+                                    <?php $instructor = (new User)->where('id', '=', $course['user_id'])->first() ?>
 
-                                    <p class="rbt-card-text"><?= $course['short_description'] ?></p>
+                                    <p class="rbt-card-text" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;"><?= $course['short_description'] ?></p>
                                     <div class="rbt-author-meta mb--10">
                                         <div class="rbt-avater">
-                                            <a href="#">
-                                                <img src="/public/assets/images/client/avatar-02.png" alt="Sophia Jaymes">
+                                            <a href="/profile/<?= $instructor['id'] ?>">
+                                                <img src="<?= $instructor['avatar_url'] ? $instructor['avatar_url'] : '/public/assets/images/user/default.png' ?>" alt="Sophia Jaymes">
                                             </a>
                                         </div>
                                         <div class="rbt-author-info">
-                                            bởi <a href="#"><?= (new User)->where('id', '=', $course['user_id'])->first()['name'] ?></a>
+                                            bởi <a href="/profile/<?= $instructor['id'] ?>"><?= $instructor['name'] ?></a>
                                         </div>
                                     </div>
                                     <div class="rbt-card-bottom">
@@ -206,7 +198,7 @@
                                                 <span class="off-price"><?= number_format($course['discounted_price']) ?>đ</span>
                                             <?php endif; ?>
                                         </div>
-                                        <a class="rbt-btn-link" href="/course/details/<?= $course['id'] ?>">Xem thêm<i class="feather-arrow-right"></i></a>
+                                        <a class="rbt-btn-link" href="/course/<?= $course['slug'] ?>/details">Xem thêm<i class="feather-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -250,28 +242,13 @@
                         <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
-                                <a href="course-details.html">
+                                <a href="/course/${e.slug}/details">
                                     <img src="${e.thumbnails}" alt="Card image">
                                 </a>
                             </div>
                             <div class="rbt-card-body">
-                                <div class="rbt-card-top">
-                                    <div class="rbt-review">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
-                                    <div class="rbt-bookmark-btn">
-                                        <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
-                                    </div>
-                                </div>
 
-                                <h4 class="rbt-card-title"><a href="course/details/${e.id}">${e.name}</a>
+                                <h4 class="rbt-card-title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;"><a href="course/${e.slug}/details">${e.name}</a>
                                 </h4>
 
                                 <ul class="rbt-meta">
@@ -279,15 +256,15 @@
                                     <li><i class="feather-users"></i>${e.enrollment} Students</li>
                                 </ul>
 
-                                <p class="rbt-card-text">${e.short_description}</p>
+                                <p class="rbt-card-text" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">${e.short_description}</p>
                                 <div class="rbt-author-meta mb--10">
                                     <div class="rbt-avater">
                                         <a href="#">
-                                            <img src="public/assets/images/client/avatar-02.png" alt="Sophia Jaymes">
+                                            <img src="${e.user.avatar ? e.user.avatar : '/public/assets/images/user/default.png'}" alt="Sophia Jaymes">
                                         </a>
                                     </div>
                                     <div class="rbt-author-info">
-                                    bởi <a href="#">${e.user}</a>
+                                    bởi <a href="/profile/${e.user.id}">${e.user.name}</a>
                                     </div>
                                 </div>
                                 <div class="rbt-card-bottom">
@@ -295,12 +272,11 @@
                                         ${price(e.price)}
                                         ${discounted_price(e.discounted_price)}
                                     </div>
-                                    <a class="rbt-btn-link" href="course/details/${e.id}">Xem thêm<i class="feather-arrow-right"></i></a>
+                                    <a class="rbt-btn-link" href="/course/${e.slug}/details">Xem thêm<i class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        
                         `;
                             });
 
