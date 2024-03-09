@@ -106,10 +106,10 @@ class AuthController
         try {
             $mail->SMTPDebug = SMTP::DEBUG_OFF;
             $mail->isSMTP();
-            $mail->Host = 'mail49.vietnix.vn';
+            $mail->Host = '';
             $mail->SMTPAuth = true;
-            $mail->Username = 'noreply@mail.shoperis.net';
-            $mail->Password = '@Eris0963@';
+            $mail->Username = '';
+            $mail->Password = '';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
             $mail->CharSet = 'UTF-8';
